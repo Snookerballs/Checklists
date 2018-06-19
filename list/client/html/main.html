@@ -1,0 +1,26 @@
+<head>
+	<title>list</title>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet" />
+</head>
+
+<body>
+	<center><h1>CheckLists!</h1></center>
+</body>
+
+<template name="main_layout">
+	<div class="Main-content">
+		{{> yield}}
+	</div>
+</template>
+
+<template name="createdChecklists">
+	<center><h2> Created Checklists</h2></center>
+	{{#each checklist}}
+	<center><h5>{{listName}}</h5></center>
+	{{/each}}
+</template>
+
+
+

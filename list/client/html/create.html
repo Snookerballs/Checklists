@@ -1,0 +1,134 @@
+<template name="create_checklist">
+	<div class="create-checklist">
+		<center><h2> New Checklist</h2></center>
+		<div id="wrapper">
+			<form id="title-form" class="checklist-form col s6">
+				<div class="row">
+					<div class="input-field col s10">
+						<input id="checklistName" type="text" class="validate">
+						<label for="checklistName">Name of Checklist</label>
+					</div>
+					<div class="input-field col s12">
+						<select id= "checklistCategory">
+							<option value="" disabled selected>Choose a category</option>
+							<option value="1">Programming</option>
+							<option value="2">Art</option>
+							<option value="3">Music</option>
+							<option value="4">Photography</option>
+						</select>
+						<label>Category</label>
+					</div>
+				</div>
+			</form> 
+			{{> list}}
+		</div>
+
+	</div>
+	<br><hr><br>
+	{{> addTaskForm}}
+	<br><hr><br>
+	<br>
+	<button class="saveChecklistButton btn waves-effect waves-light col s6 right" type="submit" form="title-form">Save Checklist<i class="material-icons right">send</i></button>
+</template>
+
+<template name="list">
+	<ul class="collapsible">
+		{{#each task}}
+		<li class = "task{{@index}}">
+			<div class="collapsible-header">
+				<div class="checkbox">
+					<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox">
+					<label for="checklist-box{{@index}}"></label>
+				</div>
+				<div class="name"><strong>{{taskName}}</strong></div>
+
+				<a href="#" class="deleteTask secondary-content "><i class="material-icons">
+				close</i></a>
+
+				{{> editTaskModal}}
+			</div>
+			<div class="collapsible-body">
+				<span>
+					<strong>Description</strong>
+					<br>
+					<div class="description">{{{taskDescription}}}</div>
+					<hr>
+					<strong>Resources</strong>
+					<br>
+					<div class="resources">{{{taskResources}}}</div>
+				</span>
+			</div>
+		</li>
+		{{/each}}
+	</ul>
+</template>
+
+<template name="editTaskModal">
+	<!-- Modal Trigger -->
+	<a class="editTask secondary-content modal-trigger" href="#edit-task-modal"><i class="material-icons">create</i></a>
+
+	<!-- Modal Structure -->
+	<div id="edit-task-modal" class="modal">
+		<div class="modal-content">
+			{{> editTaskForm}}
+		</div>
+		<div class="modal-footer">
+			<center><button class="editTaskButton waves-effect waves-light btn modal-close" type="submit" form="edit-form"><i class="material-icons left">cloud</i>Edit</button></center>
+		</div>
+	</div>
+</template>
+
+<template name="editTaskForm">
+	<div id="editForm">
+		<form class="edit-form" id="edit-form">
+			<h4> Edit Task </h4>
+			<div class="row">
+				<div class="input-field col s12">
+					<input value= "" id="editTaskName" type="text" class="validate">
+					<label for="editTaskName"></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="editDescription" class="materialize-textarea"></textarea>
+					<label for="editDescription"></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="editResources" class="materialize-textarea"></textarea>
+					<label for="editResources"></label>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+
+<template name="addTaskForm">
+	<div id="addForm">
+		<form class="add-form" id="add-form">
+			<h4> Add Task </h4>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="taskName" type="text" class="validate">
+					<label for="taskName">Task Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="description" class="materialize-textarea"></textarea>
+					<label for="description">Description</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="resources" class="materialize-textarea"></textarea>
+					<label for="resources">Resources</label>
+				</div>
+			</div>
+		</form>
+		<center><button class="addTaskButton waves-effect waves-light btn modal-close" type="submit" form="add-form"><i class="material-icons left">cloud</i>Submit</button></center>
+		<br>
+	</div>
+</template>
+

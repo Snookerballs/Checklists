@@ -1,0 +1,37 @@
+<template name ="mainCategory">
+	<center><h1> Categories </h1></center>
+	{{> categoryShowcase}}
+</template>
+
+<template name="ADD">
+	<form class="col s12" id="addCat">
+		<div class="row">
+			<div class="input-field col s12">
+				<input id="cat" type="text" class="validate">
+				<label for="cat">Cat</label>
+			</div>
+		</div>
+	</form>
+	<button class="btn waves-effect waves-light" form="addCat" type="submit" name="action">Submit
+		<i class="material-icons right">send</i>  </button>
+	</template>
+
+
+	<template name="categoryShowcase">
+		<center><div class="category-wrapper">
+			<div class="category-name">
+				<a href="{{pathFor route = 'Programming' }}" class ="category-link"><h4>Programming</h4></a>
+				<a href="{{pathFor route = 'Art' }}" class ="category-link"><h4>Art</h4></a>
+				<a href="{{pathFor route = 'Photography' }}" class ="category-link"><h4>Photography</h4></a>
+				<a href="{{pathFor route = 'Music' }}" class ="category-link"><h4>Music</h4></a>
+			</div>
+		</div></center>
+	</template>
+
+
+<template name="checklists">
+	<center><h2>Catagories</h2></center>
+	{{#each checklist}}
+		<center><h4>{{listName}}</h4></center>
+	{{/each}}
+</template>

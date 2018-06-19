@@ -1,0 +1,54 @@
+.deleteTask {
+	right: 0;
+	position: absolute;
+}
+
+.editTask {
+	right: 30px;
+	position: absolute;
+}
+
+.collapsible-header {
+  position: relative;
+  	font-size: 20px;
+}
+
+.task {
+	position: relative;
+	margin: auto;
+}
+
+.checkbox {
+	width: 50px;
+	float: left;
+	position: relative;
+}
+
+.collapsible {
+	overflow: hidden;
+	height: 100%;
+	width: 700px;
+	margin: auto;
+}
+
+#wrapper {
+
+	height: 100%;
+	width: 700px;
+	margin: auto;
+}
+
+#addForm {
+	width: 500px;
+	margin:auto;
+	border: 3px dotted;
+}
+
+.add-form {
+	width: 400px;
+	margin:auto;
+}
+
+#title-form {
+	margin:auto;
+}
