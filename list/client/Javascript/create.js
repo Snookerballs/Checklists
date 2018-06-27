@@ -9,6 +9,7 @@ import '../CSS/create.css';
 var ChecklistInCreation = new Mongo.Collection(null);
 var taskToUpdate;
 var size = 0;
+var isPublish = false;
 
 
 /*------- LIST -------*/
@@ -66,6 +67,7 @@ Template.create_checklist.onRendered(function(){
 	$('.dropdown-trigger').dropdown();
 	$('select').material_select();
 	$('.collapsible-header').click(function(e){ e.stopPropagation();});
+
 });
 
 Template.addTaskForm.onRendered(function() {
@@ -103,7 +105,7 @@ Template.addTaskForm.onRendered(function() {
 Template.titleAndCategory.onRendered(function() {
 	$("#title-form").validate({
   rules: {
-        checklistName: {
+        checklistName: { //Sometimes not working
         required:true,
     },
     	checklistCategory: { //Not working wtf
@@ -148,11 +150,12 @@ Template.create_checklist.events({
 	'submit .checklist-form': function() {
 		event.preventDefault();
 
+	console.log(isPublish)
 		//Save variables to Checklist Collection
 		var listName = event.target.checklistName.value;
 		var category = $( "#checklistCategory option:selected" ).text();
 		//Create checklist
-		Meteor.call('checklists.create', listName, category, Meteor.userId(), Meteor.user().username);
+		Meteor.call('checklists.create', listName, category, Meteor.userId(), Meteor.user().username, isPublish);
 		var checklistId = ChecklistCollection.findOne({}, {sort: {createdAt: -1, limit: 1}})._id;
 
 		//Add checklist task to task collections
@@ -166,6 +169,12 @@ Template.create_checklist.events({
 		//BUG TESTING
 		console.log(ChecklistCollection.find().fetch());
 		console.log(Tasks.find().fetch());
+	},
+	'click #save-checklist-button': function() {
+		isPublish = false;
+	},
+		'click #save-and-publish-checklist-button': function() {
+		isPublish = true;
 	}
 });
 
@@ -206,7 +215,6 @@ Template.editTaskForm.events({
 		var descriptionVar = event.target.editDescription.value;
 		var taskResourcesVar = event.target.editResources.value;
 		
-
 		//Update relavant information
 		ChecklistInCreation.update({index: taskToUpdate.index}, { $set:
 			{

@@ -1,7 +1,9 @@
 import { Template } from 'meteor/templating';
 import { Mongo } from 'meteor/mongo';
 import { Tasks } from '../../lib/task.js';
+import { SavedTasks } from '../../lib/saved-task.js';
 import {ChecklistCollection} from '../../lib/checklist-collection.js';
+import {SavedChecklistCollection} from '../../lib/saved-checklist-collection.js';
 import {Posts} from '../../lib/posts.js';
 
 import '../html/checklist.html'; 
@@ -38,10 +40,35 @@ Template.checklist.onRendered(function(){
 	//$('.collapsible-header').click(function(e){ e.stopPropagation();});
 });
 
+Template.checklist.events({
+	'click #use-button': function() {
+		var currChecklist = ChecklistCollection.findOne();
+		Meteor.call('saved-checklists.create', currChecklist.listName, currChecklist.category, currChecklist.userId, currChecklist.username, Meteor.userId());
+		var checklistId = SavedChecklistCollection.findOne({}, {sort: {createdAt: -1, limit: 1}})._id;
+		Tasks.find().forEach((task) => Meteor.call('saved-tasks.insert', task.taskName, task.taskDescription,
+			task.taskResources, checklistId));
+		console.log(SavedChecklistCollection.find().fetch());
+		console.log(SavedTasks.find().fetch());
+		Router.go('Created Checklists');
+	},
+		'click #delete-button': function() {
+			/*BUGGED*/
+		var currChecklist = ChecklistCollection.findOne();
+		Meteor.call('posts.remove', currChecklist);
+		Meteor.call('tasks.remove', currChecklist);
+		Meteor.call('checklists.remove', currChecklist);
+		Router.go("Created Checklists");
+
+	}
+});
+
 Template.rating.onRendered(function(){
 		/** Initialize  Components **/
 		if(ChecklistCollection.findOne().userId == Meteor.userId()){
 			$('#rate-button').prop('disabled','disabled');
+			$('#delete-button').show();
+	 }else {
+	 		$('#delete-button').hide();
 	 }
 
 

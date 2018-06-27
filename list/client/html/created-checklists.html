@@ -1,0 +1,37 @@
+<template name="createdChecklists">
+	<div>
+      <ul class="tabs">
+        <li class="tab"><a href="#created">Created Checklists</a></li>
+        <li class="tab"><a href="#saved">Saved Checklists</a></li>
+        <li class="tab"><a href="{{pathFor route = 'Created Checklists'}}">Created Checklists</a></li>
+        <li class="tab"><a href="{{pathFor route = 'Created Checklists'}}">Created Checklists</a></li>
+      </ul>
+  </div>
+
+
+<div id="created">
+	<h2> Created Checklists </h2>
+	{{#each createdChecklist}}
+		<ul class = "collection" id="category-checklists">
+			<a href="{{pathFor route = 'Checklist'}}">
+			<li class="list-name">
+				<h4><center>{{listName}}</center></h4>
+			</li>
+		</a>
+		</ul>
+		{{/each}}
+	</div>
+
+	<div id="saved">
+		<h2> Saved Checklists</h2>
+	{{#each savedChecklist}}
+		<ul class = "collection" id="category-checklists">
+			<a href="{{pathFor route = 'Checklist'}}">
+			<li class="list-name">
+				<h4><center>{{listName}}</center></h4>
+			</li>
+		</a>
+		</ul>
+		{{/each}}
+	</div>
+</template>

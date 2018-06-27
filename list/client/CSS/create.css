@@ -125,13 +125,23 @@ margin: auto;
 		margin: 10px auto;
 		width: 500px;
 		position: relative;
-		height:100%;
+		height:100px;
+}
+
+#save-and-publish-checklist-button{
+	background-color: #dc8589;
+	width: 200px;
+	bottom: 25px;
+	font-size: 13px;
+	margin-right: auto;
 }
 
 #save-checklist-button{
 	background-color: #dc8589;
 	width: 200px;
+	font-size:13px;
 	bottom: 25px;
+	margin-left: auto;
 }
 
 .separator{

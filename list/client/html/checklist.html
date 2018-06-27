@@ -34,11 +34,13 @@
 		</li>
 		{{/each}}
 	</ul>
-
-	<div id="ratings-wrapper">
-	{{> rating}}
+	<div id="button-wrapper">	
+		<span> <button class="waves-effect waves-teal btn right" id="use-button" name="action">Use This Checklist!</button></span>
+		{{> rating}}
+		<button class="waves-effect waves-teal btn" id="delete-button" name="action">Delete Checklist</button>
 	</div>
-	
+
+
 	<div id="comments-wrapper">
 	{{> comments}}
 	</div>

@@ -45,10 +45,16 @@
   }
 
 
-#ratings-wrapper{
+#button-wrapper{
 	width: 800px;
 	overflow: hidden;
 	margin: auto;
+}
+
+#use-button{
+		margin: 20px auto;
+		width:300px;
+	background-color: #dc8589;
 }
 
 #preview-page-collapsible{

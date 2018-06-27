@@ -11,7 +11,11 @@ if(Meteor.isClient){
 
 if(Meteor.isServer){
 Meteor.publish("checklists", function(type){
-		return ChecklistCollection.find();
+		return ChecklistCollection.find({publish: true});
+});
+
+Meteor.publish("checklists-user", function(){
+		return ChecklistCollection.find({userId: this.userId});
 });
 
 Meteor.publish("checklists-specific", function(id){
@@ -20,8 +24,7 @@ Meteor.publish("checklists-specific", function(id){
 }
 
 	Meteor.methods({
-	'checklists.create'(name, cat, user, creatorName) {
-		console.log(Meteor.users.find().fetch().username);
+	'checklists.create'(name, cat, user, creatorName, status) {
 		ChecklistCollection.insert({
 			listName: name,
 			category: cat,
@@ -29,13 +32,12 @@ Meteor.publish("checklists-specific", function(id){
 			username: creatorName,
 			rating: 0,
 			raters:0,
+			publish: status,
 			createdAt: new Date(),
-			//user id
 		});
 	},
 	'checklists.remove'(list) {
-		Meteor.call(tasks.deleteAllTasksFromChecklist(list._id));
-		ChecklistCollection.remove(list._id);
+		ChecklistCollection.remove({_id: list._id}); 
 	},
 	'checklists.updateRating'(id, score){
 		var list = ChecklistCollection.findOne({_id: id});

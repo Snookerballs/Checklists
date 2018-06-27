@@ -98,6 +98,20 @@ Router.route('/categories/music', {
   },
 });
 
+Router.route('/home/created-checklists', {
+  name: 'Created Checklists',
+    template: 'createdChecklists',
+     waitOn: function() {
+        return [Meteor.subscribe('checklists-user'),
+        Meteor.subscribe('saved-checklists-user')]
+    },
+    action: function() {
+      if(this.ready()) {
+        this.render();
+      }
+  },
+});
+
 Router.route('/checklist/:_id', {
   name: 'Checklist',
     template: 'checklist-page',

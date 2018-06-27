@@ -28,7 +28,7 @@ Meteor.publish("tasks-specific", function(id) {
 		});
 	},
 	'tasks.remove'(task) {
-		Tasks.remove(task._id);
+		Tasks.remove({checklistID: task._id});
 	},
 
 	'tasks.update'(id, name, des, res) {
