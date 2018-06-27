@@ -1,0 +1,54 @@
+<template name="Home">
+  <div>
+      <h1 class="header">My CheckLists!</h1>
+  </div>
+
+  {{#if currentUser}}
+      {{> dashboard}}
+  {{else}}
+      {{> login}}
+  {{/if}}
+
+  <!--{{> tutorial}} -->
+
+</template>
+
+<!-- LOGIN -->
+<template name="login">
+  <div class="container">
+    <form class="col s12" id="login-form" name="login-form">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input type="email" name="loginEmail" required>
+          <label for="loginEmail">Email</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input type="password" name="loginPassword" required>
+          <label for="loginPassword">Password</label>
+        </div>
+      </div>
+
+      <div class="row center-align">
+        <button class="btn waves-effect cyan lighten-4" type="submit" name="login">
+         LOGIN
+        </button>
+      </div>
+    </form>
+          <div class="row center-align">
+        <button class="btn waves-effect cyan lighten-4" name="action">
+          <a href="{{pathFor route = 'Create Account' }}">CREATE NEW ACCOUNT</a>
+        </button>
+      </div>
+  </div>
+</template>
+
+<!-- LOGOUT -->
+<template name="dashboard">
+    <p>You're logged in.</p>
+    <p><a href="#" class="logout">Logout</a></p>
+</template>

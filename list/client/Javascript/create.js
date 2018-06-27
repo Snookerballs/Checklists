@@ -1,29 +1,55 @@
 import { Template } from 'meteor/templating';
 import { Mongo } from 'meteor/mongo';
-import { Tasks } from '../../lib/checklist.js';
+import { Tasks } from '../../lib/task.js';
 import {ChecklistCollection} from '../../lib/checklist-collection.js';
 
 import '../html/create.html'; 
+import '../CSS/create.css';
 
 var ChecklistInCreation = new Mongo.Collection(null);
 var taskToUpdate;
+var size = 0;
 
-$(document).ready(function(){
-
-
-});
 
 /*------- LIST -------*/
 Template.list.helpers({
 	task(){
-		return ChecklistInCreation.find();
+		return ChecklistInCreation.find({},{sort: {index:1}});
 	},
 });
 
 Template.list.events({
-	'click .deleteTask': function() {
+	'click .delete-task': function() {
 		ChecklistInCreation.remove(this);
 	},
+	'click .move-up': function() {
+			var topInList = ChecklistInCreation.findOne({},{sort: {index: 1}});
+			if(topInList._id != this._id){
+		ChecklistInCreation.update({index: this.index-1},  {
+			$set:{
+				index: this.index,
+		}}, { upsert:true});
+						ChecklistInCreation.update({_id: this._id},  {
+			$set:{
+				index: this.index-1,
+		}}, { upsert:true});
+		}
+
+	},
+		'click .move-down': function() {
+			var bottomInList = ChecklistInCreation.findOne({},{sort: {index: -1}});
+			if(bottomInList._id != this._id){
+		ChecklistInCreation.update({index: this.index+1},  {
+			$set:{
+				index: this.index,
+		}}, { upsert:true});
+						ChecklistInCreation.update({_id: this._id},  {
+			$set:{
+				index: this.index+1,
+		}}, { upsert:true});
+		}
+
+	}
 });
 
 /*------- CREATE_CHECKLIST -------*/
@@ -42,6 +68,76 @@ Template.create_checklist.onRendered(function(){
 	$('.collapsible-header').click(function(e){ e.stopPropagation();});
 });
 
+Template.addTaskForm.onRendered(function() {
+	$("#add-form").validate({
+  rules: {
+        taskName: {
+        required:true,
+    },
+    description: {
+        required: true,
+
+    },
+  },
+	messages: {
+    taskName: {
+        required: "Task name is required.",
+    },
+    description:  {
+        required: "Description is required.",
+
+    },
+},
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+})
+});
+
+Template.titleAndCategory.onRendered(function() {
+	$("#title-form").validate({
+  rules: {
+        checklistName: {
+        required:true,
+    },
+    	checklistCategory: { //Not working wtf
+        required: true,
+    },
+  },
+	messages: {
+    checklistName: {
+        required: "Please give your checklist a name.",
+    },
+    checklistCategory:  {
+        notEqual: "Please choose a category for your checklist",
+
+    },
+},
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+})
+})
+
+
+
+Template.create_checklist.onDestroyed(function(){
+	ChecklistInCreation.remove({});
+	size = 0;
+});
+
 Template.create_checklist.events({
 	'click .saveCheckListButton': function() {
 		ChecklistInCreation.remove(this);
@@ -55,10 +151,12 @@ Template.create_checklist.events({
 		//Save variables to Checklist Collection
 		var listName = event.target.checklistName.value;
 		var category = $( "#checklistCategory option:selected" ).text();
-		Meteor.call('checklists.create', listName, category);
-		var checklistId = ChecklistCollection.findOne({}, {sort: {DateTime: -1, limit: 1}})._id;
+		//Create checklist
+		Meteor.call('checklists.create', listName, category, Meteor.userId(), Meteor.user().username);
+		var checklistId = ChecklistCollection.findOne({}, {sort: {createdAt: -1, limit: 1}})._id;
 
-		ChecklistInCreation.find().forEach((task) => Meteor.call('tasks.insert', task.taskName, task.taskDescription,
+		//Add checklist task to task collections
+		ChecklistInCreation.find({},{sort:{index: 1}}).forEach((task) => Meteor.call('tasks.insert', task.taskName, task.taskDescription,
 			task.taskResources, checklistId));
 
 		// Re Initialize ChecklistInCreation
@@ -77,7 +175,6 @@ Template.create_checklist.events({
 Template.addTaskForm.events({
 	'submit .add-form': function() {
 		event.preventDefault();
-
 		//Retrieve Information in the textboxes
 		var taskNameVar = event.target.taskName.value;
 		var descriptionVar = event.target.description.value;
@@ -88,10 +185,9 @@ Template.addTaskForm.events({
 			taskName: taskNameVar,
 			taskDescription: descriptionVar,
 			taskResources: taskResourcesVar,
-			createdAt: new Date(),
+			index: size,
 		});
-
-		//console.log(ChecklistInCreation.find().fetch());
+		size = size+1;
 
 		//Reset text in Add Task Form
 		event.target.taskName.value = ' ';
@@ -112,11 +208,12 @@ Template.editTaskForm.events({
 		
 
 		//Update relavant information
-		ChecklistInCreation.update({createdAt: taskToUpdate.createdAt}, {
+		ChecklistInCreation.update({index: taskToUpdate.index}, { $set:
+			{
 			taskName: taskNameVar,
 			taskDescription: descriptionVar,
 			taskResources: taskResourcesVar,
-		}, { upsert:true});
+		}}, { upsert:true});
 	}
 });
 
@@ -141,7 +238,6 @@ $(document).on('click','.editTask', function(){
 		taskResources: resources}).fetch()[0];
 	//BUG: .val() does not copy over html formatting ><
 });
-
 
 
 

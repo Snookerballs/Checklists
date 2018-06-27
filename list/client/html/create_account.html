@@ -1,0 +1,71 @@
+<!-- REGISTER -->
+<template name="create_account">
+
+  <div class="container">
+    <div class="col s12 m6">
+      <div class="card blue lighten-5">
+        <div class="card-content white-text">
+
+          <form class="col s12" id="register-form">
+          <span class="card-title center-align blue darken-4-text">Create My Account!</span>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" name="registerUsername" required>
+              <label for="registerUsername">Username</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="email" name="registerEmail" required>
+              <label for="registerEmail">Email</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="password" name="registerPassword" id = "registerPassword" required>
+              <label for="registerPassword">Password</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="password" name="confirmPassword" required>
+              <label for="confirmPassword">Confirm Password</label>
+            </div>
+          </div>
+
+          <div class="row center-align">
+            <button type="submit" class="btn waves-effect waves-light" name="create">
+              Create Your Account
+            </button>
+          </div>
+
+        </form>
+
+        </div>
+        <div class="card-action">
+          <a href="#">Terms and Conditions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">My Checklists!</h5>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer>
+</template>

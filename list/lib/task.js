@@ -1,14 +1,23 @@
 import { Meteor } from 'meteor/meteor'
 import { Mongo } from 'meteor/mongo'
-import { CheckListCollection } from '../lib/checklist.js';
 
 export const Tasks = new Mongo.Collection('tasks');
 
-/*if(Meteor.isClient){
-console.log("Hello World");
-}*/
+if(Meteor.isClient){
 
-Meteor.methods({
+}
+
+if(Meteor.isServer){
+Meteor.publish("tasks", function(){
+	return Tasks.find();
+});
+
+Meteor.publish("tasks-specific", function(id) {
+	return Tasks.find({checklistID: id}, {sort: { createdAt: 1}});
+});
+}
+
+	Meteor.methods({
 	'tasks.insert'(name, des, res, id) {
 		Tasks.insert({
 			taskName: name,

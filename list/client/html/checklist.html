@@ -1,0 +1,91 @@
+<template name="checklist-page">
+	{{#if currentUser}}
+	{{> checklist}}
+	{{else}}
+	{{> loginPrompt}}
+	{{/if}}
+</template>
+
+<template name="checklist">
+	<center><h2>{{name}}</h2></center>
+	<center> Created by: {{creator}} </center>
+		<center> Rating: {{listRating}} ({{raterNumber}} votes) </center>
+	<ul class="collapsible" id="preview-page-collapsible">
+		{{#each task}}
+		<li class = "task{{@index}}">
+			<div class="collapsible-header" id="preview-page-collapsible-header">
+				<div class="checkbox">
+					<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox">
+					<label for="checklist-box{{@index}}"></label>
+				</div>
+				<div class="name"><strong>{{taskName}}</strong></div>
+			</div>
+			<div class="collapsible-body">
+				<span>
+					<strong>Description</strong>
+					<br>
+					<div class="description">{{{taskDescription}}}</div>
+					<hr>
+					<strong>Resources</strong>
+					<br>
+					<div class="resources">{{{taskResources}}}</div>
+				</span>
+			</div>
+		</li>
+		{{/each}}
+	</ul>
+
+	<div id="ratings-wrapper">
+	{{> rating}}
+	</div>
+	
+	<div id="comments-wrapper">
+	{{> comments}}
+	</div>
+</template>
+
+<template name="comments">
+		<div id="comments-form">
+	<h3> Comments </h3>
+		<form class="commentForm col s12">
+			<div class="row">
+				<div class="input-field col s10">
+					<i class="material-icons prefix">mode_edit</i>
+					<textarea id="comment" class="materialize-textarea"></textarea>
+					<label for="icon_prefix2">Write your comment here!</label>
+				</div>
+			<button class="btn waves-effect waves-light" id="post-button" type="submit" name="action">post</button>
+			</div>
+			</form>
+		</div>
+
+		<ul class="collection" id="comments-list">
+			{{#each post}}
+			<h5>{{username}} says:</h5>
+			Created on: {{formatDate createdAt}}
+			<li class="collection-item">{{comment}}</li>
+			{{/each}}
+		</ul>
+	</template>
+
+	<template name="rating">
+		<h5>Rate this Checklist! </h5>
+		<form action="#" class ="rating-system">
+			<input name = "starContainer" type="radio" id="one" value=1 required>
+			<label  id = "star-one" class="star" for="one"><i class="material-icons">star</i></label>
+			
+			<input name = "starContainer" type="radio" id="two" value=2>
+			<label id = "star-two" class="star" for="two"><i class="material-icons ">star</i></label>
+
+			<input name = "starContainer" type="radio" id="three" value=3>
+			<label id = "star-three" class="star" for="three"><i class="material-icons">star</i></label>
+
+			<input name = "starContainer" type="radio" id="four" value=4>
+			<label id = "star-four" class="star" for="four"><i class="material-icons">star</i></label>
+
+			<input name = "starContainer" type="radio" id="five" value=5>
+			<label id = "star-five" class="star" for="five"><i class="material-icons">star</i></label>
+			 <button class="waves-effect waves-teal btn-flat" id="rate-button" type="submit" name="action">Rate</button>
+		</form>
+		<br>
+	</template>

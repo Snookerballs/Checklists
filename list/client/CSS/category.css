@@ -1,0 +1,53 @@
+.card {
+	height:400px;
+	width: 400px;
+	border: 10px solid #89d2dd;
+}
+
+.right-col {
+	width: 500px;
+	margin-left: 500px;
+}
+
+.left-col {
+	width: 500px;
+	margin-right: 500px;
+}
+
+#category-checklists{
+	margin: 20px auto;
+	overflow: hidden;
+	width: 700px;
+	border: 5px solid #89d2dd;
+}
+
+#category-checklists:hover{
+		transform: scale(1.1);
+		background-color: #bdeff5
+}
+
+.card:hover{
+		transform: scale(1.1);
+		background-color: #bdeff5
+}
+
+#sort-form{
+float: left;
+margin-left: 150px;
+width:150px;
+position:relative;
+}
+
+#sort-label{
+	font-size: 15px;
+	top: 50px;
+	left: 50px;
+	width:100px;
+	position:relative;
+}
+
+#sort-form-wrapper {
+	width:800px;
+	height:100px;
+	margin: auto;
+}

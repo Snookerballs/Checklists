@@ -1,21 +1,62 @@
-.deleteTask {
-	right: 0;
-	position: absolute;
+body{
+	margin:0;
+	padding:0;
+ color: #dc8589;
+ font-family: courier;
+}
+
+hr{
+margin: auto;
+}
+#navbar{
+	height: 300px;
+}
+
+
+
+.nav-encaps{
+	width: 70%;
+	margin: auto;
+}
+
+#content{
+	margin-top: 180px;
+}
+
+#create-checklist-title{
+	text-align: center;
+	text-decoration: underline;;
+}
+
+#create-checklist-task-name{
+	right: 170px;
+	position:relative;
+}
+
+.delete-task {
+	left: 440px;
+	position:relative;
+	color:  #5aa8b4;
 }
 
 .editTask {
-	right: 30px;
-	position: absolute;
-}
-
-.collapsible-header {
-  position: relative;
-  	font-size: 20px;
+	left: 440px;
+	position:relative;
+	color:  #5aa8b4;
 }
 
 .task {
 	position: relative;
 	margin: auto;
+}
+
+#shifter{
+	opacity:0;
+		position: relative;
+	left: 450px;
+}
+#shifter:hover{
+	opacity: 1;
 }
 
 .checkbox {
@@ -24,31 +65,78 @@
 	position: relative;
 }
 
-.collapsible {
-	overflow: hidden;
+#create-collapsible-header {
+	font-size: 20px;
+	background-color: #e0fafd;
 	height: 100%;
-	width: 700px;
+	width: 594px;
 	margin: auto;
+	color: #5aa8b4;
 }
 
-#wrapper {
 
-	height: 100%;
-	width: 700px;
-	margin: auto;
+#checklist {
+	margin: 10px auto;
+	width:600px;
+	border: 3px solid #89d2dd;
+	height:100%;
 }
 
-#addForm {
+#add-form-wrapper {
 	width: 500px;
 	margin:auto;
-	border: 3px dotted;
+	border: 5px solid #dc8589;
+	overflow:hidden;
+	color: #e37975;
 }
 
-.add-form {
+#add-form {
 	width: 400px;
 	margin:auto;
+	height:100%;
+}
+
+#add-task-button{
+		margin: 10px auto;
+		width: 100px;
+		left: 380px;
+		background-color: #dc8589;
+}
+
+#title-form-wrapper {
+	margin: 10px auto;
+	width:500px;
+	border: 5px solid #f49498;
+	overflow: visible;
+	color: #e37975;
 }
 
 #title-form {
+	width: 400px;
 	margin:auto;
+} 
+
+#checklistName{
+		margin: auto;
+		right: 500px;
 }
+
+#save-checklist-button-wrapper{
+		margin: 10px auto;
+		width: 500px;
+		position: relative;
+		height:100%;
+}
+
+#save-checklist-button{
+	background-color: #dc8589;
+	width: 200px;
+	bottom: 25px;
+}
+
+.separator{
+	margin: auto;
+}
+
+
+
