@@ -1,4 +1,4 @@
-.card {
+.category-card {
 	height:400px;
 	width: 400px;
 	border: 10px solid #89d2dd;
@@ -26,7 +26,7 @@
 		background-color: #bdeff5
 }
 
-.card:hover{
+.category-card:hover{
 		transform: scale(1.1);
 		background-color: #bdeff5
 }

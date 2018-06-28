@@ -29,7 +29,7 @@ Meteor.publish("saved-tasks-specific", function(id) {
 		});
 	},
 	'saved-tasks.remove'(task) {
-		SavedTasks.remove(task._id);
+		SavedTasks.remove({checklistID: task._id});
 	},
 
 	'saved-tasks.update'(id, name, des, res) {
@@ -40,9 +40,9 @@ Meteor.publish("saved-tasks-specific", function(id) {
 			taskResources: res,
 		}}, { upsert:true});
 	},
-	'saved-tasks.check'(status) {
+	'saved-tasks.check'(id, status) {
 				SavedTasks.update({_id: id}, {$set: {
-				check: status,
+				checkStatus: status,
 		}}, { upsert:true});
 	}
 })

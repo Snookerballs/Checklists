@@ -98,9 +98,9 @@ Router.route('/categories/music', {
   },
 });
 
-Router.route('/home/created-checklists', {
-  name: 'Created Checklists',
-    template: 'createdChecklists',
+Router.route('/home/user-checklists', {
+  name: 'User Checklists',
+    template: 'userChecklists',
      waitOn: function() {
         return [Meteor.subscribe('checklists-user'),
         Meteor.subscribe('saved-checklists-user')]
@@ -120,6 +120,22 @@ Router.route('/checklist/:_id', {
         return [Meteor.subscribe('tasks-specific', this.params._id),
        			Meteor.subscribe('checklists-specific', this.params._id),
        			Meteor.subscribe('posts-specific', this.params._id),]
+    },
+    action: function() {
+      if(this.ready()) {
+        this.render();
+      }
+    },
+});
+
+
+Router.route('/saved-checklist/:_id', {
+  name: 'Saved Checklist',
+    template: 'savedChecklist',
+    waitOn: function() {
+      Session.set('current-saved-checklist', this.params._id);
+        return [Meteor.subscribe('saved-tasks-specific', this.params._id),
+            Meteor.subscribe('saved-checklists-specific', this.params._id),]
     },
     action: function() {
       if(this.ready()) {

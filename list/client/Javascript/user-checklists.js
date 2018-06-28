@@ -3,7 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import {ChecklistCollection} from '../../lib/checklist-collection.js';
 import {SavedChecklistCollection} from '../../lib/saved-checklist-collection.js';
 
-Template.createdChecklists.helpers({
+Template.userChecklists.helpers({
 	createdChecklist(){
 		return ChecklistCollection.find();
 	},
@@ -12,7 +12,7 @@ Template.createdChecklists.helpers({
 	}
 })
 
-Template.createdChecklists.onRendered(function(){
+Template.userChecklists.onRendered(function(){
 	$('select').material_select();
 	  $('#select-options').on('change', function(e) {
     	$('#select-options').trigger('select');

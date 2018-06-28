@@ -49,7 +49,7 @@ Template.checklist.events({
 			task.taskResources, checklistId));
 		console.log(SavedChecklistCollection.find().fetch());
 		console.log(SavedTasks.find().fetch());
-		Router.go('Created Checklists');
+		Router.go('User Checklists');
 	},
 		'click #delete-button': function() {
 			/*BUGGED*/
@@ -57,7 +57,13 @@ Template.checklist.events({
 		Meteor.call('posts.remove', currChecklist);
 		Meteor.call('tasks.remove', currChecklist);
 		Meteor.call('checklists.remove', currChecklist);
-		Router.go("Created Checklists");
+		Router.go("User Checklists");
+
+	},
+		'click #publish-button': function() {
+			Meteor.call('checklists.publish', ChecklistCollection.findOne());
+
+			Router.go("User Checklists");
 
 	}
 });
@@ -67,9 +73,20 @@ Template.rating.onRendered(function(){
 		if(ChecklistCollection.findOne().userId == Meteor.userId()){
 			$('#rate-button').prop('disabled','disabled');
 			$('#delete-button').show();
+			$('#publish-button').show();
+
+			if(ChecklistCollection.findOne().publish == true) {
+				$('#publish-button').prop('disabled','disabled');
+			} else {
+				$('#comments-wrapper').hide();
+			}
 	 }else {
 	 		$('#delete-button').hide();
+	 		$('#publish-button').hide();
+	 			$('#rate-button').removeAttr("disabled");
 	 }
+
+
 
 
 	$(".ratingSystem").validate({

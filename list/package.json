@@ -9,5 +9,8 @@
     "bcrypt": "^2.0.1",
     "jquery-validation": "^1.17.0",
     "meteor-node-stubs": "^0.3.2"
+  },
+  "globals": {
+    "window": true
   }
 }

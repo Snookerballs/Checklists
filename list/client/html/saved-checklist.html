@@ -1,0 +1,31 @@
+<template name="savedChecklist">
+	<center><h2>{{name}}</h2></center>
+	<center> Created by: {{creator}} </center>
+	<ul class="collapsible" id="preview-page-collapsible">
+		{{#each task}}
+		<li id = "task{{@index}}" class="task">
+			<div class="collapsible-header" id="preview-page-collapsible-header">
+				<div class="checkbox">
+					<input id="{{@index}}" class="checklist-box" type="checkbox">
+					<label for="{{@index}}"></label>
+				</div>
+				<div class="name"><strong>{{taskName}}</strong></div>
+			</div>
+			<div class="collapsible-body">
+				<span>
+					<strong>Description</strong>
+					<br>
+					<div class="description">{{{taskDescription}}}</div>
+					<hr>
+					<strong>Resources</strong>
+					<br>
+					<div class="resources">{{{taskResources}}}</div>
+				</span>
+			</div>
+		</li>
+		{{/each}}
+	</ul>
+	<div id="button-wrapper">	
+		<button class="waves-effect waves-teal btn" id="delete-button" name="action">Delete Checklist</button>
+	</div>
+</template>

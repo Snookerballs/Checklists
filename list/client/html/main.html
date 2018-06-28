@@ -3,9 +3,13 @@
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet" />
+  <!--Import materialize.css-->
+       <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
 <body>
+
   {{> sidebar}}
 </body>
 
@@ -26,7 +30,7 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="{{pathFor route = 'Categories' }}">Categories</a></li>
         <li><a href="{{pathFor route = 'Create' }}">Create</a></li>
-        <li><a href="{{pathFor route = 'Created Checklists'}}">Home</a></li>
+        <li><a href="{{pathFor route = 'User Checklists'}}">Home</a></li>
       </ul>
     </div>
 </div>

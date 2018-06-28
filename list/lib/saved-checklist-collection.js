@@ -37,8 +37,7 @@ Meteor.publish("saved-checklists-specific", function(id){
 		});
 	},
 	'saved-checklists.remove'(list) {
-		Meteor.call(tasks.deleteAllTasksFromChecklist(list._id));
-		SavedChecklistCollection.remove(list._id);
+		SavedChecklistCollection.remove({_id: list._id});
 	},
 });
 
