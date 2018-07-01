@@ -9,7 +9,10 @@ Template.userChecklists.helpers({
 	},
 	savedChecklist(){
 		return SavedChecklistCollection.find();
-	}
+	},
+		      formatDate(date){
+  		return moment(date).format('DD-MM-YYYY');
+    }
 })
 
 Template.userChecklists.onRendered(function(){

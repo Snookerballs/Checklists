@@ -11,7 +11,6 @@ var taskToUpdate;
 var size = 0;
 var isPublish = false;
 
-
 /*------- LIST -------*/
 Template.list.helpers({
 	task(){
@@ -166,6 +165,9 @@ Template.create_checklist.events({
 		event.target.checklistName.value =' ';
 		ChecklistInCreation.remove({});
 
+		//Submit
+		$('#title-form').trigger("reset");
+
 		//BUG TESTING
 		console.log(ChecklistCollection.find().fetch());
 		console.log(Tasks.find().fetch());
@@ -204,6 +206,7 @@ Template.addTaskForm.events({
 		event.target.resources.value = ' ';
 
 		$('.collapsible').collapsible();
+		$('#add-form').trigger("reset");
 	}
 });
 
@@ -222,6 +225,7 @@ Template.editTaskForm.events({
 			taskDescription: descriptionVar,
 			taskResources: taskResourcesVar,
 		}}, { upsert:true});
+		$('#edit-form').trigger("reset");
 	}
 });
 
@@ -248,6 +252,9 @@ $(document).on('click','.editTask', function(){
 });
 
 
+Meteor.methods({
+
+})
 
 /*
 $(document).on('click','.createChecklistButton', function(){

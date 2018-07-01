@@ -132,27 +132,28 @@ Template.comments.helpers({
 });
 
 Template.rating.events({
-	'click #one': function() {
+	'click #star-one': function() {
 		$('.star').css("color", 'grey');
 		$("#star-one").css("color", "#FD4");
+		$("#one").prop("checked", true);
 	},
-	'click #two': function() {
-		$('#one').trigger('click');
+	'click #star-two': function() {
+		$('#star-one').trigger('click');
 		$("#star-two").css("color", "#FD4");
 		$("#two").prop("checked", true);
 	},	
-	'click #three': function() {
-		$('#two').trigger('click');
+	'click #star-three': function() {
+		$('#star-two').trigger('click');
 		$("#star-three").css("color", "#FD4");
 		$("#three").prop("checked", true);
 	},	
-	'click #four': function() {
-		$('#three').trigger('click');
+	'click #star-four': function() {
+		$('#star-three').trigger('click');
 		$("#star-four").css("color", "#FD4");
 		$("#four").prop("checked", true);
 	},	
-	'click #five': function() {
-		$('#four').trigger('click');
+	'click #star-five': function() {
+		$('#star-four').trigger('click');
 		$("#star-five").css("color", "#FD4");
 		$("#five").prop("checked", true);
 	},

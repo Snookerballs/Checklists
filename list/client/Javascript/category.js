@@ -21,6 +21,10 @@ Template.checklists.helpers({
 			return ChecklistCollection.find({category:  Router.current().route.getName()}, {sort: {rating: -1}});
 		}
 	},
+	      formatDate(date){
+  		return moment(date).format('DD-MM-YYYY');
+    }
+
 	});
 
 Template.categoryShowcase.events({

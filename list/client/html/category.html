@@ -107,6 +107,12 @@
 			<a href="{{pathFor route = 'Checklist'}}">
 			<li class="list-name">
 				<h4><center>{{listName}}</center></h4>
+								<center>By: {{username}} </center>
+								<br>
+								<div class="information">
+				<span>Created on: {{formatDate createdAt}} </span>
+				<span style = "float: right;">Rating: {{rating}}({{raters}} voters) </span>
+			</div>
 			</li>
 		</a>
 		</ul>

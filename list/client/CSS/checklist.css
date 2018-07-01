@@ -26,22 +26,30 @@
 	background-color: #dc8589;
 }
 
-  [type="radio"] + label:before,
+  /*[type="radio"] + label:before,
   [type="radio"] + label:after {
   	display:none;
 
-  }
+  }*/
 
 
 .star{
 	color: grey;
-	float: left;
+	width: 30px;
     background-position: center center;
     background-color: $image-bg;
+    cursor: pointer
   }
 
   .star:hover{
+  	transition: transform .3s ;
 	transform: rotate(-15deg) scale(1.3);
+  }
+
+  #rate-button{
+  	width: 50px;
+  	bottom: 7px;
+  	padding: 0px;
   }
 
 
@@ -52,8 +60,8 @@
 }
 
 #use-button{
-		margin: 20px auto;
-		width:300px;
+	margin: 20px auto;
+	width:300px;
 	background-color: #dc8589;
 }
 
