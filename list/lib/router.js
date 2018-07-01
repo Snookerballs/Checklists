@@ -2,6 +2,7 @@ Router.configure({
 	layoutTemplate: 'main_layout'
 });
 
+
 Router.route('/', {
 	name:'Home',
 	template:'Home',
@@ -134,6 +135,20 @@ Router.route('/saved-checklist/:_id', {
     template: 'savedChecklist',
     waitOn: function() {
       Session.set('current-saved-checklist', this.params._id);
+        return [Meteor.subscribe('saved-tasks-specific', this.params._id),
+            Meteor.subscribe('saved-checklists-specific', this.params._id),]
+    },
+    action: function() {
+      if(this.ready()) {
+        this.render();
+      }
+    },
+});
+
+Router.route('/edit-saved-checklist/:_id', {
+    name: 'Edit Checklist',
+    template: 'editExistingChecklist',
+    waitOn: function() {
         return [Meteor.subscribe('saved-tasks-specific', this.params._id),
             Meteor.subscribe('saved-checklists-specific', this.params._id),]
     },

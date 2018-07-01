@@ -88,7 +88,7 @@
 				{{> editTaskForm}}
 			</div>
 			<div class="modal-footer">
-				<center><button class="editTaskButton waves-effect waves-light btn modal-close" type="submit" form="edit-form"><i class="material-icons left">cloud</i>Edit</button></center>
+				<center><button class="editTaskButton waves-effect waves-light btn" type="submit" form="edit-form"><i class="material-icons left">cloud</i>Edit</button></center>
 			</div>
 		</div>
 	</template>
@@ -99,13 +99,13 @@
 				<h4> Edit Task </h4>
 				<div class="row">
 					<div class="input-field col s12">
-						<input value= "" id="editTaskName" type="text" class="validate">
+						<input value= "" id="editTaskName" name = "editTaskName" type="text" class="validate">
 						<label for="editTaskName"></label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<textarea id="editDescription" class="materialize-textarea"></textarea>
+						<textarea id="editDescription" name = "editDescription" class="materialize-textarea"></textarea>
 						<label for="editDescription"></label>
 					</div>
 				</div>
