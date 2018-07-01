@@ -35,7 +35,7 @@ Template.checklist.helpers({
 
 Template.checklist.onRendered(function(){
 		/** Initialize  Components **/
-	$('.collapsible').collapsible();
+		$('.collapsible').collapsible();
 			/** Initialize  Components **/
 		if(ChecklistCollection.findOne().userId == Meteor.userId()){
 			$('#rate-button').prop('disabled','disabled');
@@ -53,8 +53,6 @@ Template.checklist.onRendered(function(){
 	 		$('#rate-button').removeAttr("disabled");
 	 }
 
-
-	//$('.collapsible-header').click(function(e){ e.stopPropagation();});
 });
 
 Template.checklist.events({
@@ -86,10 +84,6 @@ Template.checklist.events({
 });
 
 Template.rating.onRendered(function(){
-
-
-
-
 	$(".ratingSystem").validate({
   rules: {
         starContainer: {
@@ -112,6 +106,7 @@ Template.rating.onRendered(function(){
     }
 })
 });
+
 
 Template.comments.events({
 	'submit .commentForm': function() {

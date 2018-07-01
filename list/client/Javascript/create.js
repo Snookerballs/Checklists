@@ -67,6 +67,27 @@ Template.create_checklist.onRendered(function(){
 	$('select').material_select();
 	$('.collapsible-header').click(function(e){ e.stopPropagation();});
 
+	$(document).on('click','.editTask', function(){
+	$('#edit-task-modal').modal();
+	$('#edit-task-modal').modal('open');
+
+	var editingTask = $(this).parent().closest('li').attr('class').split(' ');
+	var taskNum = editingTask[0];
+	var name = $('.'+taskNum).find('.name').text();
+	var description = $('.'+taskNum).find('.description').text();
+	var resources = $('.'+taskNum).find('.resources').text();
+
+	$('#editTaskName').val(name);
+	$('#editDescription').val(description);
+	$('#editResources').val(resources);
+
+	
+	taskToUpdate = ChecklistInCreation.find({taskName: name, 
+		taskDescription: description,
+		taskResources: resources}).fetch()[0];
+	//BUG: .val() does not copy over html formatting ><
+});
+
 });
 
 Template.addTaskForm.onRendered(function() {
@@ -102,6 +123,8 @@ Template.addTaskForm.onRendered(function() {
 });
 
 Template.titleAndCategory.onRendered(function() {
+		$('.dropdown-trigger').dropdown();
+	$('select').material_select();
 	$("#title-form").validate({
   rules: {
         checklistName: { //Sometimes not working
@@ -132,6 +155,39 @@ Template.titleAndCategory.onRendered(function() {
 })
 })
 
+Template.editTaskModal.onRendered(function() {
+
+$("#edit-form").validate({
+  rules: {
+        editTaskName: {
+        required:true,
+    },
+    	editDescription: {
+        required: true,
+
+    },
+  },
+	messages: {
+    editTaskName: {
+        required: "Task name is required.",
+    },
+    editDescription:  {
+        required: "Description is required.",
+
+    },
+},
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+})
+
+})
 
 
 Template.create_checklist.onDestroyed(function(){
@@ -226,35 +282,14 @@ Template.editTaskForm.events({
 			taskResources: taskResourcesVar,
 		}}, { upsert:true});
 		$('#edit-form').trigger("reset");
+		$(".modal").modal('close');
 	}
 });
 
 
-$(document).on('click','.editTask', function(){
-	$('#edit-task-modal').modal();
-	$('#edit-task-modal').modal('open');
-
-	var editingTask = $(this).parent().closest('li').attr('class').split(' ');
-	var taskNum = editingTask[0];
-	var name = $('.'+taskNum).find('.name').text();
-	var description = $('.'+taskNum).find('.description').text();
-	var resources = $('.'+taskNum).find('.resources').text();
-
-	$('#editTaskName').val(name);
-	$('#editDescription').val(description);
-	$('#editResources').val(resources);
 
 
-	taskToUpdate = ChecklistInCreation.find({taskName: name, 
-		taskDescription: description,
-		taskResources: resources}).fetch()[0];
-	//BUG: .val() does not copy over html formatting ><
-});
 
-
-Meteor.methods({
-
-})
 
 /*
 $(document).on('click','.createChecklistButton', function(){
