@@ -36,6 +36,23 @@ Template.checklist.helpers({
 Template.checklist.onRendered(function(){
 		/** Initialize  Components **/
 	$('.collapsible').collapsible();
+			/** Initialize  Components **/
+		if(ChecklistCollection.findOne().userId == Meteor.userId()){
+			$('#rate-button').prop('disabled','disabled');
+			$('#delete-button').show();
+			$('#publish-button').show();
+
+			if(ChecklistCollection.findOne().publish == true) {
+				$('#publish-button').prop('disabled','disabled');
+			} else {
+				$('#comments-wrapper').hide();
+			}
+	 }else {
+	 		$('#delete-button').hide();
+	 		$('#publish-button').hide();
+	 		$('#rate-button').removeAttr("disabled");
+	 }
+
 
 	//$('.collapsible-header').click(function(e){ e.stopPropagation();});
 });
@@ -69,22 +86,6 @@ Template.checklist.events({
 });
 
 Template.rating.onRendered(function(){
-		/** Initialize  Components **/
-		if(ChecklistCollection.findOne().userId == Meteor.userId()){
-			$('#rate-button').prop('disabled','disabled');
-			$('#delete-button').show();
-			$('#publish-button').show();
-
-			if(ChecklistCollection.findOne().publish == true) {
-				$('#publish-button').prop('disabled','disabled');
-			} else {
-				$('#comments-wrapper').hide();
-			}
-	 }else {
-	 		$('#delete-button').hide();
-	 		$('#publish-button').hide();
-	 			$('#rate-button').removeAttr("disabled");
-	 }
 
 
 
