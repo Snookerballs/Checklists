@@ -10,7 +10,7 @@ margin: auto;
 }
 
 #navbar{
-	height: 300px;
+	height: 60px;
 }
 
 .nav-encaps{
@@ -131,7 +131,7 @@ margin: auto;
 #title-form {
 	width: 400px;
 	margin:auto;
-} 
+}
 
 #checklistName{
 		margin: auto;
@@ -164,6 +164,3 @@ margin: auto;
 .separator{
 	margin: auto;
 }
-
-
-
