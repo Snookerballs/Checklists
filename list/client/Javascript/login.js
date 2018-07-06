@@ -17,14 +17,14 @@ import '../html/create_account.html';
           email: emailVar,
           password: passwordVar
       },function(error){
-    if(error){
-        alert(error.reason); // Output error if registration fails
-    } else {
-        console.log(Meteor.userId());
-        Router.go("Home"); // Redirect user if registration succeeds
-    }
-});
-    
+          if(error){
+              alert(error.reason); // Output error if registration fails
+          } else {
+              console.log(Meteor.userId());
+              Router.go("Home"); // Redirect user if registration succeeds
+          }
+      });
+
     }
   });
 
@@ -98,7 +98,6 @@ $("#register-form").validate({
     },
     registerEmail: {
         required: true,
-
     },
     registerPassword: {
         required: true,

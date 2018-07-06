@@ -2,13 +2,16 @@ Router.configure({
 	layoutTemplate: 'main_layout'
 });
 
+Router.route('/change_password', function () {
+  this.render('change_password');
+});
 
 Router.route('/', {
 	name:'Home',
 	template:'Home',
   waitOn: function() {
     // Client
-    return Meteor.subscribe('userData');  
+    return Meteor.subscribe('userData');
   },
     action: function() {
       if(this.ready()) {
