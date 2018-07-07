@@ -6,6 +6,10 @@ Router.route('/change_password', function () {
   this.render('change_password');
 });
 
+Router.route('/email', function () {
+  this.render('email');
+});
+
 Router.route('/', {
 	name:'Home',
 	template:'Home',

@@ -5,7 +5,7 @@ import '../html/login.html';
 import '../html/create_account.html';
 
 
-  Template.create_account.events({
+Template.create_account.events({
   'submit form': function(event){
       event.preventDefault();
       console.log(Meteor.users.find().fetch());

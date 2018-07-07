@@ -1,0 +1,37 @@
+<!-- FOR ADMIN ONLY! TO SEND EMAIL TO USERS -->
+<template name="email">
+  {{#if currentUser}}
+  <div class="container">
+    <h3 class="header">Send Email</h3>
+
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="input_email" type="email">
+          <label for="input_email">Email Address</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="subject" type="text">
+          <label for="subject">Subject</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="input_body" class="materialize-textarea"></textarea>
+          <label for="input_body">Body</label>
+        </div>
+      </div>
+
+      <button class="btn waves-effect cyan lighten-4" type="submit" name="send">
+       Send!
+      </button>
+    </form>
+  </div>
+  {{else}}
+  {{> loginPrompt}}
+  {{/if}}
+</template>
