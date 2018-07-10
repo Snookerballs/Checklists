@@ -10,6 +10,14 @@ Router.route('/email', function () {
   this.render('email');
 });
 
+Router.route('/forgot_password', function () {
+  this.render('forgot_password');
+});
+
+Router.route('/reset_password', function () {
+  this.render('reset_password');
+});
+
 Router.route('/', {
 	name:'Home',
 	template:'Home',

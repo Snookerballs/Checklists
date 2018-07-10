@@ -41,15 +41,23 @@
 
       <div class="row center-align">
         <button class="btn waves-effect cyan lighten-4" type="submit" name="login">
-         LOGIN
+          LOGIN
         </button>
       </div>
     </form>
-          <div class="row center-align">
-        <button class="btn waves-effect cyan lighten-4" name="action">
-          <a href="{{pathFor route = 'Create Account' }}">CREATE NEW ACCOUNT</a>
-        </button>
-      </div>
+
+    <div class="row center-align">
+      <button class="btn waves-effect cyan lighten-4" name="action">
+        <a href="{{pathFor route = 'Create Account' }}">CREATE NEW ACCOUNT</a>
+      </button>
+    </div>
+
+    <div class="row center-align">
+      <button class="btn waves-effect cyan lighten-4" name="action">
+        <a href="{{pathFor route = 'forgot_password' }}">Fogot My Password</a>
+      </button>
+    </div>
+
   </div>
 </template>
 
