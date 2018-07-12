@@ -27,15 +27,17 @@ Meteor.publish("tasks-specific", function(id) {
 			createdAt: new Date(),
 		});
 	},
-	'tasks.remove'(task) {
-		Tasks.remove({checklistID: task._id});
+	'tasks.remove'(checklist) {
+		Tasks.remove({checklistID: checklist});
 	},
 
 	'tasks.update'(id, name, des, res) {
-		Tasks.update({_id: id}, {
+		Tasks.insert({
 			taskName: name,
 			taskDescription: des,
 			taskResources: res,
-		}, { upsert:true});
+			checklistID: id,
+			createdAt: new Date(),
+		});
 	}
 })

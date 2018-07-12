@@ -65,6 +65,13 @@ Meteor.publish("checklists-specific", function(id){
 			publish: true,
 		}}, { upsert:true});
 	},
+		'checklists.update'(id, name, cat){
+				ChecklistCollection.update({_id: id}, {$set: 
+			{
+			listName: name,
+			category: cat,
+		}}, { upsert:true});
+	}
 });
 
 

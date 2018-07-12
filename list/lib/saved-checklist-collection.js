@@ -39,6 +39,13 @@ Meteor.publish("saved-checklists-specific", function(id){
 	'saved-checklists.remove'(list) {
 		SavedChecklistCollection.remove({_id: list._id});
 	},
+	'saved-checklists.update'(id, name, cat){
+				SavedChecklistCollection.update({_id: id}, {$set: 
+			{
+			listName: name,
+			category: cat,
+		}}, { upsert:true});
+	}
 });
 
 

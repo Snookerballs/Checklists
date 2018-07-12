@@ -8,9 +8,6 @@ import {Posts} from '../../lib/posts.js';
 
 import '../html/checklist.html'; 
 
-$(document).ready(function(){
-
-});
 
 /*------- LIST -------*/
 Template.checklist.helpers({
@@ -30,6 +27,12 @@ Template.checklist.helpers({
     raterNumber(){
 		return ChecklistCollection.findOne().raters;
     },
+    defined(){
+    	return (ChecklistCollection.find().count() == 1);
+    },
+    listId() {
+    	return Router.current().params._id;
+    }
 });
 
 
@@ -41,6 +44,7 @@ Template.checklist.onRendered(function(){
 			$('#rate-button').prop('disabled','disabled');
 			$('#delete-button').show();
 			$('#publish-button').show();
+			$('#edit-button').show();
 
 			if(ChecklistCollection.findOne().publish == true) {
 				$('#publish-button').prop('disabled','disabled');
@@ -50,6 +54,7 @@ Template.checklist.onRendered(function(){
 	 }else {
 	 		$('#delete-button').hide();
 	 		$('#publish-button').hide();
+	 		$('#edit-button').hide();
 	 		$('#rate-button').removeAttr("disabled");
 	 }
 
@@ -70,7 +75,7 @@ Template.checklist.events({
 			/*BUGGED*/
 		var currChecklist = ChecklistCollection.findOne();
 		Meteor.call('posts.remove', currChecklist);
-		Meteor.call('tasks.remove', currChecklist);
+		Meteor.call('tasks.remove', currChecklist._id);
 		Meteor.call('checklists.remove', currChecklist);
 		Router.go("User Checklists");
 

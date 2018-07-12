@@ -16,6 +16,9 @@ Template.savedChecklist.helpers({
     },
     listId() {
     	return Router.current().params._id;
+    },
+    defined(){
+    	return (SavedChecklistCollection.find().count() == 1);
     }
 });
 
@@ -45,9 +48,11 @@ Template.savedChecklist.events({
 		'click #delete-button': function() {
 			/*BUGGED*/
 		var currChecklist = SavedChecklistCollection.findOne();
+		console.log(SavedTasks.find().fetch());
 		Meteor.call('saved-tasks.remove', currChecklist);
 		Meteor.call('saved-checklists.remove', currChecklist);
 		Router.go("User Checklists");
+		console.log(SavedTasks.find().fetch());
 
 	},
 });

@@ -7,6 +7,7 @@
 </template>
 
 <template name="checklist">
+	{{#if defined}}
 	<center><h2>{{name}}</h2></center>
 	<center> Created by: {{creator}} </center>
 		<center> Rating: {{listRating}} ({{raterNumber}} votes) </center>
@@ -15,7 +16,7 @@
 		<li class = "task{{@index}}">
 			<div class="collapsible-header" id="preview-page-collapsible-header">
 				<div class="checkbox">
-					<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox">
+					<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox" disabled = "disabled" checked ="checked">
 					<label for="checklist-box{{@index}}"></label>
 				</div>
 				<div class="name"><strong>{{taskName}}</strong></div>
@@ -39,12 +40,14 @@
 		{{> rating}}
 		<button class="waves-effect waves-teal btn" id="publish-button" name="action">Publish Checklist</button>
 		<button class="waves-effect waves-teal btn" id="delete-button" name="action">Delete Checklist</button>
+		<a href="{{pathFor route = 'Edit Created Checklist' _id=listId}}" id="edit-button" class="waves-effect waves-light btn" >Edit Checklist</a>
 	</div>
 
 
 	<div id="comments-wrapper">
 	{{> comments}}
 	</div>
+	{{/if}}
 </template>
 
 <template name="comments">

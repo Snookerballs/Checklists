@@ -28,17 +28,19 @@ Meteor.publish("saved-tasks-specific", function(id) {
 			createdAt: new Date(),
 		});
 	},
-	'saved-tasks.remove'(task) {
-		SavedTasks.remove({checklistID: task._id});
+	'saved-tasks.remove'(checklist) {
+		SavedTasks.remove({checklistID: checklist});
 	},
 
 	'saved-tasks.update'(id, name, des, res) {
-		SavedTasks.update({_id: id}, {$set: 
-			{
+		SavedTasks.insert({
 			taskName: name,
 			taskDescription: des,
 			taskResources: res,
-		}}, { upsert:true});
+			checklistID: id,
+			checkStatus: false,
+			createdAt: new Date(),
+		});
 	},
 	'saved-tasks.check'(id, status) {
 				SavedTasks.update({_id: id}, {$set: {
