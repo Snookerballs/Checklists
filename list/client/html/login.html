@@ -1,68 +1,46 @@
-<template name="Home">
-
-  {{#if currentUser}}
-      {{> dashboard}}
-  {{else}}
-      {{> login}}
-  {{/if}}
-
-  <!--{{> tutorial}} -->
-
-</template>
-
-
 <!-- LOGIN -->
 <template name="login">
-  <div>
-    <img src="images/cover.jpg" style='width:100%' border="0" alt="Null">
-  </div>
-
-  <div class="container">
-      <h1 class="header">My CheckLists!</h1>
-  </div>
-
-  <div class="container">
-    <form class="col s12" id="login-form" name="login-form">
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">email</i>
-          <input type="email" name="loginEmail" required>
-          <label for="loginEmail">Email</label>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="{{pathFor route = 'main'}}" class="brand-logo">CheckLists!</a>
+      <ul class="right">
+        <a class="btn" href="create_account">SIGN UP</a>
+      </ul>
+    </div>
+  </nav>
+  <div id="login_bg">
+    <div id="login_box" class="container center-align">
+      <h3 class="header center-align">Login to your acccount</h3>
+      <form class="col s12" id="login-form" name="login-form">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <input type="email" name="loginEmail" required>
+            <label for="loginEmail">Email</label>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">lock</i>
-          <input type="password" name="loginPassword" required>
-          <label for="loginPassword">Password</label>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock</i>
+            <input type="password" name="loginPassword" required>
+            <label for="loginPassword">Password</label>
+          </div>
         </div>
-      </div>
+
+        <div class="row center-align">
+          <button class="btn waves-effect cyan lighten-4" type="submit" name="login">
+            LOGIN
+          </button>
+        </div>
+      </form>
 
       <div class="row center-align">
-        <button class="btn waves-effect cyan lighten-4" type="submit" name="login">
-          LOGIN
+        <button class="btn waves-effect cyan lighten-4" name="action">
+          <a href="{{pathFor route = 'forgot_password' }}">Fogot My Password</a>
         </button>
       </div>
-    </form>
 
-    <div class="row center-align">
-      <button class="btn waves-effect cyan lighten-4" name="action">
-        <a href="{{pathFor route = 'Create Account' }}">CREATE NEW ACCOUNT</a>
-      </button>
     </div>
-
-    <div class="row center-align">
-      <button class="btn waves-effect cyan lighten-4" name="action">
-        <a href="{{pathFor route = 'forgot_password' }}">Fogot My Password</a>
-      </button>
-    </div>
-
   </div>
-</template>
-
-<!-- LOGOUT -->
-<template name="dashboard">
-    <p>You're logged in.</p>
-    <p><a href="#" class="logout">Logout</a></p>
 </template>

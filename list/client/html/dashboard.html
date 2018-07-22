@@ -1,0 +1,91 @@
+<template name="dashboard">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <!-- Materialise Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="{{ pathFor route = 'main' }}" class="brand-logo">CheckLists!</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{{ pathFor route = 'User Checklists' }}">Home</a></li>
+        <li><a href="{{ pathFor route = 'Create' }}">Create</a></li>
+        <!-- Dropdown Trigger -->
+        <li><a class='dropdown-button' data-activates='dropdown1' href="#">Categories</a></li>
+        <li><a href="#">Leaderboard</a></li>
+        <!-- Dropdown Trigger -->
+        <li><a class='dropdown-button' data-activates='dropdown2' href='#'>Admin</a></li>
+        <!-- Sidenav Trigger -->
+        <li><a data-activates="slide-out" class="my-btn" href="#"><i class="material-icons">person</i></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Sidenav Structure -->
+  <ul id="slide-out" class="side-nav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="images/profile.jpg">
+      </div>
+      <a href="#!user"><img class="circle" src="images/profile.jpg"></a>
+      <a><span class="white-text name">{{ username }}</span></a>
+      <a><span class="white-text name">{{ email }}</span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>View My Profile</a></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>Account Settings</a></li>
+    <li><a href="{{pathFor route = 'change_password'}}"><i class="material-icons">cloud</i>Change Password</a></li>
+    <li><a href="#" class="logout"><i class="material-icons">lock</i>Logout</a></li>
+  </ul>
+
+  <!-- Dropdown Structure 1 -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a href="{{ pathFor route = 'Categories' }}">Main Page</a></li>
+    <li class="divider"></li>
+    <li><a href="{{ pathFor route = 'Art' }}">Art</a></li>
+    <li class="divider"></li>
+    <li><a href="{{ pathFor route = 'Music' }}">Music</a></li>
+    <li class="divider"></li>
+    <li><a href="{{ pathFor route = 'Programming' }}">Programming</a></li>
+    <li class="divider"></li>
+    <li><a href="{{ pathFor route = 'Photography' }}">Photography</a></li>
+  </ul>
+
+  <!-- Dropdown Structure 2 -->
+  <ul id='dropdown2' class='dropdown-content'>
+    <li><a href="#!">Statistics</a></li>
+    <li class="divider"></li>
+    <li><a href="{{pathFor route = 'email'}}">Send Email</a></li>
+  </ul>
+
+  <!-- LOGOUT -->
+  <p>You're logged in.</p>
+
+  {{ > yield }}
+
+  <!-- Sidenav and Dropdown Trigger Initialisation -->
+  <script>
+    $(document).ready(function(){
+      $('.my-btn').sideNav({
+          edge: 'left', // Choose the horizontal origin
+          closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+          draggable: true // Choose whether you can drag to open on touch screens
+        }
+      );
+      $('.dropdown-button').dropdown({
+          inDuration: 300,
+          outDuration: 225,
+          constrainWidth: false, // Does not change width of dropdown to that of the activator
+          hover: true, // Activate on hover
+          gutter: 0, // Spacing from edge
+          belowOrigin: true, // Displays dropdown below the button
+          alignment: 'left', // Displays dropdown with edge aligned to the left of button
+          stopPropagation: false // Stops event propagation
+        }
+      );
+    });
+  </script>
+</template>

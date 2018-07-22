@@ -1,0 +1,42 @@
+#tutorial {
+	height: 800px;
+  background-color: #fafafa;
+}
+
+#login_box {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 25px;
+
+}
+
+#login_bg {
+    background-color: #ffebee;
+    height: 550px;
+    /* height: 100%; */
+}
+
+#create_acc_box {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 25px;
+}
+
+#create_acc_bg {
+    background-color: #ffebee;
+    height: 600px;
+    /* height: 100%; */
+}
+
+#forgot_password_box {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 25px;
+
+}
+
+#forgot_password_bg {
+    background-color: #ffebee;
+    height: 550px;
+    /* height: 100%; */
+}

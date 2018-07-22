@@ -1,65 +1,134 @@
-Router.configure({
-	layoutTemplate: 'main_layout'
+// Simple Routes Config.
+Router.route('/', function () {
+	this.render('main');
+	this.layout('external');
+	}, {
+	name: 'main'
 });
 
+Router.route('/login', function () {
+	this.layout('external');
+  this.render('login');
+});
+
+Router.route('/create_account', function () {
+	this.layout('external');
+  this.render('create_account');
+});
+
+Router.route('/forgot_password', function () {
+	this.layout('external');
+  this.render('forgot_password');
+});
+
+
+// Router.route('/login', {
+// 	name:'Login',
+// 	template:'Login',
+//   // waitOn: function() {
+//   //   // Client
+//   //   return Meteor.subscribe('userData');
+//   // },
+//     action: function() {
+//       if(this.ready()) {
+//         this.render();
+//       }
+//   },
+// });
+
+
+// Router.route('/', function () {
+// 	name: 'Main',
+//   this.render('main_layout');
+// });
+// Router.route('/', function () {
+// 	layoutTemplate: "external",
+//   this.render('cover');
+// });
+
+
 Router.route('/change_password', function () {
+	this.layout('dashboard');
   this.render('change_password');
 });
 
 Router.route('/email', function () {
-  this.render('email');
+	this.layout('dashboard');
+	this.render('email');
 });
 
-Router.route('/forgot_password', function () {
-  this.render('forgot_password');
-});
+
 
 Router.route('/reset_password', function () {
+	this.layout('dashboard');
   this.render('reset_password');
 });
 
-Router.route('/', {
-	name:'Home',
-	template:'Home',
-  waitOn: function() {
-    // Client
-    return Meteor.subscribe('userData');
-  },
-    action: function() {
-      if(this.ready()) {
-        this.render();
-      }
-  },
-});
+
+
+// Router.route('/', {
+// 	name:'Home',
+// 	template:'Home',
+//   waitOn: function() {
+//     // Client
+//     return Meteor.subscribe('userData');
+//   },
+//     action: function() {
+//       if(this.ready()) {
+//         this.render();
+//       }
+//   },
+// });
 
 Router.route('/create', {
   name:'Create',
   template:'create_checklist',
+
   subscriptions: function() {
       Meteor.subscribe("tasks");
       Meteor.subscribe("checklists");
   },
     action: function() {
       if(this.ready()) {
+				this.layout('dashboard');
         this.render();
       }
   },
 
 });
 
-Router.route('/create_account', {
-  name:'Create Account',
-  template:'create_account',
-    action: function() {
-      if(this.ready()) {
-        this.render();
-      }
-  },
-});
+// Router.route('/create_account', {
+//   name:'Create Account',
+//   template:'create_account',
+//     action: function() {
+//       if(this.ready()) {
+//         this.render();
+//       }
+//   },
+// });
+
+// Router.route('/categories', {
+// 	this.layout('dashboard');
+// 	name:'Categories',
+// 	template:'mainCategory',
+// });
+
+// Router.route('/categories', function () {
+// 	this.layout('dashboard');
+// 	}, {
+// 	name: 'Categories',
+// 	template:'mainCategory',
+// });
 
 Router.route('/categories', {
-	name:'Categories',
-	template:'mainCategory',
+      	name: 'Categories',
+  	template: 'mainCategory',
+    action: function() {
+      if(this.ready()) {
+				this.layout('dashboard');
+        this.render();
+      }
+  },
 });
 
 Router.route('/categories/Programming', {
@@ -70,6 +139,7 @@ Router.route('/categories/Programming', {
     },
     action: function() {
       if(this.ready()) {
+				this.layout('dashboard');
         this.render();
       }
   },
@@ -83,6 +153,7 @@ Router.route('/categories/art', {
     },
     action: function() {
       if(this.ready()) {
+				this.layout('dashboard');
         this.render();
       }
   },
@@ -96,6 +167,7 @@ Router.route('/categories/photography', {
     },
     action: function() {
       if(this.ready()) {
+				this.layout('dashboard');
         this.render();
       }
   },
@@ -109,6 +181,7 @@ Router.route('/categories/music', {
     },
     action: function() {
       if(this.ready()) {
+				this.layout('dashboard');
         this.render();
       }
   },
@@ -123,6 +196,7 @@ Router.route('/home/user-checklists', {
     },
     action: function() {
       if(this.ready()) {
+				this.layout('dashboard');
         this.render();
       }
   },
@@ -139,6 +213,7 @@ Router.route('/checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
+				this.layout('dashboard');
         this.render();
       }
     },
@@ -155,6 +230,7 @@ Router.route('/saved-checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
+				this.layout('dashboard');
         this.render();
       }
     },
@@ -169,6 +245,7 @@ Router.route('/edit-saved-checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
+				this.layout('dashboard');
         this.render();
       }
     },
