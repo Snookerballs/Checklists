@@ -27,4 +27,4 @@ themeteorchef:jquery-validation
 accounts-password
 momentjs:moment
 email
-jquery
+materialize:materialize

@@ -219,7 +219,6 @@ Router.route('/checklist/:_id', {
     },
 });
 
-
 Router.route('/saved-checklist/:_id', {
   name: 'Saved Checklist',
     template: 'savedChecklist',
@@ -230,13 +229,13 @@ Router.route('/saved-checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
+        this.layout('dashboard');
         this.render();
       }
     },
 });
 
-Router.route('/edit-saved-checklist/:_id', {
+Router.route('/saved-checklist/:_id/edit', {
     name: 'Edit Checklist',
     template: 'editExistingChecklist',
     waitOn: function() {
@@ -245,8 +244,25 @@ Router.route('/edit-saved-checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
+        this.layout('dashboard');
         this.render();
       }
     },
 });
+
+Router.route('/checklist/:_id/edit', {
+    name: 'Edit Created Checklist',
+    template: 'editCreatedChecklist',
+    waitOn: function() {
+        return [Meteor.subscribe('tasks-specific', this.params._id),
+            Meteor.subscribe('checklists-specific', this.params._id),]
+    },
+    action: function() {
+      if(this.ready()) {
+        this.layout('dashboard');
+        this.render();
+      }
+    },
+});
+
+
