@@ -29,70 +29,18 @@
 </template>
 
 <template name="main">
-	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	<!-- Materialise Icons -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- Compiled and minified JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
 	<nav>
 		<div class="nav-wrapper">
 			<a class="brand-logo">CheckLists!</a>
-			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 			<ul class="right">
 				<a class="btn" href="login">LOGIN</a>
 				<a class="btn" href="create_account">SIGN UP</a>
 			</ul>
-			<ul class="side-nav" id="mobile-demo">
-				<li><a href="login">LOGIN</a></li>
-				<li><a href="create_account">SIGN UP</a></li>
-			</ul>
 		</div>
 	</nav>
-
-	<!-- Add more Photos to image slider !!!!!!! -->
-	<div class="slider">
-	<ul class="slides">
-		<li>
-			<img src="images/piano.jpg">
-			<div class="caption center-align">
-				<h3>This is our big Tagline!</h3>
-				<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-			</div>
-		</li>
-		<li>
-			<img src="images/art.jpg">
-			<div class="caption left-align">
-				<h3>Left Aligned Caption</h3>
-				<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-			</div>
-		</li>
-		<li>
-			<img src="images/skating.jpg">
-			<div class="caption right-align">
-				<h3>Right Aligned Caption</h3>
-				<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-			</div>
-		</li>
-		<li>
-			<img src="images/programming.jpg">
-			<div class="caption center-align">
-				<h3>This is our big Tagline!</h3>
-				<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-			</div>
-		</li>
-	</ul>
-</div>
-
-	<script>
-	$(document).ready(function(){
-		$('.slider').slider();
-		$(".button-collapse").sideNav();
-	});
-	</script>
+	<div>
+		<img src="images/cover.jpg" style='width:100%' border="0" alt="Null">
+	</div>
 
 	{{> tutorial }}
 
@@ -101,60 +49,42 @@
 </template>
 
 <template name="tutorial">
-
-	<div class="row">
-		<div class="col s12 m4">
-			<div class="card blue-grey darken-1">
-				<div class="card-content white-text center-align">
-					<span class="card-title">Want to learn a new hobby but
-						don't know where to begin?</span>
-					<p>Browse from a collection of checklists created by other users to
-						get a sense of what you can do to take up that new hobby!</p>
-				</div>
-				<div class="card-action">
-					<a href="#">This is a link</a>
-					<a href="#">This is a link</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="col s12 m4">
-			<div class="card blue-grey darken-1">
-				<div class="card-content white-text center-align">
-					<span class="card-title">Want to take on a new hobby but lack
-						motivation?</span>
-					<p>Fret not! Create a checklist to keep track of your progress and
-						seek advice and motivation from others!</p>
-				</div>
-				<div class="card-action">
-					<a href="#">This is a link</a>
-					<a href="#">This is a link</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="col s12 m4">
-			<div class="card blue-grey darken-1">
-				<div class="card-content white-text center-align">
-					<span class="card-title">Experienced at your hobby and want to guide
-						others in getting better?</span>
-					<p>Create a checklist that others can follow to get better!</p>
-				</div>
-				<div class="card-action">
-					<a href="#">This is a link</a>
-					<a href="#">This is a link</a>
-				</div>
-			</div>
-		</div>
+	<div id="tutorial">
 	</div>
-
 </template>
+
+<!-- <template name="main_layout">
+	  {{> sidebar}}
+
+		<div class="Main-content">
+			{{> yield}}
+		</div>
+
+		{{> footer}}
+</template> -->
+
+<!-- <template name="sidebar">
+  <nav class="nav-extended" id="navbar">
+  	<div class= "nav-encaps">
+    <div class="nav-wrapper">
+      <a href="{{pathFor route = 'Home' }}" class="brand-logo">CheckLists!</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{{pathFor route = 'Categories' }}">Categories</a></li>
+        <li><a href="{{pathFor route = 'Create' }}">Create</a></li>
+        <li><a href="{{pathFor route = 'User Checklists'}}">Home</a></li>
+				<li><a href="{{pathFor route = 'change_password'}}">Change Password</a></li>
+				<li><a href="{{pathFor route = 'email'}}">Send Email</a></li>
+      </ul>
+    </div>
+		</div>
+  </nav>
+</template> -->
 
 <template name="footer">
 	<footer class="page-footer" >
 		<div class="container">
 			<div class="row">
-				<p class="grey-text text-lighten-4 center-align">A Project by NUS School of Computing Students for Orbital Programme 2018.</p>
+				<p class="grey-text text-lighten-4 center-align">A Project by NUS School of Computing Students for Orbital Programme</p>
 			</div>
 		</div>
 		<div class="footer-copyright">
