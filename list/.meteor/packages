@@ -23,8 +23,8 @@ session
 iron:router
 underscore
 mrt:jquery-validate
-themeteorchef:jquery-validation
 accounts-password
 momentjs:moment
 email
 materialize:materialize
+themeteorchef:jquery-validation
