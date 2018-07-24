@@ -3,7 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import { Tasks } from '../../lib/task.js';
 import {ChecklistCollection} from '../../lib/checklist-collection.js';
 
-import '../html/create.html'; 
+import '../html/create.html';
 import '../CSS/create.css';
 
 var ChecklistInCreation = new Mongo.Collection(null);
@@ -81,8 +81,8 @@ Template.create_checklist.onRendered(function(){
 	$('#editDescription').val(description);
 	$('#editResources').val(resources);
 
-	
-	taskToUpdate = ChecklistInCreation.find({taskName: name, 
+
+	taskToUpdate = ChecklistInCreation.find({taskName: name,
 		taskDescription: description,
 		taskResources: resources}).fetch()[0];
 	//BUG: .val() does not copy over html formatting ><
@@ -227,6 +227,7 @@ Template.create_checklist.events({
 		//BUG TESTING
 		console.log(ChecklistCollection.find().fetch());
 		console.log(Tasks.find().fetch());
+		$('#modalUX1').modal('open');
 	},
 	'click #save-checklist-button': function() {
 		isPublish = false;
@@ -273,7 +274,7 @@ Template.editTaskForm.events({
 		var taskNameVar = event.target.editTaskName.value;
 		var descriptionVar = event.target.editDescription.value;
 		var taskResourcesVar = event.target.editResources.value;
-		
+
 		//Update relavant information
 		ChecklistInCreation.update({index: taskToUpdate.index}, { $set:
 			{

@@ -14,6 +14,28 @@
 	<div id="save-checklist-button-wrapper">
 		<button class="btn waves-effect waves-light col s6 left" id = "save-checklist-button" type="submit" form="title-form">Save</button>
 		<button class="btn waves-effect waves-light col s6 right" id = "save-and-publish-checklist-button" type="submit" form="title-form">Save And Publish</button></div>
+
+		<!-- Modal UX1 Structure -->
+	  <div id="modalUX1" class="modal center-align">
+	    <div class="modal-content">
+	      <h4>Congratulations! <br/> You've created your checklist!</h4>
+	      <p>Go to Home to view or edit your checklist!</p>
+	    </div>
+			<div>
+				<img src="/images/aww.gif">
+			</div>
+	    <div class="modal-footer">
+	      <a href="{{ pathFor route = 'User Checklists' }}" class="modal-action modal-close waves-effect waves-green btn-flat">Go to Home</a>
+	    </div>
+	  </div>
+
+		<script>
+		$(document).ready(function(){
+			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
+		});
+		</script>
+
 		{{else}}
 		{{> loginPrompt}}
 		{{/if}}
@@ -38,7 +60,7 @@
 						<label>Category</label>
 					</div>
 				</div>
-			</form> 
+			</form>
 		</ul>
 	</template>
 
@@ -51,10 +73,10 @@
 						<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox">
 						<label for="checklist-box{{@index}}"></label>
 					</div>
-					{{> editTaskModal}}		
+					{{> editTaskModal}}
 					<a href="#" class="delete-task secondary-content "><i class="material-icons">
 					close</i></a>
-	
+
 					<a href="#" class="move-up secondary-content "><i class="material-icons">
 					arrow_upward</i></a>
 					<a href="#" class="move-down secondary-content "><i class="material-icons">
@@ -145,4 +167,3 @@
 			<button class="waves-effect waves-light btn modal-close" id="add-task-button" type="submit" form="add-form">Add!</button>
 		</div>
 	</template>
-

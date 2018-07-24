@@ -9,6 +9,7 @@
     "bcrypt": "^2.0.1",
     "jquery": "^1.9.1",
     "jquery-validation": "^1.17.0",
+    "materialize-css": "^0.100.2",
     "meteor-node-stubs": "^0.3.2",
     "validator": "^10.4.0"
   },

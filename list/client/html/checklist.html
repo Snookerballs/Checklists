@@ -35,7 +35,7 @@
 		</li>
 		{{/each}}
 	</ul>
-	<div id="button-wrapper">	
+	<div id="button-wrapper">
 		<span> <button class="waves-effect waves-teal btn right" id="use-button" name="action">Use This Checklist!</button></span>
 		{{> rating}}
 		<button class="waves-effect waves-teal btn" id="publish-button" name="action">Publish Checklist</button>
@@ -65,6 +65,27 @@
 			</form>
 		</div>
 
+		<!-- Modal UX3 Structure -->
+	  <div id="modalUX3" class="modal center-align">
+	    <div class="modal-content">
+	      <h4>Thank you for your comments!</h4>
+	      <p>Go on to view other checklists!</p>
+	    </div>
+			<div>
+				<img src="/images/goodjob.gif">
+			</div>
+	    <div class="modal-footer">
+	      <a href="{{ pathFor route = 'Categories' }}" class="modal-action modal-close waves-effect waves-green btn-flat">Go to Categories</a>
+	    </div>
+	  </div>
+
+		<script>
+		$(document).ready(function(){
+			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
+		});
+		</script>
+
 		<ul class="collection" id="comments-list">
 			{{#each post}}
 			<h5>{{username}} says:</h5>
@@ -79,8 +100,8 @@
 		<form action="#" class ="rating-system">
 			<input name = "starContainer" type="radio" id="one" value=1 required><i id = "star-one" class = "star material-icons">star</i>
 			<label for="one"></label>
-			
-			<input name = "starContainer" type="radio" id="two" value=2> 
+
+			<input name = "starContainer" type="radio" id="two" value=2>
 			<i id = "star-two" class="star material-icons">star</i>
 			<label for="two"></label>
 
@@ -99,4 +120,25 @@
 			 <button class="waves-effect waves-teal btn-flat" id="rate-button" type="submit" name="action">Rate</button>
 		</form>
 		<br>
+
+		<!-- Modal UX2 Structure -->
+	  <div id="modalUX2" class="modal center-align">
+	    <div class="modal-content">
+	      <h4>Thank you for rating!</h4>
+	      <p>Go on to leave a comment too!</p>
+	    </div>
+			<div>
+				<img src="/images/thankyou.gif">
+			</div>
+	    <div class="modal-footer">
+	      <a href="#comment" class="modal-action modal-close waves-effect waves-green btn-flat">Go to Comment</a>
+	    </div>
+	  </div>
+
+		<script>
+		$(document).ready(function(){
+			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
+		});
+		</script>
 	</template>

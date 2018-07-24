@@ -6,7 +6,7 @@ import {ChecklistCollection} from '../../lib/checklist-collection.js';
 import {SavedChecklistCollection} from '../../lib/saved-checklist-collection.js';
 import {Posts} from '../../lib/posts.js';
 
-import '../html/checklist.html'; 
+import '../html/checklist.html';
 
 
 /*------- LIST -------*/
@@ -119,6 +119,7 @@ Template.comments.events({
 		var comment = event.target.comment.value;
 		Meteor.call('posts.insert', comment, Session.get('current-checklist'), Meteor.userId(), Meteor.user().username);
 		event.target.comment.value = '';
+		$('#modalUX3').modal('open');
 	}
 });
 
@@ -142,17 +143,17 @@ Template.rating.events({
 		$('#star-one').trigger('click');
 		$("#star-two").css("color", "#FD4");
 		$("#two").prop("checked", true);
-	},	
+	},
 	'click #star-three': function() {
 		$('#star-two').trigger('click');
 		$("#star-three").css("color", "#FD4");
 		$("#three").prop("checked", true);
-	},	
+	},
 	'click #star-four': function() {
 		$('#star-three').trigger('click');
 		$("#star-four").css("color", "#FD4");
 		$("#four").prop("checked", true);
-	},	
+	},
 	'click #star-five': function() {
 		$('#star-four').trigger('click');
 		$("#star-five").css("color", "#FD4");
@@ -168,6 +169,7 @@ Template.rating.events({
 				Meteor.call('checklists.updateRating',Session.get('current-checklist'), score);
 				$('.star').css("color", 'grey');
 				$('input[name=star-container]:checked').attr('checked', false);
+				$('#modalUX2').modal('open');
 			}
 
 	},

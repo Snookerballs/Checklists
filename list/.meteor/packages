@@ -26,5 +26,5 @@ mrt:jquery-validate
 accounts-password
 momentjs:moment
 email
-materialize:materialize
+
 themeteorchef:jquery-validation
