@@ -21,7 +21,7 @@ Template.create_account.events({
         alert(error.reason); // Output error if registration fails
       } else {
         console.log(Meteor.userId());
-        Router.go("change_password"); // Redirect user if registration succeeds
+        Router.go("User Checklists"); // Redirect user if registration succeeds
       }
     });
 
@@ -39,7 +39,7 @@ Template.login.events({
         alert( err.message);
       }
     });
-    Router.go("change_password");
+    Router.go("User Checklists");
   }
 });
 
