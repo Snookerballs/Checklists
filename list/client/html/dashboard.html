@@ -1,4 +1,12 @@
-<template name="dashboard">
+<template name = "dashboard">
+  {{#if currentUser}}
+      {{> userDashboard}}
+      {{else}}
+      {{>loginDashboard}}
+  {{/if}}
+</template>
+
+<template name="userDashboard">
   <nav>
     <div class="nav-wrapper">
       <a href="{{ pathFor route = 'main' }}" class="brand-logo">CheckLists!</a>
@@ -53,7 +61,7 @@
   </ul>
 
   <!-- LOGOUT -->
-  <p>You're logged in.</p>
+
 
   {{ > yield }}
 
@@ -80,3 +88,21 @@
     });
   </script>
 </template>
+
+
+<template name="loginDashboard">
+    <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo" href="{{ pathFor route = 'main' }}" >CheckLists!</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right">
+        <a class="btn" href="login">LOGIN</a>
+        <a class="btn" href="create_account">SIGN UP</a>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="login">LOGIN</a></li>
+        <li><a href="create_account">SIGN UP</a></li>
+      </ul>
+    </div>
+  </nav>
+  </template>

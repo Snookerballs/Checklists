@@ -1,23 +1,27 @@
+Router.configure({
+  layoutTemplate: 'external'
+});
+
 // Simple Routes Config.
 Router.route('/', function () {
 	this.render('main');
-	this.layout('external');
+
 	}, {
 	name: 'main'
 });
 
 Router.route('/login', function () {
-	this.layout('external');
+
   this.render('login');
 });
 
 Router.route('/create_account', function () {
-	this.layout('external');
+	
   this.render('create_account');
 });
 
 Router.route('/forgot_password', function () {
-	this.layout('external');
+	
   this.render('forgot_password');
 });
 
@@ -48,19 +52,16 @@ Router.route('/forgot_password', function () {
 
 
 Router.route('/change_password', function () {
-	this.layout('dashboard');
   this.render('change_password');
 });
 
 Router.route('/email', function () {
-	this.layout('dashboard');
 	this.render('email');
 });
 
 
 
 Router.route('/reset_password', function () {
-	this.layout('dashboard');
   this.render('reset_password');
 });
 
@@ -90,7 +91,7 @@ Router.route('/create', {
   },
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
+        
         this.render();
       }
   },
@@ -125,7 +126,7 @@ Router.route('/categories', {
   	template: 'mainCategory',
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
+        
         this.render();
       }
   },
@@ -139,7 +140,7 @@ Router.route('/categories/Programming', {
     },
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
+        
         this.render();
       }
   },
@@ -153,7 +154,7 @@ Router.route('/categories/art', {
     },
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
+
         this.render();
       }
   },
@@ -167,7 +168,7 @@ Router.route('/categories/photography', {
     },
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
+        
         this.render();
       }
   },
@@ -181,7 +182,7 @@ Router.route('/categories/music', {
     },
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
+        
         this.render();
       }
   },
@@ -196,7 +197,6 @@ Router.route('/home/user-checklists', {
     },
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
         this.render();
       }
   },
@@ -213,7 +213,6 @@ Router.route('/checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
-				this.layout('dashboard');
         this.render();
       }
     },
@@ -229,7 +228,7 @@ Router.route('/saved-checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
-        this.layout('dashboard');
+
         this.render();
       }
     },
@@ -244,7 +243,7 @@ Router.route('/saved-checklist/:_id/edit', {
     },
     action: function() {
       if(this.ready()) {
-        this.layout('dashboard');
+        
         this.render();
       }
     },
@@ -259,7 +258,6 @@ Router.route('/checklist/:_id/edit', {
     },
     action: function() {
       if(this.ready()) {
-        this.layout('dashboard');
         this.render();
       }
     },
