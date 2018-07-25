@@ -12,10 +12,13 @@ Template.create_account.events({
     var emailVar = event.target.registerEmail.value;
     var passwordVar = event.target.registerPassword.value;
     var registerUsernameVar = event.target.registerUsername.value;
-    Accounts.createUser({
+  	 Accounts.createUser({
       username: registerUsernameVar,
       email: emailVar,
-      password: passwordVar
+      password: passwordVar,
+      profile: {
+      	
+      }
     },function(error){
       if(error){
         alert(error.reason); // Output error if registration fails
@@ -24,7 +27,6 @@ Template.create_account.events({
         Router.go("User Checklists"); // Redirect user if registration succeeds
       }
     });
-
   }
 });
 
@@ -37,9 +39,11 @@ Template.login.events({
     Meteor.loginWithPassword(emailVar, passwordVar, function(err) {
       if (err) {
         alert( err.message);
+      } else{
+      	    Router.go("User Checklists");
       }
     });
-    Router.go("User Checklists");
+
   }
 });
 

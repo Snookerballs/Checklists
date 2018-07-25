@@ -1,0 +1,53 @@
+#information{
+    width: 35%;
+    border: 10px solid;
+    padding: 25px;
+   	height:100%;
+   	background-color:#c1f0f7;
+   	float: right;
+
+}
+
+.editMessage{
+        cursor: pointer;
+}
+
+#message{
+    width: 80%;
+}
+
+#checklist-information {
+	width: 65%;
+	float: left;
+	border: 10px solid;
+	padding: 10px;
+	height:100%;
+
+}
+
+#checklist-content{
+
+}
+
+#user-page-content{
+	width: 100%;
+	height: 1000px;
+}
+
+#username-content{
+	width:100%;
+}
+
+#avatar{
+	margin-left: 30px;
+	width: 300px;
+	float: left;
+	height:100%;
+}
+
+#avatar:hover{
+	 -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    	   	transition: all.5s ease;
+    	   	cursor: pointer;
+}

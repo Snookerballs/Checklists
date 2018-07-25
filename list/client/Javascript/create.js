@@ -223,7 +223,7 @@ Template.create_checklist.events({
 
 		//Submit
 		$('#title-form').trigger("reset");
-
+		Meteor.call('accounts.incrementCreatedCounter');
 		//BUG TESTING
 		console.log(ChecklistCollection.find().fetch());
 		console.log(Tasks.find().fetch());

@@ -23,7 +23,9 @@
 
 <template name="external">
 	{{> dashboard}}
-
+	<div id="page-content">
+	{{> yield}}
+</div>
 	{{> footer}}
 </template>
 
@@ -135,6 +137,7 @@
 </template>
 
 <template name="footer">
+	<div id="footer">
 	<footer class="page-footer" >
 		<div class="container">
 			<div class="row">
@@ -148,4 +151,5 @@
 			</div>
 		</div>
 	</footer>
+</div>
 </template>

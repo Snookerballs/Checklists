@@ -77,6 +77,7 @@ Template.checklist.events({
 		Meteor.call('posts.remove', currChecklist);
 		Meteor.call('tasks.remove', currChecklist._id);
 		Meteor.call('checklists.remove', currChecklist);
+		Meteor.call('accounts.decrementCreatedCounter');
 		Router.go("User Checklists");
 
 	},

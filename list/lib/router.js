@@ -90,8 +90,7 @@ Router.route('/create', {
       Meteor.subscribe("checklists");
   },
     action: function() {
-      if(this.ready()) {
-        
+      if(this.ready()) {  
         this.render();
       }
   },
