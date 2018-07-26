@@ -1,0 +1,103 @@
+<template name="add_remove_admin">
+
+
+
+  <div class="container">
+    <h5>Current Admins</h5>
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Id</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{#each admins}}
+
+        <tr>
+          <td id="username">{{username}}</td>
+          <td>{{emails.[0].address}}</td>
+          <td>{{_id}}</td>
+          <td><span class="remove_admin">Remove</span></td>
+        </tr>
+
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+
+  <br>
+
+  <div class="container">
+    <h5>Add Admin</h5>
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="_username" type="text">
+          <label for="_username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="_email" type="email">
+          <label for="_email">Email Address</label>
+        </div>
+      </div>
+
+      <button class="btn waves-effect cyan lighten-4" type="submit" name="send">
+       Add Admin!
+      </button>
+    </form>
+   <br>
+ </div>
+
+ <!-- <form class="col s12">
+   <div class="row">
+     <div class="input-field col s12">
+       <input id="input_email" type="email">
+       <label for="input_email">Email Address</label>
+     </div>
+   </div>
+
+   <div class="row">
+     <div class="input-field col s12">
+       <input id="subject" type="text">
+       <label for="subject">Subject</label>
+     </div>
+   </div>
+
+   <div class="row">
+     <div class="input-field col s12">
+       <textarea id="input_body" class="materialize-textarea"></textarea>
+       <label for="input_body">Body</label>
+     </div>
+   </div>
+
+   <button class="btn waves-effect cyan lighten-4" type="submit" name="send">
+    Send!
+   </button>
+ </form> -->
+
+</template>
+
+<!-- <template name="note">
+  <li class="collection-item">
+    {{text}}: <strong>Added by {{username}}</strong>
+    <a href="#" class="delete-note secondary-content"><i class="material-icons">close</i></a>
+  </li>
+</template> -->
+
+<!-- <template name="add">
+
+  <div id="addModal" class="modal">
+    <div class="modal-content">
+      <h3>Add Note</h3>
+      <form class="add-form">
+        <input type="text" name="text" placeholder="Add note... ">
+      </form>
+    </div>
+  </div>
+</template> -->

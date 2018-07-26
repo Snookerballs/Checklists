@@ -68,6 +68,11 @@ Router.route('/reset_password', function () {
   this.render('reset_password');
 });
 
+Router.route('/add_remove_admin', function () {
+  this.layout('external');
+  this.render('add_remove_admin');
+});
+
 
 
 // Router.route('/', {
