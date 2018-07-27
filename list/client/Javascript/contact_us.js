@@ -10,11 +10,13 @@ if (Meteor.isClient) {
       console.log('email func called.')
 
       var toAddr = "checklistsofficial@outlook.com";
+      var userEmail = t.find('#yourEmail').value;
       var subj = t.find('#subject').value;
       var body = t.find('#input_body').value;
-      Meteor.call('sendEmail', toAddr, subj, body);
+      Meteor.call('sendEmail', toAddr, subj, userEmail + "\n" + body);
       console.log('email sent.');
       $('#contactUsForm').trigger("reset");
+      alert('Your request has been sent! We will contact you shortly.');
     }
   })
 }
