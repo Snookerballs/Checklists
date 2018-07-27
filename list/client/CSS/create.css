@@ -164,3 +164,10 @@ margin: auto;
 .separator{
 	margin: auto;
 }
+
+#resource-row{
+	border: 2px solid;
+	padding: 20px;
+	width: 90%;
+	margin:auto;
+}

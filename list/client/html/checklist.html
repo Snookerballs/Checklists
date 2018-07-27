@@ -1,6 +1,8 @@
-<template name="checklist-page">
+<template name="checklistPage">
 	{{#if currentUser}}
+	<div class ="checklistDisplay">
 	{{> checklist}}
+</div>
 	{{else}}
 	{{> loginPrompt}}
 	{{/if}}
@@ -29,7 +31,7 @@
 					<hr>
 					<strong>Resources</strong>
 					<br>
-					<div class="resources">{{{taskResources}}}</div>
+					{{> resources}}
 				</span>
 			</div>
 		</li>

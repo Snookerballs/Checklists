@@ -1,6 +1,6 @@
 <template name="editExistingChecklist">
 	{{#if currentUser}}
-	<div class="create-checklist">
+	<div class="create-checklist" id="editExistingChecklist">
 		<div id="create-checklist-title"> <h1> Edit A Checklist</h1> </div>
 		<center><i class="separator material-icons">lens</i><br></center>
 		{{> editList}}
@@ -70,7 +70,7 @@
 						<hr>
 						<strong>Resources</strong>
 						<br>
-						<div class="resources">{{{taskResources}}}</div>
+						{{> resources}}
 					</span>
 				</div>
 			</li>
@@ -110,13 +110,23 @@
 						<label for="editDescription"></label>
 					</div>
 				</div>
-				<div class="row">
+			</form>
+						<p>Task Resources</p>
+			{{>editResourceList}}
+				<form class="resource-form" id ="edit-resource-form">
+				<div id="resource-row">
 					<div class="input-field col s12">
-						<textarea id="editResources" class="materialize-textarea"></textarea>
-						<label for="editResources"></label>
+						<input id="resourceName" name="resourceName" type= "text">
+						<label for="resourceName">Resource Name</label>
 					</div>
+					<div class="input-field col s12">	
+						<input id="resourceLink" name="resourceLink" type="text">
+						<label for="resourceLink">Resource Link</label>
+					</div>
+					<button class="btn-floating btn-large waves-effect waves-light" id="resource-submit-button" type="submit" form="edit-resource-form"><i class="material-icons">add</i></button>
 				</div>
 			</form>
+
 		</div>
 	</template>
 
@@ -136,11 +146,20 @@
 						<label for="description">Description</label>
 					</div>
 				</div>
-				<div class="row">
+			</form>
+<form class="add-resource-form" id="add-resource-form">
+				<div id="resource-row">
+					<h5> Resources</h5>
+					{{> resourceList}}
 					<div class="input-field col s12">
-						<textarea id="resources" name="resources" class="materialize-textarea"></textarea>
-						<label for="resources">Resources(optional)</label>
+						<input id="resourceName" name="resourceName" type= "text">
+						<label for="resourceName">Resource Name</label>
 					</div>
+					<div class="input-field col s12">	
+						<input id="resourceLink" name="resourceLink" type="text">
+						<label for="resourceLink">Resource Link</label>
+					</div>
+					<button class="btn-floating btn-large waves-effect waves-light" id="resource-submit-button" type="submit" form="add-resource-form"><i class="material-icons">add</i></button>
 				</div>
 			</form>
 			<button class="waves-effect waves-light btn modal-close" id="add-task-button" type="submit" form="add-form">Add!</button>

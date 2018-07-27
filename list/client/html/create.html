@@ -1,6 +1,6 @@
 <template name="create_checklist">
 	{{#if currentUser}}
-	<div class="create-checklist">
+	<div class="create-checklist" id="createChecklist">
 		<div id="create-checklist-title"> <h1> Create A Checklist</h1> </div>
 		<center><i class="separator material-icons">lens</i><br></center>
 		{{> list}}
@@ -54,7 +54,7 @@
 					{{> editTaskModal}}		
 					<a href="#" class="delete-task secondary-content "><i class="material-icons">
 					close</i></a>
-	
+
 					<a href="#" class="move-up secondary-content "><i class="material-icons">
 					arrow_upward</i></a>
 					<a href="#" class="move-down secondary-content "><i class="material-icons">
@@ -70,7 +70,7 @@
 						<hr>
 						<strong>Resources</strong>
 						<br>
-						<div class="resources">{{{taskResources}}}</div>
+						{{> resources}}
 					</span>
 				</div>
 			</li>
@@ -80,7 +80,7 @@
 
 	<template name="editTaskModal">
 		<!-- Modal Trigger -->
-		<a class="editTask secondary-content modal-trigger" href="#edit-task-modal"><i class="material-icons">create</i></a>
+		<a class="editTask secondary-content modal-trigger" id="create-edit-task" data-target="edit-task-modal"><i class="material-icons">create</i></a>
 
 		<!-- Modal Structure -->
 		<div id="edit-task-modal" class="modal">
@@ -99,23 +99,36 @@
 				<h4> Edit Task </h4>
 				<div class="row">
 					<div class="input-field col s12">
+						<p>Task Name</p>
 						<input value= "" id="editTaskName" name = "editTaskName" type="text" class="validate">
 						<label for="editTaskName"></label>
 					</div>
 				</div>
 				<div class="row">
+					<p>Task Description</p>
 					<div class="input-field col s12">
 						<textarea id="editDescription" name = "editDescription" class="materialize-textarea"></textarea>
 						<label for="editDescription"></label>
 					</div>
 				</div>
-				<div class="row">
+			</form>
+			<p>Task Resources</p>
+			{{>editResourceList}}
+
+					<form class="resource-form" id="edit-resource-form">
+				<div id="resource-row">
 					<div class="input-field col s12">
-						<textarea id="editResources" class="materialize-textarea"></textarea>
-						<label for="editResources"></label>
+						<input id="resourceName" name="resourceName" type= "text">
+						<label for="resourceName">Resource Name</label>
 					</div>
+					<div class="input-field col s12">	
+						<input id="resourceLink" name="resourceLink" type="text">
+						<label for="resourceLink">Resource Link</label>
+					</div>
+					<button class="btn-floating btn-large waves-effect waves-light" id="resource-submit-button" type="submit" form="edit-resource-form"><i class="material-icons">add</i></button>
 				</div>
 			</form>
+
 		</div>
 	</template>
 
@@ -135,14 +148,45 @@
 						<label for="description">Description</label>
 					</div>
 				</div>
-				<div class="row">
+			</form>
+			<form class="resource-form" id="add-resource-form">
+				<div id="resource-row">
+					<h5> Resources</h5>
+					{{> resourceList}}
 					<div class="input-field col s12">
-						<textarea id="resources" name="resources" class="materialize-textarea"></textarea>
-						<label for="resources">Resources(optional)</label>
+						<input id="resourceName" name="resourceName" type= "text">
+						<label for="resourceName">Resource Name</label>
 					</div>
+					<div class="input-field col s12">	
+						<input id="resourceLink" name="resourceLink" type="text">
+						<label for="resourceLink">Resource Link</label>
+					</div>
+					<button class="btn-floating btn-large waves-effect waves-light" id="resource-submit-button" type="submit" form="add-resource-form"><i class="material-icons">add</i></button>
 				</div>
 			</form>
+
 			<button class="waves-effect waves-light btn modal-close" id="add-task-button" type="submit" form="add-form">Add!</button>
 		</div>
 	</template>
 
+	<template name="resourceList">
+		<ul class="resourceList">
+		</ul>
+	</template>
+
+	<template name="editResourceList">
+		<ul class="editResourceList">
+		</ul>
+	</template>
+
+	<template name="resources">
+		<div class="resources">
+			<ul>
+				{{#each taskResources}}
+				<li class= "resource-item">
+					<a href="{{link}}">{{name}}</a>
+				</li>
+				{{/each}}
+			</ul>
+		</div>
+	</template>

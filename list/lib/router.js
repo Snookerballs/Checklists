@@ -91,7 +91,7 @@ Router.route('/create', {
   },
     action: function() {
       if(this.ready()) {  
-        this.render();
+        this.render('create_checklist');
       }
   },
 
@@ -126,7 +126,7 @@ Router.route('/categories', {
     action: function() {
       if(this.ready()) {
         
-        this.render();
+        this.render('mainCategory');
       }
   },
 });
@@ -203,7 +203,7 @@ Router.route('/home/user-checklists', {
 
 Router.route('/checklist/:_id', {
   name: 'Checklist',
-    template: 'checklist-page',
+    template: 'checklistPage',
     waitOn: function() {
       Session.set('current-checklist', this.params._id);
         return [Meteor.subscribe('tasks-specific', this.params._id),
@@ -212,6 +212,7 @@ Router.route('/checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
+
         this.render();
       }
     },
@@ -227,8 +228,7 @@ Router.route('/saved-checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
-
-        this.render();
+        this.render('savedChecklist');
       }
     },
 });
@@ -241,9 +241,8 @@ Router.route('/saved-checklist/:_id/edit', {
             Meteor.subscribe('saved-checklists-specific', this.params._id),]
     },
     action: function() {
-      if(this.ready()) {
-        
-        this.render();
+      if(this.ready()) {    
+        this.render('editExistingChecklist');
       }
     },
 });
@@ -257,7 +256,7 @@ Router.route('/checklist/:_id/edit', {
     },
     action: function() {
       if(this.ready()) {
-        this.render();
+        this.render('editCreatedChecklist');
       }
     },
 });

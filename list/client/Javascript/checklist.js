@@ -6,6 +6,7 @@ import {ChecklistCollection} from '../../lib/checklist-collection.js';
 import {SavedChecklistCollection} from '../../lib/saved-checklist-collection.js';
 import {Posts} from '../../lib/posts.js';
 
+
 import '../html/checklist.html'; 
 
 
@@ -37,6 +38,16 @@ Template.checklist.helpers({
 
 
 Template.checklist.onRendered(function(){
+	$(".checklistDisplay").ready(function(){
+		var isRated = false;
+		var arr = ChecklistCollection.findOne({_id: Session.get('current-checklist')}).raterIds;
+			for(var i = 0; i < arr.length; i++){
+				if(arr[i].id == Meteor.userId()){
+					isRated = true;
+				}
+			}
+			console.log(arr);
+			console.log(isRated);
 		/** Initialize  Components **/
 		$('.collapsible').collapsible();
 			/** Initialize  Components **/
@@ -57,6 +68,11 @@ Template.checklist.onRendered(function(){
 	 		$('#edit-button').hide();
 	 		$('#rate-button').removeAttr("disabled");
 	 }
+
+	 if(isRated){
+	 	$('#rate-button').prop('disabled',true);
+	 }
+	});
 
 });
 
@@ -167,6 +183,7 @@ Template.rating.events({
 				console.log("this is a NaN");
 			} else {
 				Meteor.call('checklists.updateRating',Session.get('current-checklist'), score);
+				Meteor.call('checklists.updateRaters', Session.get('current-checklist'), String(Meteor.userId));
 				$('.star').css("color", 'grey');
 				$('input[name=star-container]:checked').attr('checked', false);
 			}

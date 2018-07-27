@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { Mongo } from 'meteor/mongo'
+import { Session } from 'meteor/session'
 
 
 export const ChecklistCollection = new Mongo.Collection('checklists');
@@ -34,6 +35,7 @@ Meteor.publish("checklists-specific", function(id){
 			raters:0,
 			publish: status,
 			createdAt: new Date(),
+			raterIds: [],
 		});
 	},
 	'checklists.remove'(list) {
@@ -71,7 +73,13 @@ Meteor.publish("checklists-specific", function(id){
 			listName: name,
 			category: cat,
 		}}, { upsert:true});
-	}
+	},
+	'checklists.updateRaters'(id){
+						ChecklistCollection.update({_id: id}, {$push: 
+			{"raterIds": {
+					id:Meteor.userId(),
+			}}}, { upsert:true});
+	},
 });
 
 
