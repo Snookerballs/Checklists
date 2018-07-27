@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
+import { Session } from 'meteor/session'
 
 import '../html/login.html';
 import '../html/create_account.html';
@@ -8,7 +9,7 @@ import '../html/dashboard.html';
 Template.create_account.events({
   'submit form': function(event){
     event.preventDefault();
-    console.log(Meteor.users.find().fetch());
+
     var emailVar = event.target.registerEmail.value;
     var passwordVar = event.target.registerPassword.value;
     var registerUsernameVar = event.target.registerUsername.value;
@@ -21,12 +22,26 @@ Template.create_account.events({
         alert(error.reason); // Output error if registration fails
       } else {
         console.log(Meteor.userId());
-        Router.go("User Checklists"); // Redirect user if registration succeeds
+        alert("Your account has been created. Please check your Inbox for Email Verification!");
+        //Router.go("User Checklists"); // Redirect user if registration succeeds
+        $('#register-form').trigger("reset");
       }
     });
 
   }
 });
+
+Accounts.onEmailVerificationLink(function(token, done) {
+  console.log('create account link called.');
+
+  Accounts.verifyEmail(token, function(err, result) {
+    if (result) {
+      Router.go('User Checklists');
+      alert('Your email has been verified!');
+      done();
+    }
+  });
+})
 
 Template.login.events({
   'submit form': function(event){

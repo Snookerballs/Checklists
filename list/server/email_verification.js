@@ -3,10 +3,10 @@ import { Accounts } from 'meteor/accounts-base'
 
 if (Meteor.isServer) {
   Meteor.startup(function() {
-    process.env.MAIL_URL='smtp://postmaster%40sandbox8545237cf5154c12819f3d4f49b0774a.mailgun.org:36d62d19f99d7c9e14a02f3d62e79dbc-770f03c4-a5e015c3@smtp.mailgun.org:587'
+    process.env.MAIL_URL='smtp://postmaster%40sandbox4b125f5cdfe04065b07b613ab45ecb5e.mailgun.org:f1d104a7d6ebb1749323d6e097c33e79-3b1f59cf-e4234cc8@smtp.mailgun.org:587'
 
     Accounts.emailTemplates.from='no-reply@checklists.com';
-    Accounts.emailTemplates.sitename='My Site';
+    Accounts.emailTemplates.sitename='Checklists!';
 
     Accounts.emailTemplates.verifyEmail.subject = function(user) {
       return 'Welcome to Checklists! Verify Your Email Address';

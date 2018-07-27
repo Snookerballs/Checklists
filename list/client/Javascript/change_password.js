@@ -22,6 +22,7 @@ Template.change_password.events({
       }
     });
 
+    $('#changePasswordForm').trigger("reset");
     return false;
   }
 });

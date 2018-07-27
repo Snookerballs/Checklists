@@ -20,7 +20,8 @@ Template.forgot_password.events({
         console.log('Email sent.');
       }
     });
-
+    $('#forgotPasswordForm').trigger("reset");
+    alert("Reset Password Email Sent!");
     return false;
   }
 });
@@ -37,7 +38,9 @@ Template.reset_password.events({
 
     Accounts.resetPassword(token, password);
     console.log('password reset.');
-    Router.go('Home');
+    $('#resetPasswordForm').trigger("reset");
+    alert("Password successfully reset!");
+    Router.go('User Checklists');
   }
 });
 

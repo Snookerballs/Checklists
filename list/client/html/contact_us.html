@@ -1,16 +1,8 @@
-<!-- FOR ADMIN ONLY! TO SEND EMAIL TO USERS -->
-<template name="email">
-  {{#if currentUser}}
+<template name="contact_us">
   <div class="container">
-    <h3 class="header">Send Email</h3>
+    <h3 class="header">Contact Us</h3>
 
-    <form id="emailForm" class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="input_email" type="email">
-          <label for="input_email">Email Address</label>
-        </div>
-      </div>
+    <form id="contactUsForm" class="col s12">
 
       <div class="row">
         <div class="input-field col s12">
@@ -32,7 +24,4 @@
     </form>
     <br>
   </div>
-  {{else}}
-  {{> loginPrompt}}
-  {{/if}}
 </template>

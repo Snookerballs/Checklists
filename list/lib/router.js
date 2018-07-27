@@ -61,6 +61,11 @@ Router.route('/email', function () {
 	this.render('email');
 });
 
+Router.route('/contact_us', function () {
+  this.layout('external');
+	this.render('contact_us');
+});
+
 
 
 Router.route('/reset_password', function () {
