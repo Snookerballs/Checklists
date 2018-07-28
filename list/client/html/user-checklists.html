@@ -43,6 +43,7 @@
       <ul class="tabs">
         <li class="tab"><a href="#created">Created Checklists</a></li>
         <li class="tab"><a href="#saved">Saved Checklists</a></li>
+        <li class="tab"><a href="#completed">Completed Checklists</a></li>
       </ul>
   </div>
   <div id = "checklist-content">
@@ -76,6 +77,19 @@
 		</ul>
 		{{/each}}
 	</div>
+	<div id="completed">
+	<h2> Completed Checklists </h2>
+	{{#each completedChecklist}}
+				<ul class = "collection" id="category-checklists">
+			<a href="{{pathFor route = 'Saved Checklist'}}">
+			<li class="list-name">
+				<h4><center>{{listName}}</center></h4>
+
+			</li>
+		</a>
+		</ul>
+		{{/each}}
+	</div>
 </div>
 	</div>
 			{{> userInformation}}
@@ -83,4 +97,7 @@
 	  {{else}}
   	{{> loginPrompt}}
   {{/if}}
+
+
+
 </template>

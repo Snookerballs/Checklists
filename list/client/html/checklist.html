@@ -69,7 +69,10 @@
 
 		<ul class="collection" id="comments-list">
 			{{#each post}}
+			<p>
+			<img class="circle userAvatar" src="{{userAvatar posterId}}">
 			<h5>{{username}} says:</h5>
+			</p>
 			Created on: {{formatDate createdAt}}
 			<li class="collection-item">{{comment}}</li>
 			{{/each}}

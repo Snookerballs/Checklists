@@ -4,7 +4,7 @@ import {ChecklistCollection} from '../../lib/checklist-collection.js';
 import {SavedChecklistCollection} from '../../lib/saved-checklist-collection.js';
 
 Template.userInformation.helpers({
-	    createdChecklistsCounter(){
+	createdChecklistsCounter(){
     	return Meteor.user().createdChecklistsCount;
     },
     completedChecklistsCounter() {
@@ -28,7 +28,7 @@ Template.userInformation.helpers({
     },
     avatar(){
     	var theAvatar = Meteor.user().profile.avatar;
-    	if(theAvatar =="") {
+    	if(theAvatar == "") {
     		theAvatar = "/images/profile.jpg";
     	}
 
@@ -58,11 +58,15 @@ Template.userInformation.events({
 
 Template.userChecklists.helpers({
 	createdChecklist(){
+                console.log("YRES");
 		return ChecklistCollection.find();
 	},
 	savedChecklist(){
-		return SavedChecklistCollection.find();
+		return SavedChecklistCollection.find({completionStatus: false});
 	},
+    completedChecklist(){
+        return SavedChecklistCollection.find({completionStatus: true});
+    },
 	formatDate(date){
   		return moment(date).format('DD-MM-YYYY');
     },

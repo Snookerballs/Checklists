@@ -88,7 +88,7 @@ Template.editExistingChecklist.onRendered(function(){
         });   
 
 
-	console.log(ChecklistToEdit.find().fetch());
+
 })
 
 Template.editExistingChecklist.onDestroyed(function(){
@@ -108,7 +108,7 @@ Template.editExistingChecklist.events({
 		//Create checklist
 		Meteor.call('saved-checklists.update', Router.current().params._id, listName, category);
 
-		Meteor.call('saved-tasks.remove');
+		Meteor.call('saved-tasks.remove', Router.current().params._id);
 		//Add checklist task to task collections
 		ChecklistToEdit.find({},{sort:{index: 1}}).forEach((task) => Meteor.call('saved-tasks.update', Router.current().params._id, task.taskName, 
 			task.taskDescription, task.taskResources));
@@ -370,7 +370,6 @@ Template.editAddTaskForm.events({
 		$(".resourceList li").remove();
 		$('.collapsible').collapsible();
 		$('#add-form').trigger("reset");
-		console.log(ChecklistToEdit.find().fetch());
 	},
 	'submit .add-resource-form': function() {
 			event.preventDefault();

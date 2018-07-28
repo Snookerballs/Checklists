@@ -23,9 +23,22 @@ Meteor.methods({
       if(Meteor.isServer){
 
       var newCount = Meteor.user().createdChecklistsCount-1;
+      if(newCount < 0){
+        newCount = 0;
+      }
       Meteor.users.update({_id: Meteor.userId()}, {
       $set:{
         createdChecklistsCount: newCount,
+    }}, { upsert:true});
+  }
+},
+  'accounts.incrementCompletedCounter': function() {
+    if(Meteor.isServer){
+
+      var newCount = Meteor.user().completedChecklistsCount+1;
+      Meteor.users.update({_id: Meteor.userId()}, {
+      $set:{
+        completedChecklistsCount: newCount,
     }}, { upsert:true});
   }
 },
@@ -84,6 +97,10 @@ Meteor.publish('userData-other', function () {
   } else {
     this.ready();
   }
+});
+
+Meteor.publish('users', function() {
+    return Meteor.users.find({}, {fields:{profile: true}});
 });
 }
 

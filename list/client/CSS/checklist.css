@@ -32,7 +32,11 @@
 
   }*/
 
-
+.userAvatar{
+	width:100px;
+	height:100px;
+	padding:10px;
+}
 .star{
 	color: grey;
 	width: 30px;

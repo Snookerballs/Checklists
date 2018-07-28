@@ -1,8 +1,53 @@
 <template name="savedChecklist">
 	{{#if defined}}
+	<div class="savedChecklist">
 	<center><h2>{{name}}</h2></center>
 	<center> Created by: {{creator}} </center>
+	<center> Times Completed: {{timesCompleted}} </center>
 	<ul class="collapsible" id="preview-page-collapsible">
+		{{#if isCompleted}}
+		{{> completedChecklist}}
+		{{else}}
+		{{> uncompletedChecklist}}
+		{{/if}}
+	</ul>
+	<div id="button-wrapper">	
+		{{#if isCompleted}}
+		{{> completedChecklistOptions}}
+		{{else}}
+		{{> uncompletedChecklistOptions}}
+		{{/if}}
+	</div>
+</div>
+{{/if}}
+</template>
+
+<template name="completedChecklist">
+			{{#each task}}
+		<li id = "task{{@index}}" class="task">
+			<div class="collapsible-header" id="preview-page-collapsible-header">
+				<div class="checkbox">
+					<input id="{{@index}}" class="checklist-box" type="checkbox" checked = "true" disabled = 'true'>
+					<label for="{{@index}}"></label>
+				</div>
+				<div class="name"><strong>{{taskName}}</strong></div>
+			</div>
+			<div class="collapsible-body">
+				<span>
+					<strong>Description</strong>
+					<br>
+					<div class="description">{{{taskDescription}}}</div>
+					<hr>
+					<strong>Resources</strong>
+					<br>
+					{{> resources}}
+				</span>
+			</div>
+		</li>
+		{{/each}}
+</template>
+
+<template name="uncompletedChecklist">
 		{{#each task}}
 		<li id = "task{{@index}}" class="task">
 			<div class="collapsible-header" id="preview-page-collapsible-header">
@@ -25,13 +70,16 @@
 			</div>
 		</li>
 		{{/each}}
-	</ul>
-	<div id="button-wrapper">	
-		<button class="waves-effect waves-teal btn" id="delete-button" name="action">Delete Checklist</button>
+	</template>
 
-		<a href="{{pathFor route = 'Edit Checklist' _id=listId}}" class="waves-effect waves-light btn" >Edit Checklist</a>
+<template name="completedChecklistOptions">
+	<button id ="reuse-button" class="waves-effect waves-light btn">Use this Checklist Again!</button>
+			<a href="{{pathFor route = 'Edit Checklist' _id=listId}}" class="waves-effect waves-light btn" >Edit Checklist!</a>
+				<button class="waves-effect waves-teal btn" id="delete-button" name="action">Delete Checklist!</button>
+</template>
 
-
-	</div>
-{{/if}}
+<template name="uncompletedChecklistOptions">
+			<button class="waves-effect waves-teal btn" id="delete-button" name="action">Delete Checklist!</button>
+		<a href="{{pathFor route = 'Edit Checklist' _id=listId}}" class="waves-effect waves-light btn" >Edit Checklist!</a>
+		<button id ="complete-button" class="waves-effect waves-light btn" >Complete Checklists!</button>
 </template>

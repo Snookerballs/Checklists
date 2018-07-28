@@ -33,7 +33,8 @@ Template.checklist.helpers({
     },
     listId() {
     	return Router.current().params._id;
-    }
+    },
+
 });
 
 
@@ -46,8 +47,6 @@ Template.checklist.onRendered(function(){
 					isRated = true;
 				}
 			}
-			console.log(arr);
-			console.log(isRated);
 		/** Initialize  Components **/
 		$('.collapsible').collapsible();
 			/** Initialize  Components **/
@@ -73,7 +72,6 @@ Template.checklist.onRendered(function(){
 	 	$('#rate-button').prop('disabled',true);
 	 }
 	});
-
 });
 
 Template.checklist.events({
@@ -145,6 +143,10 @@ Template.comments.helpers({
     },
         formatDate(date){
   		return moment(date).format('DD-MM-YYYY, HH:mm');
+    },
+        userAvatar(userId){
+
+    	return Meteor.users.findOne({_id: userId}).profile.avatar;
     }
 
 });

@@ -208,7 +208,8 @@ Router.route('/checklist/:_id', {
       Session.set('current-checklist', this.params._id);
         return [Meteor.subscribe('tasks-specific', this.params._id),
        			Meteor.subscribe('checklists-specific', this.params._id),
-       			Meteor.subscribe('posts-specific', this.params._id),]
+       			Meteor.subscribe('posts-specific', this.params._id),
+            Meteor.subscribe('users'),]
     },
     action: function() {
       if(this.ready()) {
