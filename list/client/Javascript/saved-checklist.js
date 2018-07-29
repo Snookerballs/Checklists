@@ -30,8 +30,7 @@ Template.savedChecklist.onRendered(function() {
 
 	$('.collapsible').collapsible();
 
-	$('.checklist-box').each(function() {
-
+	$('.checklist-boxes').each(function() {
 		var checkboxNum = Number(this.id);
 		var checkbox = SavedTasks.find().fetch()[checkboxNum];
 		$(this).prop('checked',checkbox.checkStatus);
@@ -39,7 +38,7 @@ Template.savedChecklist.onRendered(function() {
 
 	});
 
-		$(document).on('click','.checklist-box', function(){
+		$(document).on('click','.checklist-boxes', function(){
 		//Get checkbox number
 		var checkboxNum = Number(this.id);
 		var checkboxToUpdate = SavedTasks.find().fetch()[checkboxNum];
@@ -84,13 +83,13 @@ Template.uncompletedChecklist.onRendered(function() {
 	$(".savedChecklist").ready(function(){
 	$('.collapsible').collapsible();
 	//Check if Checklist has been completed
-		$('.checklist-box').each(function() {
+		$('.checklist-boxes').each(function() {
 		var checkboxNum = Number(this.id);
 		var checkbox = SavedTasks.find().fetch()[checkboxNum];
 		$(this).prop('checked',checkbox.checkStatus);
     //test
 		});
-		$(".savedChecklist").on('click','.checklist-box', function(){
+		$(".savedChecklist").on('click','.checklist-boxes', function(){
 		//Get checkbox number
 		var checkboxNum = Number(this.id);
 		var checkboxToUpdate = SavedTasks.find().fetch()[checkboxNum];

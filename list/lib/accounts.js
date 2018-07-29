@@ -44,6 +44,16 @@ if(Meteor.isServer){
   }}, { upsert:true});
 }
 },
+  'accounts.incrementCompletedCounter': function() {
+    if(Meteor.isServer){
+
+      var newCount = Meteor.user().completedChecklistsCount+1;
+      Meteor.users.update({_id: Meteor.userId()}, {
+      $set:{
+        completedChecklistsCount: newCount,
+    }}, { upsert:true});
+  }
+},
 'accounts.updateMessage':function(newMessage){
 if(Meteor.isServer){
    Meteor.users.update({_id: Meteor.userId()}, {
@@ -100,6 +110,11 @@ Meteor.publish('userData-other', function () {
     this.ready();
   }
 });
+
+Meteor.publish('users-other', function () {
+    return Meteor.users.find();
+});
+
 
 Meteor.publish('users', function() {
     return Meteor.users.find({}, {fields:{profile: true}});

@@ -49,8 +49,8 @@ Template.checklist.onRendered(function(){
 		/** Initialize  Components **/
 		$('.collapsible').collapsible();
 			/** Initialize  Components **/
-			var userid = ChecklistCollection.findOne().userId
-		if(userid == Meteor.userId() || Roles.userIsInRole(userid, 'admin')){
+			var userid = ChecklistCollection.findOne().userId;
+		if(userid == Meteor.userId() || Roles.userIsInRole(Meteor.userId(), 'admin')){
 			$('#rate-button').prop('disabled','disabled');
 			$('#delete-button').show();
 			$('#publish-button').show();
@@ -81,8 +81,6 @@ Template.checklist.events({
 		var checklistId = SavedChecklistCollection.findOne({}, {sort: {createdAt: -1, limit: 1}})._id;
 		Tasks.find().forEach((task) => Meteor.call('saved-tasks.insert', task.taskName, task.taskDescription,
 			task.taskResources, checklistId));
-		console.log(SavedChecklistCollection.find().fetch());
-		console.log(SavedTasks.find().fetch());
 		Router.go('User Checklists');
 	},
 		'click #delete-button': function() {
@@ -135,7 +133,35 @@ Template.comments.events({
 		Meteor.call('posts.insert', comment, Session.get('current-checklist'), Meteor.userId(), Meteor.user().username);
 		event.target.comment.value = '';
 		$('#modalUX3').modal('open');
+	},
+	'click .delete-comment'(){
+		Meteor.call('posts.remove',this)
 	}
+});
+
+Template.comments.onRendered(function(){
+$(".commentForm").validate({
+  rules: {
+        comment: {
+        required:true,
+    },
+
+  },
+	messages: {
+    comment: {
+        required: "Please type in a comment!",
+    },
+},
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+});
 });
 
 Template.comments.helpers({
@@ -148,6 +174,9 @@ Template.comments.helpers({
         userAvatar(userId){
 
     	return Meteor.users.findOne({_id: userId}).profile.avatar;
+    },
+    isPoster(userId){
+    	return userId == Meteor.userId();
     }
 
 });
@@ -155,27 +184,27 @@ Template.comments.helpers({
 Template.rating.events({
 	'click #star-one': function() {
 		$('.star').css("color", 'grey');
-		$("#star-one").css("color", "#FD4");
+		$("#star-one").css("color", "#ef7984");
 		$("#one").prop("checked", true);
 	},
 	'click #star-two': function() {
 		$('#star-one').trigger('click');
-		$("#star-two").css("color", "#FD4");
+		$("#star-two").css("color", "#ef7984");
 		$("#two").prop("checked", true);
 	},
 	'click #star-three': function() {
 		$('#star-two').trigger('click');
-		$("#star-three").css("color", "#FD4");
+		$("#star-three").css("color", "#ef7984");
 		$("#three").prop("checked", true);
 	},
 	'click #star-four': function() {
 		$('#star-three').trigger('click');
-		$("#star-four").css("color", "#FD4");
+		$("#star-four").css("color", "#ef7984");
 		$("#four").prop("checked", true);
 	},
 	'click #star-five': function() {
 		$('#star-four').trigger('click');
-		$("#star-five").css("color", "#FD4");
+		$("#star-five").css("color", "#ef7984");
 		$("#five").prop("checked", true);
 	},
 		'submit .rating-system': function() {
@@ -189,6 +218,7 @@ Template.rating.events({
 				Meteor.call('checklists.updateRaters', Session.get('current-checklist'), String(Meteor.userId));
 				$('.star').css("color", 'grey');
 				$('input[name=star-container]:checked').attr('checked', false);
+				$('#rate-button').prop('disabled',true);
 				$('#modalUX2').modal('open');
 			}
 

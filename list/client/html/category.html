@@ -32,7 +32,7 @@
 									<img class="activator" src="/category_images/Prog.jpg">
 								</div>
 								<div class="card-content">
-									<center><h3><p>Programming</p></h3></center>
+									<center><h3><p class="hobby-title">Programming</p></h3></center>
 								</div>
 							</a>
 						</div>
@@ -46,7 +46,7 @@
 									<img class="activator" src="/category_images/Art.jpg">
 								</div>
 								<div class="card-content">
-									<center><h3><p>Art</p></h3></center>
+									<center><h3><p class="hobby-title">Art</p></h3></center>
 								</div>
 							</a>
 						</div>
@@ -62,7 +62,7 @@
 									<img class="activator" src="/category_images/Photo.jpg">
 								</div>
 								<div class="card-content">
-									<center><h3><p>Photography</p></h3></center>
+									<center><h3><p class="hobby-title">Photography</p></h3></center>
 								</div>
 							</a>
 						</div>
@@ -76,7 +76,7 @@
 									<img class="activator" src="/category_images/Music.jpg">
 								</div>
 								<div class="card-content">
-									<center><h3><p>Music</p></h3></center>
+									<center><h3><p class="hobby-title">Music</p></h3></center>
 								</div>
 							</a>
 						</div>
@@ -103,7 +103,7 @@
 		</div>
 		{{#each checklist}}
 		<ul class = "collection" id="category-checklists">
-			<a href="{{pathFor route = 'Checklist'}}">
+			<a class= "category-content" href="{{pathFor route = 'Checklist'}}">
 				<li class="list-name">
 					<h4><center>{{listName}}</center></h4>
 					<center>By: {{username}} </center>

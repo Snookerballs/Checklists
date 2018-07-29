@@ -22,7 +22,7 @@
 <template name="editTitleAndCategory">
 		<ul class = "collection" id="title-form-wrapper">
 			<form id="title-form" class="checklist-form col s6">
-				<h4> Description </h4>
+				<h3 class="form-header"> Description </h3>
 				<div class="row">
 					<div class="input-field col s12">
 						<input id="checklistName" name="checklistName" type="text" class="validate">
@@ -48,16 +48,16 @@
 			<li class = "task{{@index}}">
 				<div class="collapsible-header" id="create-collapsible-header">
 					<div class="checkbox">
-						<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox">
+						<input id="checklist-box{{@index}}" class="checklist-boxes" type="checkbox">
 						<label for="checklist-box{{@index}}"></label>
 					</div>
 					{{> editEditTaskModal}}		
-					<a href="#" class="delete-task secondary-content "><i class="material-icons">
+					<a href="#" class="delete-task secondary-content " style="color: #f39d9c"><i class="material-icons">
 					close</i></a>
 	
-					<a href="#" class="move-up secondary-content "><i class="material-icons">
+					<a href="#" class="move-up secondary-content " style="color: #454851"><i class="material-icons">
 					arrow_upward</i></a>
-					<a href="#" class="move-down secondary-content "><i class="material-icons">
+					<a href="#" class="move-down secondary-content " style="color: #454851"><i class="material-icons">
 					arrow_downward</i></a>
 
 					<div class="name" id= "create-checklist-task-name"><strong>{{taskName}}</strong></div>
@@ -81,15 +81,15 @@
 
 <template name="editEditTaskModal">
 		<!-- Modal Trigger -->
-		<a class="editTask secondary-content modal-trigger" href="#edit-task-modal"><i class="material-icons">create</i></a>
+		<a class="editTask secondary-content modal-trigger" href="#edit-task-modal" style="color: #f39d9c"><i class="material-icons">create</i></a>
 
 		<!-- Modal Structure -->
 		<div id="edit-task-modal" class="modal">
 			<div class="modal-content">
 				{{> editEditTaskForm}}
 			</div>
-			<div class="modal-footer">
-				<center><button class="editTaskButton waves-effect waves-light btn" type="submit" form="edit-form"><i class="material-icons left">cloud</i>Edit</button></center>
+			<div class="modal-footer"  style="background-color: #454851">
+				<center><button class="editTaskButton waves-effect waves-light btn" type="submit" form="edit-form">Edit</button></center>
 			</div>
 		</div>
 	</template>
@@ -97,21 +97,23 @@
 	<template name="editEditTaskForm">
 		<div id="editForm">
 			<form class="edit-form" id="edit-form">
-				<h4> Edit Task </h4>
+				<center><h3 class="edit-form-header"> Edit Task </h3></center>
 				<div class="row">
 					<div class="input-field col s12">
+									<h4 class="edit-form-header">Task Name</h4>
 						<input value= "" id="editTaskName" name = "editTaskName" type="text" class="validate">
 						<label for="editTaskName"></label>
 					</div>
 				</div>
 				<div class="row">
+					<h4 class="edit-form-header">Task Description</h4>
 					<div class="input-field col s12">
 						<textarea id="editDescription" name = "editDescription" class="materialize-textarea"></textarea>
 						<label for="editDescription"></label>
 					</div>
 				</div>
 			</form>
-						<p>Task Resources</p>
+				<h4 class="edit-form-header">Task Resources</h4>
 			{{>editResourceList}}
 				<form class="resource-form" id ="edit-resource-form">
 				<div id="resource-row">
@@ -133,7 +135,7 @@
 	<template name="editAddTaskForm">
 		<div id="add-form-wrapper">
 			<form class="add-form" id="add-form">
-				<h4> Add Task </h4>
+				<h3 class="form-header"> Add Task </h3>
 				<div class="row">
 					<div class="input-field col s12">
 						<input id="taskName" name="taskName" type="text" class="validate">
@@ -149,7 +151,7 @@
 			</form>
 <form class="add-resource-form" id="add-resource-form">
 				<div id="resource-row">
-					<h5> Resources</h5>
+					<h4 class="form-header"> Resources</h4>
 					{{> resourceList}}
 					<div class="input-field col s12">
 						<input id="resourceName" name="resourceName" type= "text">
@@ -159,7 +161,7 @@
 						<input id="resourceLink" name="resourceLink" type="text">
 						<label for="resourceLink">Resource Link</label>
 					</div>
-					<button class="btn-floating btn-large waves-effect waves-light" id="resource-submit-button" type="submit" form="add-resource-form"><i class="material-icons">add</i></button>
+							<button class="btn-floating btn-large waves-effect waves-light" id="resource-submit-button" type="submit" form="add-resource-form"><i class="material-icons small">add</i></button>
 				</div>
 			</form>
 			<button class="waves-effect waves-light btn modal-close" id="add-task-button" type="submit" form="add-form">Add!</button>

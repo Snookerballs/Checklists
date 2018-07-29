@@ -5,7 +5,6 @@
 // Simple Routes Config.
 Router.route('/', function () {
 	this.render('main');
-
 	}, {
 	name: 'main'
 });
@@ -52,7 +51,6 @@ Router.route('/forgot_password', function () {
 
 
 Router.route('/change_password', function () {
-  this.layout('external');
   this.render('change_password');
 });
 
@@ -223,7 +221,8 @@ Router.route('/checklist/:_id', {
       Session.set('current-checklist', this.params._id);
         return [Meteor.subscribe('tasks-specific', this.params._id),
        			Meteor.subscribe('checklists-specific', this.params._id),
-       			Meteor.subscribe('posts-specific', this.params._id),]
+       			Meteor.subscribe('posts-specific', this.params._id),
+            Meteor.subscribe('users-other')]
     },
     action: function() {
       if(this.ready()) {

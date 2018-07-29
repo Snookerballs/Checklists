@@ -26,3 +26,31 @@ Template.change_password.events({
     return false;
   }
 });
+
+Template.change_password.onRendered(function(){
+   $("#changePasswordForm").validate({
+    rules: {
+      new_password_inline: {
+        required:true,
+         minlength: 6,
+      },
+
+    },
+    messages: {
+      new_password_inline: {
+        required: "Password cannot be blank",
+        minlength: "Password must be at least 6 characters long",
+      },
+
+    },
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+  })
+})

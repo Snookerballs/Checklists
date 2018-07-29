@@ -300,8 +300,9 @@ Template.create_checklist.events({
 Template.create_checklist.events({
 	'submit .checklist-form': function() {
 		event.preventDefault();
-
-	console.log(isPublish)
+		if(ChecklistInCreation.find().count() == 0) {
+			alert("Your Checklist needs at least one task!");
+		}else{
 		//Save variables to Checklist Collection
 		var listName = event.target.checklistName.value;
 		var category = $( "#checklistCategory option:selected" ).text();
@@ -320,10 +321,9 @@ Template.create_checklist.events({
 		//Submit
 		$('#title-form').trigger("reset");
 		Meteor.call('accounts.incrementCreatedCounter');
+		Router.go('User Checklists');
+	}
 
-		//BUG TESTING
-		console.log(ChecklistCollection.find().fetch());
-		console.log(Tasks.find().fetch());
 	},
 	'click #save-checklist-button': function() {
 		isPublish = false;

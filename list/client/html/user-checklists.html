@@ -17,7 +17,7 @@
 	 <!-- Modal Structure -->
   <div id="avatar-upload" class="modal">
     <div class="modal-content">
-      <h4>Update Avatar Image</h4>
+      <h4 class="edit-form-header">Update Avatar Image</h4>
     <form class="col s12" id="avatarForm">
       <div class="row">
         <div class="input-field col s6">
@@ -26,7 +26,7 @@
       </div>
     </form>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" >
        <button class="btn-flat waves-effect waves-light modal-close" id="avatarButton" type="submit" form="avatarForm" name="action">Submit </button>
     </div>
   </div>
@@ -51,7 +51,7 @@
 		<ul class = "collection" id="category-checklists">
 			<a href="{{pathFor route = 'Checklist'}}">
 			<li class="list-name">
-				<h4><center>{{listName}}</center></h4>
+				<h4 class="list-title"><center>{{listName}}</center></h4>
 												<div class="information">
 				<span>Created on: {{formatDate createdAt}} </span>
 				<span style = "float: right;">Rating: {{rating}}({{raters}} voters) </span>
@@ -68,7 +68,7 @@
 		<ul class = "collection" id="category-checklists">
 			<a href="{{pathFor route = 'Saved Checklist'}}">
 				<li class="list-name">
-					<h4><center>{{listName}}</center></h4>
+					<h4 class="list-title"><center>{{listName}}</center></h4>
 
 				</li>
 			</a>
@@ -81,7 +81,7 @@
 		<ul class = "collection" id="category-checklists">
 			<a href="{{pathFor route = 'Saved Checklist'}}">
 				<li class="list-name">
-					<h4><center>{{listName}}</center></h4>
+					<h4 class="list-title">  <center>{{listName}}</center></h4>
 
 				</li>
 			</a>

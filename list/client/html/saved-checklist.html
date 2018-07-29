@@ -27,7 +27,7 @@
 		<li id = "task{{@index}}" class="task">
 			<div class="collapsible-header" id="preview-page-collapsible-header">
 				<div class="checkbox">
-					<input id="{{@index}}" class="checklist-box" type="checkbox" checked = "true" disabled = 'true'>
+					<input id="{{@index}}" class="checklist-boxes" type="checkbox" checked = "true" disabled = 'true'>
 					<label for="{{@index}}"></label>
 				</div>
 				<div class="name"><strong>{{taskName}}</strong></div>
@@ -51,10 +51,8 @@
 		{{#each task}}
 		<li id = "task{{@index}}" class="task">
 			<div class="collapsible-header" id="preview-page-collapsible-header">
-				<div class="checkbox">
-					<input id="{{@index}}" class="checklist-box" type="checkbox">
+					<input id="{{@index}}" class="checklist-boxes" type="checkbox">
 					<label for="{{@index}}"></label>
-				</div>
 				<div class="name"><strong>{{taskName}}</strong></div>
 			</div>
 			<div class="collapsible-body">
@@ -73,13 +71,17 @@
 	</template>
 
 <template name="completedChecklistOptions">
-	<button id ="reuse-button" class="waves-effect waves-light btn">Use this Checklist Again!</button>
-			<a href="{{pathFor route = 'Edit Checklist' _id=listId}}" class="waves-effect waves-light btn" >Edit Checklist!</a>
-				<button class="waves-effect waves-teal btn" id="delete-button" name="action">Delete Checklist!</button>
+		<div class = "saved-button-wrapper">
+	<button id ="reuse-button" class="waves-effect waves-light btn" style="background-color: #ef798a">Use this Checklist Again!</button>
+			<a href="{{pathFor route = 'Edit Checklist' _id=listId}}" class="waves-effect waves-light btn" style="background-color: #ef798a">Edit Checklist!</a>
+				<button class="waves-effect waves-teal btn" id="delete-button" name="action" style="background-color: #ef798a">Delete Checklist!</button>
+		</div>
 </template>
 
 <template name="uncompletedChecklistOptions">
-			<button class="waves-effect waves-teal btn" id="delete-button" name="action">Delete Checklist!</button>
-		<a href="{{pathFor route = 'Edit Checklist' _id=listId}}" class="waves-effect waves-light btn" >Edit Checklist!</a>
-		<button id ="complete-button" class="waves-effect waves-light btn" >Complete Checklists!</button>
+	<div class = "saved-button-wrapper">
+			<button class="waves-effect waves-teal btn" id="delete-button" name="action" style="background-color: #ef798a">Delete Checklist!</button>
+		<a href="{{pathFor route = 'Edit Checklist' _id=listId}}" class="waves-effect waves-light btn" style="background-color: #ef798a">Edit Checklist!</a>
+		<button id ="complete-button" class="waves-effect waves-light btn" style="background-color: #ef798a">Complete Checklists!</button>
+	</div>
 </template>

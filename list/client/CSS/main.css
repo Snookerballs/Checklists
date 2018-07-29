@@ -1,3 +1,27 @@
+.nav-wrapper{
+       background-color: #685369;   
+           height: 100px;
+}
+
+nav{
+    height: 100px;
+}
+
+.brand-logo{
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+
+button:hover{
+    filter: brightness(75%);
+}
+
+i: hover{
+     filter: brightness(75%);
+}
+
 #tutorial {
 	height: 800px;
   background-color: #fafafa;
@@ -41,12 +65,3 @@
     /* height: 100%; */
 }
 
-#footer
-{
-    width: 100%;
-    bottom:0;
-}
-
-#page-content {
-    height: 100%;
-}

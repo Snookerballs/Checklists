@@ -109,6 +109,7 @@ Template.editExistingChecklist.events({
 		Meteor.call('saved-checklists.update', Router.current().params._id, listName, category);
 
 		Meteor.call('saved-tasks.remove', Router.current().params._id);
+		Meteor.call('saved-checklist.resetChecklist', Router.current().params._id);
 		//Add checklist task to task collections
 		ChecklistToEdit.find({},{sort:{index: 1}}).forEach((task) => Meteor.call('saved-tasks.update', Router.current().params._id, task.taskName, 
 			task.taskDescription, task.taskResources));
@@ -116,9 +117,6 @@ Template.editExistingChecklist.events({
 		// Re Initialize ChecklistToEdit
 		event.target.checklistName.value =' ';
 		Router.go("Saved Checklist", {_id: Router.current().params._id});
-		//BUG TESTING
-		console.log(SavedChecklistCollection.find().fetch());
-		console.log(SavedTasks.find().fetch());
 	},
 })
 

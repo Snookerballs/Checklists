@@ -1,4 +1,12 @@
 
+#comments-wrapper{
+	overflow: hidden;
+	margin: 10px auto;
+	border: 10px solid;
+	width: 800px;
+	background-color: #d6d2d2;
+}
+
 #comments-list{
 	overflow: hidden;
 	height: 100%;
@@ -6,13 +14,7 @@
 	margin: 20px auto;
 	bottom: 25px;
 	position: relative;
-}
-
-#comments-wrapper{
-	overflow: hidden;
-	margin: 10px auto;
-	border: 10px solid;
-	width: 800px;
+	background-color: white;
 }
 
 #comments-form{
@@ -21,22 +23,22 @@
 	width: 700px;
 }
 
-#post-button{
-	margin: 20px auto;
-	background-color: #dc8589;
+#comment{
+	color:#ef498a;
 }
 
-  /*[type="radio"] + label:before,
-  [type="radio"] + label:after {
-  	display:none;
+#post-button{
+	margin: 20px auto;
+	background-color: #454851;
+	color: #d6d2d2;
+}
 
-  }*/
-
-	.userAvatar{
-		width:100px;
-		height:100px;
-		padding:10px;
-	}
+.userAvatar{
+	float:left;
+	width:100px;
+	height:100px;
+	padding:10px;
+}
 	
 .star{
 	color: grey;
@@ -55,30 +57,85 @@
   	width: 50px;
   	bottom: 7px;
   	padding: 0px;
+  	background-color: #ef798a;
   }
 
 
 #button-wrapper{
 	width: 800px;
 	overflow: hidden;
-	margin: auto;
+	margin: 10px auto;
+	
+}
+
+#edit-button{
+	color: white;
 }
 
 #use-button{
 	margin: 20px auto;
-	width:300px;
-	background-color: #dc8589;
+	width:250px;
+	background-color: #ef798a;
+
 }
 
+.rating-and-usage-wrapper{
+	width: 700px;
+	margin:auto;
+}
+
+.button{
+	background-color: #685369;
+}
 #preview-page-collapsible{
-	margin: auto;
-	width:800PX;
-	border: 3px solid #89d2dd;
+	margin: 10px auto;
+	width:700px;
+	height:100%;
+	word-wrap: break-word;
+	border: 5px solid #454851;
+	box-shadow: 10px 5px 20px #bd8e93;
 }
 
 #preview-page-collapsible-header{
 	font-size: 20px;
-	background-color: #e0fafd;
-	margin: auto;
-	color: #5aa8b4;
+	background-color: #454851;
+	color: white;
+	text-transform: capitalize;
 }
+
+.checklist-modal-content{
+	background: #d6d2d2;
+}
+
+.saved-button-wrapper{
+	width: 100%;
+	margin-left: 53px;
+	margin-top: 20px;
+}
+
+.display-checklist-boxes[type="checkbox"] + label:before{
+  border: 2px solid #f39d9c;
+  background: transparent;
+}
+
+.display-checklist-boxes[type="checkbox"]:checked + label:before{
+  border: 2px solid transparent;
+  border-bottom: 2px solid #f39d9c;
+  border-right: 2px solid #f39d9c;
+  background: transparent;
+}
+.display-checklist-boxes.filled-in[type="checkbox"] + label:after{
+  border: 2px solid #f39d9c;
+  background: transparent;
+}
+.display-checklist-boxes.filled-in[type="checkbox"]:checked + label:after{
+  background: #f39d9c;
+}
+.display-checklist-boxes.filled-in[type="checkbox"]:checked + label:before{
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+

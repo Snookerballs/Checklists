@@ -56,9 +56,11 @@ Template.login.events({
     Meteor.loginWithPassword(emailVar, passwordVar, function(err) {
       if (err) {
         alert( err.message);
+      }else{
+            Router.go("User Checklists");
       }
     });
-    Router.go("User Checklists");
+
   }
 });
 
@@ -66,7 +68,6 @@ Template.dashboard.events({
   'click .logout': function(event){
     event.preventDefault();
     Meteor.logout();
-    console.log("logout alr");
     Router.go("main");
   }
 });

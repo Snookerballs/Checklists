@@ -33,6 +33,9 @@ Meteor.publish("saved-checklists-specific", function(id){
 			creatorId: c_id,
 			creatorName: c_name,
 			userId: u_id,
+			completionPercentage: 0.0,
+			completionStatus: false,
+			timesCompleted: 0,
 			createdAt: new Date(),
 		});
 	},
