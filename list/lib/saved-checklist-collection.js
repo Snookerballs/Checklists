@@ -40,12 +40,37 @@ Meteor.publish("saved-checklists-specific", function(id){
 		SavedChecklistCollection.remove({_id: list._id});
 	},
 	'saved-checklists.update'(id, name, cat){
-				SavedChecklistCollection.update({_id: id}, {$set: 
+				SavedChecklistCollection.update({_id: id}, {$set:
 			{
 			listName: name,
 			category: cat,
 		}}, { upsert:true});
+	},
+	'saved-checklist.updateCompletionPercentage'(id, percentage){
+						SavedChecklistCollection.update({_id: id}, {$set:
+			{
+				completionPercentage: percentage,
+		}}, { upsert:true});
+	},
+	'saved-checklist.setCompletionStatus'(id){
+								SavedChecklistCollection.update({_id: id}, {$set:
+			{
+				completionStatus: true,
+		}}, { upsert:true});
+	},
+	'saved-checklist.incrementTimesCompleted'(id){
+		var timesCompletedVar = SavedChecklistCollection.findOne({_id:id}).timesCompleted +1;
+										SavedChecklistCollection.update({_id: id}, {$set:
+			{
+				timesCompleted: timesCompletedVar,
+		}}, { upsert:true});
+
+	},
+	'saved-checklist.resetChecklist'(id) {
+		SavedChecklistCollection.update({_id: id}, {$set:
+			{
+				completionStatus: false,
+				completionPercentage: 0.0,
+		}}, { upsert:true});
 	}
 });
-
-

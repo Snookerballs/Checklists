@@ -1,6 +1,8 @@
 <template name="checklist-page">
 	{{#if currentUser}}
+	<div class ="checklistDisplay">
 	{{> checklist}}
+	</div>
 	{{else}}
 	{{> loginPrompt}}
 	{{/if}}
@@ -29,7 +31,7 @@
 					<hr>
 					<strong>Resources</strong>
 					<br>
-					<div class="resources">{{{taskResources}}}</div>
+					{{> resources}}
 				</span>
 			</div>
 		</li>
@@ -88,7 +90,10 @@
 
 		<ul class="collection" id="comments-list">
 			{{#each post}}
+			<p>
+			<img class="circle userAvatar" src="{{userAvatar posterId}}">
 			<h5>{{username}} says:</h5>
+			</p>
 			Created on: {{formatDate createdAt}}
 			<li class="collection-item">{{comment}}</li>
 			{{/each}}

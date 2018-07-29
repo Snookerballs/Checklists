@@ -5,7 +5,7 @@
 	width: 600px;
 	margin: 20px auto;
 	bottom: 25px;
-	position: relative; 
+	position: relative;
 }
 
 #comments-wrapper{
@@ -32,7 +32,12 @@
 
   }*/
 
-
+	.userAvatar{
+		width:100px;
+		height:100px;
+		padding:10px;
+	}
+	
 .star{
 	color: grey;
 	width: 30px;

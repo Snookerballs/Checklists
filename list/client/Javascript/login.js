@@ -16,7 +16,10 @@ Template.create_account.events({
     Accounts.createUser({
       username: registerUsernameVar,
       email: emailVar,
-      password: passwordVar
+      password: passwordVar,
+      profile: {
+
+}
     },function(error){
       if(error){
         alert(error.reason); // Output error if registration fails
@@ -36,9 +39,10 @@ Accounts.onEmailVerificationLink(function(token, done) {
 
   Accounts.verifyEmail(token, function(err, result) {
     if (result) {
-      Router.go('User Checklists');
+
       alert('Your email has been verified!');
       done();
+      Router.go('User Checklists');
     }
   });
 })

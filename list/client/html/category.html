@@ -53,7 +53,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="row">
 				<div class ="left-col">
 					<div class="col s12 m6">
@@ -69,9 +68,7 @@
 						</div>
 					</div>
 				</div>
-
-
-								<div class= "right-col">
+				<div class= "right-col">
 					<div class="col s12 m6">
 						<div class="card small category-card">
 							<a href="{{pathFor route = 'Music' }}" class ="category-link">
@@ -89,32 +86,34 @@
 		</div>
 	</template>
 
+
 	<template name="checklists">
 		<center><h2>Categories</h2></center>
 		<div id="sort-form-wrapper">
-					<span><div id="sort-label"> Sort By:</div></span>
-	<form id="sort-form">
-  	<div class="input-field col s12">
-    <select id= select-options>
-      <option value="1">Top Rated</option>
-      <option value="2">Newest</option>
-    </select>
-  </div>
-</form>
-</div>
+			<span><div id="sort-label"> Sort By:</div></span>
+			<form id="sort-form">
+				<div class="input-field col s12">
+					<select id= select-options>
+						<option value="1">Top Rated</option>
+						<option value="2">Newest</option>
+						<option value="3">Oldest</option>
+					</select>
+				</div>
+			</form>
+		</div>
 		{{#each checklist}}
 		<ul class = "collection" id="category-checklists">
 			<a href="{{pathFor route = 'Checklist'}}">
-			<li class="list-name">
-				<h4><center>{{listName}}</center></h4>
-								<center>By: {{username}} </center>
-								<br>
-								<div class="information">
-				<span>Created on: {{formatDate createdAt}} </span>
-				<span style = "float: right;">Rating: {{rating}}({{raters}} voters) </span>
-			</div>
-			</li>
-		</a>
+				<li class="list-name">
+					<h4><center>{{listName}}</center></h4>
+					<center>By: {{username}} </center>
+					<br>
+					<div class="information">
+						<span>Created on: {{formatDate createdAt}} </span>
+						<span style = "float: right;">Rating: {{rating}}({{raters}} voters) </span>
+					</div>
+				</li>
+			</a>
 		</ul>
 		{{/each}}
 	</template>

@@ -37,10 +37,20 @@ Template.checklist.helpers({
 
 
 Template.checklist.onRendered(function(){
+	$(".checklistDisplay").ready(function(){
+	var isRated = false;
+	var arr = ChecklistCollection.findOne({_id: Session.get('current-checklist')}).raterIds;
+		for(var i = 0; i < arr.length; i++){
+			if(arr[i].id == Meteor.userId()){
+				isRated = true;
+			}
+		}
+
 		/** Initialize  Components **/
 		$('.collapsible').collapsible();
 			/** Initialize  Components **/
-		if(ChecklistCollection.findOne().userId == Meteor.userId()){
+			var userid = ChecklistCollection.findOne().userId
+		if(userid == Meteor.userId() || Roles.userIsInRole(userid, 'admin')){
 			$('#rate-button').prop('disabled','disabled');
 			$('#delete-button').show();
 			$('#publish-button').show();
@@ -58,6 +68,10 @@ Template.checklist.onRendered(function(){
 	 		$('#rate-button').removeAttr("disabled");
 	 }
 
+		if(isRated){
+			$('#rate-button').prop('disabled',true);
+		 }
+		});
 });
 
 Template.checklist.events({
@@ -77,6 +91,7 @@ Template.checklist.events({
 		Meteor.call('posts.remove', currChecklist);
 		Meteor.call('tasks.remove', currChecklist._id);
 		Meteor.call('checklists.remove', currChecklist);
+		Meteor.call('accounts.decrementCreatedCounter');
 		Router.go("User Checklists");
 
 	},
@@ -129,6 +144,10 @@ Template.comments.helpers({
     },
         formatDate(date){
   		return moment(date).format('DD-MM-YYYY, HH:mm');
+    },
+        userAvatar(userId){
+
+    	return Meteor.users.findOne({_id: userId}).profile.avatar;
     }
 
 });
@@ -167,6 +186,7 @@ Template.rating.events({
 				console.log("this is a NaN");
 			} else {
 				Meteor.call('checklists.updateRating',Session.get('current-checklist'), score);
+				Meteor.call('checklists.updateRaters', Session.get('current-checklist'), String(Meteor.userId));
 				$('.star').css("color", 'grey');
 				$('input[name=star-container]:checked').attr('checked', false);
 				$('#modalUX2').modal('open');

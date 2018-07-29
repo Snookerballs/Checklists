@@ -16,11 +16,9 @@
     <div class="nav-wrapper">
       <a href="{{ pathFor route = 'main' }}" class="brand-logo">CheckLists!</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="{{ pathFor route = 'User Checklists' }}">Home</a></li>
         <li><a href="{{ pathFor route = 'Create' }}">Create</a></li>
         <!-- Dropdown Trigger -->
         <li><a class='dropdown-button' data-activates='dropdown1' href="#">Categories</a></li>
-        <li><a href="#">Leaderboard</a></li>
         <!-- Dropdown Trigger -->
         <li><a class='dropdown-button' data-activates='dropdown2' href='#'>Admin</a></li>
         <!-- Sidenav Trigger -->
@@ -35,12 +33,11 @@
       <div class="background">
         <img src="images/profile.jpg">
       </div>
-      <a href="#!user"><img class="circle" src="images/profile.jpg"></a>
+      <a href="#!user"><img class="circle" src="{{avatar}}"></a>
       <a><span class="white-text name">{{ username }}</span></a>
       <a><span class="white-text name">{{ email }}</span></a>
     </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>View My Profile</a></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>Account Settings</a></li>
+    <li><a href="{{ pathFor route = 'User Checklists' }}"><i class="material-icons">cloud</i>View My Profile</a></li>
     <li><a href="{{pathFor route = 'change_password'}}"><i class="material-icons">cloud</i>Change Password</a></li>
     <li><a href="#" class="logout"><i class="material-icons">lock</i>Logout</a></li>
   </ul>
@@ -60,17 +57,10 @@
 
   <!-- Dropdown Structure 2 -->
   <ul id='dropdown2' class='dropdown-content'>
-    <li><a href="#!">Statistics</a></li>
-    <li class="divider"></li>
     <li><a href="{{pathFor route = 'email'}}">Send Email</a></li>
     <li class="divider"></li>
     <li><a href="{{pathFor route = 'add_remove_admin'}}">Add or Remove Admin</a></li>
   </ul>
-
-  <!-- LOGOUT -->
-
-
-  <!-- {{ > yield }} -->
 
   <!-- Sidenav and Dropdown Trigger Initialisation -->
   <script>
@@ -101,11 +91,9 @@
     <div class="nav-wrapper">
       <a href="{{ pathFor route = 'main' }}" class="brand-logo">CheckLists!</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="{{ pathFor route = 'User Checklists' }}">Home</a></li>
         <li><a href="{{ pathFor route = 'Create' }}">Create</a></li>
         <!-- Dropdown Trigger -->
         <li><a class='dropdown-button' data-activates='dropdown1' href="#">Categories</a></li>
-        <li><a href="#">Leaderboard</a></li>
         <!-- Dropdown Trigger -->
         <li><a class='dropdown-button' data-activates='dropdown2' href='#'>Help</a></li>
         <!-- Sidenav Trigger -->
@@ -120,12 +108,11 @@
       <div class="background">
         <img src="images/profile.jpg">
       </div>
-      <a href="#!user"><img class="circle" src="images/profile.jpg"></a>
+      <a href="#!user"><img class="circle" src="{{avatar}}"></a>
       <a><span class="white-text name">{{ username }}</span></a>
       <a><span class="white-text name">{{ email }}</span></a>
     </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>View My Profile</a></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>Account Settings</a></li>
+    <li><a href="{{ pathFor route = 'User Checklists' }}"><i class="material-icons">cloud</i>View My Profile</a></li>
     <li><a href="{{pathFor route = 'change_password'}}"><i class="material-icons">cloud</i>Change Password</a></li>
     <li><a href="#" class="logout"><i class="material-icons">lock</i>Logout</a></li>
   </ul>
@@ -148,10 +135,6 @@
     <li><a href="{{ pathFor route = 'contact_us' }}">Contact Us</a></li>
   </ul>
 
-  <!-- LOGOUT -->
-
-
-  <!-- {{ > yield }} -->
 
   <!-- Sidenav and Dropdown Trigger Initialisation -->
   <script>
