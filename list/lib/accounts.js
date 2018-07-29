@@ -115,6 +115,10 @@ Meteor.publish('users-other', function () {
     return Meteor.users.find();
 });
 
+Meteor.publish('users-specific', function (name) {
+    return Meteor.users.find({username: name}, {fields:{profile: true}});
+});
+
 
 Meteor.publish('users', function() {
     return Meteor.users.find({}, {fields:{profile: true}});

@@ -321,7 +321,7 @@ Template.create_checklist.events({
 		//Submit
 		$('#title-form').trigger("reset");
 		Meteor.call('accounts.incrementCreatedCounter');
-		Router.go('User Checklists');
+		Router.go("User Checklists", {_username: Meteor.user().username});
 	}
 
 	},

@@ -57,7 +57,9 @@ Template.login.events({
       if (err) {
         alert( err.message);
       }else{
-            Router.go("User Checklists");
+          Session.set("Current User", Meteor.user().username);
+
+            Router.go("User Checklists", {_username: Session.get("Current User")});
       }
     });
 

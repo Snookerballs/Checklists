@@ -71,7 +71,7 @@ Template.editCreatedChecklist.onRendered(function(){
 			var resourceToDelete = $(this).parent().closest('li').attr('class').split(' ');
 			tempResourcesArr.splice(Number(resourceToDelete), 1);
 			$("." + resourceToDelete).remove();
-			console.log(tempResourcesArr);
+
 		});
 	}); 
 
@@ -83,11 +83,9 @@ Template.editCreatedChecklist.onRendered(function(){
 	    		{"taskResources": {index: Number(resourceToDelete)
 	    		}}}, { upsert:true});
 	    	$("." + resourceToDelete).remove();
-	    	console.log(tempResourcesArr);
 	    });
 	});    
 
-	console.log(ChecklistToEdit.find().fetch());
 })
 
 Template.editCreatedChecklist.onDestroyed(function(){

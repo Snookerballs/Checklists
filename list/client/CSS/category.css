@@ -78,3 +78,7 @@ position:relative;
 	width: 600px;
 	margin: auto;
 }
+
+.category-list-wrapper{
+	min-height: 800px;
+}

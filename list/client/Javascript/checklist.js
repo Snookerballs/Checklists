@@ -32,7 +32,8 @@ Template.checklist.helpers({
     },
     listId() {
     	return Router.current().params._id;
-    }
+    },
+
 });
 
 
@@ -81,7 +82,7 @@ Template.checklist.events({
 		var checklistId = SavedChecklistCollection.findOne({}, {sort: {createdAt: -1, limit: 1}})._id;
 		Tasks.find().forEach((task) => Meteor.call('saved-tasks.insert', task.taskName, task.taskDescription,
 			task.taskResources, checklistId));
-		Router.go('User Checklists');
+		Router.go("User Checklists", {_username: Meteor.user().username});
 	},
 		'click #delete-button': function() {
 			/*BUGGED*/
@@ -90,13 +91,13 @@ Template.checklist.events({
 		Meteor.call('tasks.remove', currChecklist._id);
 		Meteor.call('checklists.remove', currChecklist);
 		Meteor.call('accounts.decrementCreatedCounter');
-		Router.go("User Checklists");
+		Router.go("User Checklists",{_username: Meteor.user().username});
 
 	},
 		'click #publish-button': function() {
 			Meteor.call('checklists.publish', ChecklistCollection.findOne());
 
-			Router.go("User Checklists");
+			Router.go("User Checklists",{_username: Meteor.user().username});
 
 	}
 });

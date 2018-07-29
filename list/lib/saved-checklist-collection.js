@@ -17,7 +17,6 @@ Meteor.publish("saved-checklists", function(type){
 Meteor.publish("saved-checklists-user", function(){
 		return SavedChecklistCollection.find({userId: this.userId});
 });
-
 Meteor.publish("saved-checklists-specific", function(id){
 	return SavedChecklistCollection.find({_id: id});
 });

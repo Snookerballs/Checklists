@@ -36,7 +36,7 @@
     <span class="white-text name">{{ username }}</span>
     <span class="white-text name">{{ email }}</span>
     </div></li>
-    <li><a href="{{ pathFor route = 'User Checklists' }}"><i class="material-icons">cloud</i>View My Profile</a></li>
+    <li><a href="{{ pathFor route = 'User Checklists' username = username}}"><i class="material-icons">cloud</i>View My Profile</a></li>
     <li><a href="{{pathFor route = 'change_password'}}"><i class="material-icons">cloud</i>Change Password</a></li>
     <li><a href="#" class="logout"><i class="material-icons">lock</i>Logout</a></li>
   </ul>
@@ -111,7 +111,7 @@
       <a><span class="white-text name">{{ username }}</span></a>
       <a><span class="white-text name">{{ email }}</span></a>
     </div></li>
-    <li><a href="{{ pathFor route = 'User Checklists' }}"><i class="material-icons">cloud</i>View My Profile</a></li>
+    <li><a href="{{ pathFor route = 'User Checklists' _username = username}}"><i class="material-icons">cloud</i>View My Profile</a></li>
     <li><a href="{{pathFor route = 'change_password'}}"><i class="material-icons">cloud</i>Change Password</a></li>
     <li><a href="#" class="logout"><i class="material-icons">lock</i>Logout</a></li>
   </ul>

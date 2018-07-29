@@ -199,11 +199,13 @@ Router.route('/categories/music', {
   },
 });
 
-Router.route('/home/user-checklists', {
+Router.route('/home/user-checklists/:_username', {
   name: 'User Checklists',
     template: 'userChecklists',
      waitOn: function() {
-        return [Meteor.subscribe('checklists-user'),
+        return [
+        Meteor.subscribe('users-other'),
+        Meteor.subscribe('checklists-specificUser', this.params._username),
         Meteor.subscribe('saved-checklists-user')]
     },
     action: function() {
@@ -226,7 +228,6 @@ Router.route('/checklist/:_id', {
     },
     action: function() {
       if(this.ready()) {
-
         this.render();
       }
     },

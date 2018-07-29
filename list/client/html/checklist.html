@@ -11,7 +11,7 @@
 <template name="checklist">
 	{{#if defined}}
 	<center><h2>{{name}}</h2></center>
-	<center> Created by: {{creator}} </center>
+	<center> Created by: <a href="{{pathFor route = 'User Checklists' _username=creator }}">{{creator}}</a></center>
 		<center> Rating: {{listRating}} ({{raterNumber}} votes) </center>
 	<ul class="collapsible" id="preview-page-collapsible">
 		{{#each task}}
