@@ -24,7 +24,7 @@ Template.editExistingChecklist.onRendered(function(){
 
 	//Transfer to temporary collection
 
-	SavedTasks.find({},{sort:{index: 1}}).forEach((task) =>
+	SavedTasks.find({},{sort:{index: 1}}).forEach((task) => 
 		ChecklistToEdit.insert({
 			taskName: task.taskName,
 			taskDescription: task.taskDescription,
@@ -34,58 +34,61 @@ Template.editExistingChecklist.onRendered(function(){
 		}))
 
 
-		$('#editExistingChecklist').on('click','.editTask', function(){
-		$('#edit-task-modal').modal({
-			dismissible: false,
-		});
-		$('#edit-task-modal').modal('open');
+	$('#editExistingChecklist').on('click','.editTask', function(){
+	$('#edit-task-modal').modal({
+		dismissible: false,
+	});
+	$('#edit-task-modal').modal('open');
 
-		var editingTask = $(this).parent().closest('li').attr('class').split(' ');
-		var taskNum = editingTask[0];
-		var name = $('.'+taskNum).find('.name').text();
-		var description = $('.'+taskNum).find('.description').text();
+	var editingTask = $(this).parent().closest('li').attr('class').split(' ');
+	var taskNum = editingTask[0];
+	var name = $('.'+taskNum).find('.name').text();
+	var description = $('.'+taskNum).find('.description').text();
+	
+
+	$('#editTaskName').val(name);
+	$('#editDescription').val(description);
 
 
-		$('#editTaskName').val(name);
-		$('#editDescription').val(description);
+	
+	taskToUpdate = ChecklistToEdit.findOne({taskName: name, 
+		taskDescription: description});
 
-
-		taskToUpdate = ChecklistToEdit.findOne({taskName: name,
-			taskDescription: description});
-
-			var resources = taskToUpdate.taskResources;
-			for(var i = 0; i < resources.length; i++){
-				$(".editResourceList").append('<li class="'
-			+i
-			+'""><a href="'
-			+ resources[i].link
-			+ '"<span class="resource-item">'
-			+ resources[i].name + '</span></a>'
-			+ '<i class="material-icons task-resource-delete" id="edit-saved-task-resource-delete">close</i>'
-			+ '</li>' );
-			}
+	var resources = taskToUpdate.taskResources;
+				for(var i = 0; i < resources.length; i++){
+					$(".editResourceList").append('<li class="'
+ 				+i
+ 				+'""><a href="' 
+ 				+ resources[i].link
+ 				+ '"<span class="resource-item">'
+ 				+ resources[i].name + '</span></a>'
+ 				+ '<i class="material-icons task-resource-delete" id="edit-saved-task-resource-delete">close</i>'
+ 				+ '</li>' );
+				}
+ 			
 	//BUG: .val() does not copy over html formatting ><
 });
 
-$(document).ready(function(){
-			$(document).on('click','.resource-delete', function(){
-	var resourceToDelete = $(this).parent().closest('li').attr('class').split(' ');
-	tempResourcesArr.splice(Number(resourceToDelete), 1);
-	$("." + resourceToDelete).remove();
-	console.log(tempResourcesArr);
-			});
-								$(document).on('click','#edit-saved-task-resource-delete', function(){
-var resourceToDelete = $(this).parent().closest('li').attr('class').split(' ');
-//Update relavant information
-ChecklistToEdit.update({index: taskToUpdate.index}, { $pull:
-{"taskResources": {index: Number(resourceToDelete)
-}}}, { upsert:true});
-$("." + resourceToDelete).remove();
-console.log(tempResourcesArr);
-			});
-});
+	        $(document).ready(function(){
+                $(document).on('click','.resource-delete', function(){
+	    			var resourceToDelete = $(this).parent().closest('li').attr('class').split(' ');
+	    			tempResourcesArr.splice(Number(resourceToDelete), 1);
+	    			$("." + resourceToDelete).remove();
+	    			console.log(tempResourcesArr);
+                });
+                          $(document).on('click','#edit-saved-task-resource-delete', function(){
+	    	var resourceToDelete = $(this).parent().closest('li').attr('class').split(' ');
+	    	//Update relavant information
+		ChecklistToEdit.update({index: taskToUpdate.index}, { $pull:
+			{"taskResources": {index: Number(resourceToDelete)
+		}}}, { upsert:true});
+	    	$("." + resourceToDelete).remove();
+	    	console.log(tempResourcesArr);
+                });
+        });   
 
-	console.log(ChecklistToEdit.find().fetch());
+
+
 })
 
 Template.editExistingChecklist.onDestroyed(function(){
@@ -93,7 +96,6 @@ Template.editExistingChecklist.onDestroyed(function(){
 	size = 0;
 		tempResourcesArr = [];
 });
-
 
 Template.editExistingChecklist.events({
 		'submit .checklist-form': function() {
@@ -106,12 +108,12 @@ Template.editExistingChecklist.events({
 		//Create checklist
 		Meteor.call('saved-checklists.update', Router.current().params._id, listName, category);
 
-		Meteor.call('saved-tasks.remove');
+		Meteor.call('saved-tasks.remove', Router.current().params._id);
 		//Add checklist task to task collections
-		ChecklistToEdit.find({},{sort:{index: 1}}).forEach((task) => Meteor.call('saved-tasks.update', Router.current().params._id, task.taskName,
+		ChecklistToEdit.find({},{sort:{index: 1}}).forEach((task) => Meteor.call('saved-tasks.update', Router.current().params._id, task.taskName, 
 			task.taskDescription, task.taskResources));
 
-		// Re Initialize ChecklistInCreation
+		// Re Initialize ChecklistToEdit
 		event.target.checklistName.value =' ';
 		Router.go("Saved Checklist", {_id: Router.current().params._id});
 		//BUG TESTING
@@ -199,39 +201,37 @@ $("#edit-form").validate({
       }
     }
 });
+	$(".resource-form").validate({
+  rules: {
+        resourceName: {
+        required:true,
+    },
+    resourceLink: {
+        required: true,
+        url: true,
 
-$(".resource-form").validate({
-rules: {
-			resourceName: {
-			required:true,
-	},
-	resourceLink: {
-			required: true,
-			url: true,
+    },
+  },
+	messages: {
+    resourceName: {
+        required: "A Resource name is required.",
+    },
+    resourceLink:  {
+        required: "Link is required.",
+        url: "Please Enter a Valid URL",
 
-	},
+    },
 },
-messages: {
-	resourceName: {
-			required: "A Resource name is required.",
-	},
-	resourceLink:  {
-			required: "Link is required.",
-			url: "Please Enter a Valid URL",
-
-	},
-},
-	errorElement : 'div',
-	errorPlacement: function(error, element) {
-		var placement = $(element).data('error');
-		if (placement) {
-			$(placement).append(error)
-		} else {
-			error.insertAfter(element);
-		}
-	}
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
 })
-
 })
 
 Template.editEditTaskModal.events({
@@ -240,7 +240,7 @@ Template.editEditTaskModal.events({
 		//Retrieve Information in the textboxes
 		var taskNameVar = event.target.editTaskName.value;
 		var descriptionVar = event.target.editDescription.value;
-
+		
 		//Update relavant information
 		ChecklistToEdit.update({index: taskToUpdate.index}, { $set:
 			{
@@ -267,8 +267,8 @@ Template.editEditTaskModal.events({
 
  			$(".editResourceList").append('<li class="'
  				+i
- 				+'""><a href="'
- 				+ linkVar
+ 				+'""><a href="' 
+ 				+ linkVar 
  				+ '"<span class="resource-item">'
  				+ nameVar + '</span></a>'
  				+ '<i class="material-icons resource-delete">close</i>'
@@ -370,7 +370,6 @@ Template.editAddTaskForm.events({
 		$(".resourceList li").remove();
 		$('.collapsible').collapsible();
 		$('#add-form').trigger("reset");
-		console.log(ChecklistToEdit.find().fetch());
 	},
 	'submit .add-resource-form': function() {
 			event.preventDefault();
@@ -385,8 +384,8 @@ Template.editAddTaskForm.events({
 			var index = tempResourcesArr.length-1;
  			$(".resourceList").append('<li class="'
  				+index
- 				+'""><a href="'
- 				+ linkVar
+ 				+'""><a href="' 
+ 				+ linkVar 
  				+ '"<span class="resource-item">'
  				+ nameVar + '</span></a>'
  				+ '<i class="material-icons resource-delete">close</i>'

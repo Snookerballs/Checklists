@@ -1,6 +1,6 @@
 <template name="create_checklist">
 	{{#if currentUser}}
-	<div class="create-checklist">
+	<div class="create-checklist" id="createChecklist">
 		<div id="create-checklist-title"> <h1> Create A Checklist</h1> </div>
 		<center><i class="separator material-icons">lens</i><br></center>
 		{{> list}}
@@ -14,28 +14,6 @@
 	<div id="save-checklist-button-wrapper">
 		<button class="btn waves-effect waves-light col s6 left" id = "save-checklist-button" type="submit" form="title-form">Save</button>
 		<button class="btn waves-effect waves-light col s6 right" id = "save-and-publish-checklist-button" type="submit" form="title-form">Save And Publish</button></div>
-
-		<!-- Modal UX1 Structure -->
-	  <div id="modalUX1" class="modal center-align">
-	    <div class="modal-content">
-	      <h4>Congratulations! <br/> You've created your checklist!</h4>
-	      <p>Go to Home to view or edit your checklist!</p>
-	    </div>
-			<div>
-				<img src="/images/aww.gif">
-			</div>
-	    <div class="modal-footer">
-	      <a href="{{ pathFor route = 'User Checklists' }}" class="modal-action modal-close waves-effect waves-green btn-flat">Go to Home</a>
-	    </div>
-	  </div>
-
-		<script>
-		$(document).ready(function(){
-			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-			$('.modal').modal();
-		});
-		</script>
-
 		{{else}}
 		{{> loginPrompt}}
 		{{/if}}
@@ -60,7 +38,7 @@
 						<label>Category</label>
 					</div>
 				</div>
-			</form>
+			</form> 
 		</ul>
 	</template>
 
@@ -73,7 +51,7 @@
 						<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox">
 						<label for="checklist-box{{@index}}"></label>
 					</div>
-					{{> editTaskModal}}
+					{{> editTaskModal}}		
 					<a href="#" class="delete-task secondary-content "><i class="material-icons">
 					close</i></a>
 
@@ -102,7 +80,7 @@
 
 	<template name="editTaskModal">
 		<!-- Modal Trigger -->
-		<a class="editTask secondary-content modal-trigger" id="create-edit-task" href="#edit-task-modal" data-target="edit-task-modal"><i class="material-icons">create</i></a>
+		<a class="editTask secondary-content modal-trigger" id="create-edit-task" data-target="edit-task-modal"><i class="material-icons">create</i></a>
 
 		<!-- Modal Structure -->
 		<div id="edit-task-modal" class="modal">
@@ -143,7 +121,7 @@
 						<input id="resourceName" name="resourceName" type= "text">
 						<label for="resourceName">Resource Name</label>
 					</div>
-					<div class="input-field col s12">
+					<div class="input-field col s12">	
 						<input id="resourceLink" name="resourceLink" type="text">
 						<label for="resourceLink">Resource Link</label>
 					</div>
@@ -153,7 +131,6 @@
 
 		</div>
 	</template>
-
 
 	<template name="addTaskForm">
 		<div id="add-form-wrapper">
@@ -180,7 +157,7 @@
 						<input id="resourceName" name="resourceName" type= "text">
 						<label for="resourceName">Resource Name</label>
 					</div>
-					<div class="input-field col s12">
+					<div class="input-field col s12">	
 						<input id="resourceLink" name="resourceLink" type="text">
 						<label for="resourceLink">Resource Link</label>
 					</div>

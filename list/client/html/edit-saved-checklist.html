@@ -38,7 +38,7 @@
 						<label>Category</label>
 					</div>
 				</div>
-			</form>
+			</form> 
 		</ul>
 	</template>
 
@@ -51,10 +51,10 @@
 						<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox">
 						<label for="checklist-box{{@index}}"></label>
 					</div>
-					{{> editEditTaskModal}}
+					{{> editEditTaskModal}}		
 					<a href="#" class="delete-task secondary-content "><i class="material-icons">
 					close</i></a>
-
+	
 					<a href="#" class="move-up secondary-content "><i class="material-icons">
 					arrow_upward</i></a>
 					<a href="#" class="move-down secondary-content "><i class="material-icons">
@@ -111,21 +111,22 @@
 					</div>
 				</div>
 			</form>
-			<p>Task Resources</p>
+						<p>Task Resources</p>
 			{{>editResourceList}}
-			<form class="resource-form" id ="edit-resource-form">
+				<form class="resource-form" id ="edit-resource-form">
 				<div id="resource-row">
 					<div class="input-field col s12">
 						<input id="resourceName" name="resourceName" type= "text">
 						<label for="resourceName">Resource Name</label>
 					</div>
-					<div class="input-field col s12">
+					<div class="input-field col s12">	
 						<input id="resourceLink" name="resourceLink" type="text">
 						<label for="resourceLink">Resource Link</label>
 					</div>
 					<button class="btn-floating btn-large waves-effect waves-light" id="resource-submit-button" type="submit" form="edit-resource-form"><i class="material-icons">add</i></button>
 				</div>
 			</form>
+
 		</div>
 	</template>
 
@@ -146,7 +147,7 @@
 					</div>
 				</div>
 			</form>
-			<form class="add-resource-form" id="add-resource-form">
+<form class="add-resource-form" id="add-resource-form">
 				<div id="resource-row">
 					<h5> Resources</h5>
 					{{> resourceList}}
@@ -154,7 +155,7 @@
 						<input id="resourceName" name="resourceName" type= "text">
 						<label for="resourceName">Resource Name</label>
 					</div>
-					<div class="input-field col s12">
+					<div class="input-field col s12">	
 						<input id="resourceLink" name="resourceLink" type="text">
 						<label for="resourceLink">Resource Link</label>
 					</div>
@@ -164,3 +165,4 @@
 			<button class="waves-effect waves-light btn modal-close" id="add-task-button" type="submit" form="add-form">Add!</button>
 		</div>
 	</template>
+

@@ -1,6 +1,6 @@
 <template name="editCreatedChecklist">
 {{#if currentUser}}
-	<div class="create-checklist">
+	<div class="create-checklist" id="editCreatedChecklist">
 		<div id="create-checklist-title"> <h1> Edit A Checklist</h1> </div>
 		<center><i class="separator material-icons">lens</i><br></center>
 		{{> editCreatedList}}
@@ -38,7 +38,7 @@
 						<label>Category</label>
 					</div>
 				</div>
-			</form>
+			</form> 
 		</ul>
 	</template>
 
@@ -51,10 +51,10 @@
 						<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox">
 						<label for="checklist-box{{@index}}"></label>
 					</div>
-					{{> editCreatedEditTaskModal}}
+					{{> editCreatedEditTaskModal}}		
 					<a href="#" class="delete-task secondary-content "><i class="material-icons">
 					close</i></a>
-
+	
 					<a href="#" class="move-up secondary-content "><i class="material-icons">
 					arrow_upward</i></a>
 					<a href="#" class="move-down secondary-content "><i class="material-icons">
@@ -112,20 +112,21 @@
 				</div>
 			</form>
 			<p>Task Resources</p>
-{{>editResourceList}}
-	<form class="resource-form" id="edit-resource-form">
-	<div id="resource-row">
-		<div class="input-field col s12">
-			<input id="resourceName" name="resourceName" type= "text">
-			<label for="resourceName">Resource Name</label>
-		</div>
-		<div class="input-field col s12">
-			<input id="resourceLink" name="resourceLink" type="text">
-			<label for="resourceLink">Resource Link</label>
-		</div>
-		<button class="btn-floating btn-large waves-effect waves-light"  type="submit" form="edit-resource-form"><i class="material-icons">add</i></button>
-	</div>
-</form>
+			{{>editResourceList}}
+				<form class="resource-form" id="edit-resource-form">
+				<div id="resource-row">
+					<div class="input-field col s12">
+						<input id="resourceName" name="resourceName" type= "text">
+						<label for="resourceName">Resource Name</label>
+					</div>
+					<div class="input-field col s12">	
+						<input id="resourceLink" name="resourceLink" type="text">
+						<label for="resourceLink">Resource Link</label>
+					</div>
+					<button class="btn-floating btn-large waves-effect waves-light"  type="submit" form="edit-resource-form"><i class="material-icons">add</i></button>
+				</div>
+			</form>
+
 		</div>
 	</template>
 
@@ -146,22 +147,21 @@
 					</div>
 				</div>
 			</form>
-			<form class="resource-form" id="add-resource-form">
-			<div id="resource-row">
-				<h5> Resources</h5>
-				{{> resourceList}}
-				<div class="input-field col s12">
-					<input id="resourceName" name="resourceName" type= "text">
-					<label for="resourceName">Resource Name</label>
+				<form class="resource-form" id="add-resource-form">
+				<div id="resource-row">
+					<h5> Resources</h5>
+					{{> resourceList}}
+					<div class="input-field col s12">
+						<input id="resourceName" name="resourceName" type= "text">
+						<label for="resourceName">Resource Name</label>
+					</div>
+					<div class="input-field col s12">	
+						<input id="resourceLink" name="resourceLink" type="text">
+						<label for="resourceLink">Resource Link</label>
+					</div>
+					<button class="btn-floating btn-large waves-effect waves-light"  type="submit" form="add-resource-form"><i class="material-icons">add</i></button>
 				</div>
-				<div class="input-field col s12">
-					<input id="resourceLink" name="resourceLink" type="text">
-					<label for="resourceLink">Resource Link</label>
-				</div>
-				<button class="btn-floating btn-large waves-effect waves-light"  type="submit" form="add-resource-form"><i class="material-icons">add</i></button>
-			</div>
-		</form>
-
+			</form>
 			<button class="waves-effect waves-light btn modal-close" id="add-task-button" type="submit" form="add-form">Add!</button>
 		</div>
 	</template>
