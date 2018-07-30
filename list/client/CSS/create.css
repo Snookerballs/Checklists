@@ -1,25 +1,11 @@
-body{
-	margin:0;
-	padding:0;
- color: #dc8589;
- font-family: courier;
-}
-
-/* .modal { width: 75% !important ; height: 90% !important ; }  */
-.modal { width: 75% !important ; max-height: 100% !important ; overflow-y: hidden !important ;}
-
-hr{
-margin: auto;
-}
-
-#navbar{
-	height: 60px;
-}
-
-.nav-encaps{
-	width: 70%;
-	margin: auto;
-}
+/*
+Colors
+light pink: #f3d9dc
+warm pink: #ef798a
+dark grey: #454851
+dark purple: #685369
+grey: #d6d2d2
+*/
 
 #content{
 	margin-top: 180px;
@@ -39,7 +25,7 @@ margin: auto;
 
 .delete-task {
 	left: 440px;
-		width:50px;
+	width:50px;
 	position:relative;
 	color:  #5aa8b4;
 }
@@ -99,7 +85,7 @@ margin: auto;
 	width:600px;
 	border: 3px solid #89d2dd;
 	height:100%;
-		word-wrap: break-word;
+	word-wrap: break-word;
 }
 
 #add-form-wrapper {
@@ -117,10 +103,10 @@ margin: auto;
 }
 
 #add-task-button{
-		margin: 10px auto;
-		width: 100px;
-		left: 380px;
-		background-color: #dc8589;
+	margin: 10px auto;
+	width: 100px;
+	left: 380px;
+	background-color: #dc8589;
 }
 
 #title-form-wrapper {
@@ -137,15 +123,15 @@ margin: auto;
 }
 
 #checklistName{
-		margin: auto;
-		right: 500px;
+	margin: auto;
+	right: 500px;
 }
 
 #save-checklist-button-wrapper{
-		margin: 10px auto;
-		width: 500px;
-		position: relative;
-		height:100px;
+	margin: 10px auto;
+	width: 500px;
+	position: relative;
+	height:100px;
 }
 
 #save-and-publish-checklist-button{

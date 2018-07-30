@@ -1,7 +1,19 @@
 <!-- FOR ADMIN ONLY! TO SEND EMAIL TO USERS -->
 <template name="email">
   {{#if currentUser}}
-  <div class="container">
+  <div class="row">
+    <div class="col m5 s0">
+      <br>
+      <br>
+      <img src="/images/bicycle.png">
+    </div>
+
+    <div class="col m7 s12">
+
+      <div id="spacing8">
+      </div>
+
+      <div id="send_email">
     <h3 class="header">Send Email</h3>
 
     <form id="emailForm" class="col s12">
@@ -26,11 +38,13 @@
         </div>
       </div>
 
-      <button class="btn waves-effect cyan lighten-4" type="submit" name="send">
+      <button class="btn waves-effect" type="submit" name="send">
        Send!
       </button>
     </form>
     <br>
+  </div>
+</div>
   </div>
   {{else}}
   {{> loginPrompt}}

@@ -1,35 +1,44 @@
 <template name="contact_us">
-  <div class="container">
-    <h3 class="header">Contact Us</h3>
+  <div class="row">
 
-    <form id="contactUsForm" class="col s12">
+    <div class="col m4 s0">
+      <br>
+      <img src="/images/art.png">
+    </div>
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="yourEmail" type="text">
-          <label for="yourEmail">Your Email</label>
-        </div>
+    <div class="col m8 s12">
+
+      <div id="spacing4">
       </div>
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="subject" type="text">
-          <label for="subject">Subject</label>
-        </div>
+      <div id="contact_us" >
+        <h3 class="header">Contact Us</h3>
+        <form id="contactUsForm" class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="yourEmail" type="text">
+              <label for="yourEmail">Your Email, so that we can get back to you</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="subject" type="text">
+              <label for="subject">Subject</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="input_body" class="materialize-textarea"></textarea>
+              <label for="input_body">Body</label>
+            </div>
+          </div>
+          <button class="btn waves-effect" type="submit" name="send">
+            Send!
+          </button>
+        </form>
       </div>
 
+    </div>
 
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea id="input_body" class="materialize-textarea"></textarea>
-          <label for="input_body">Body</label>
-        </div>
-      </div>
-
-      <button class="btn waves-effect cyan lighten-4" type="submit" name="send">
-       Send!
-      </button>
-    </form>
-    <br>
   </div>
 </template>

@@ -1,0 +1,73 @@
+/*
+Colors
+light pink: #f3d9dc
+warm pink: #ef798a
+dark grey: #454851
+dark purple: #685369
+grey: #d6d2d2
+*/
+
+#contact_us {
+  background-color: #f3d9dc;
+  padding: 25px;
+  border-radius: 10px;
+
+  opacity: 0.9;
+  height: 500px;
+}
+
+#spacing4 {
+	height: 20px;
+}
+
+#change_password {
+  background-color: #f3d9dc;
+  padding: 25px;
+  border-radius: 10px;
+
+  opacity: 0.9;
+  height: 560px;
+}
+
+#spacing5 {
+	height: 30px;
+}
+
+#reset_password {
+  background-color: #f3d9dc;
+  padding: 25px;
+  border-radius: 10px;
+
+  opacity: 0.9;
+  height: 560px;
+}
+
+#spacing6 {
+	height: 30px;
+}
+
+#spacing7 {
+	height: 150px;
+}
+
+
+#send_email {
+  background-color: #f3d9dc;
+  padding: 25px;
+  border-radius: 10px;
+
+  opacity: 0.9;
+  height: 560px;
+}
+
+#spacing8 {
+	height: 30px;
+}
+
+#admin_box {
+  background-color: #f3d9dc;
+  padding: 25px;
+  border-radius: 10px;
+
+  opacity: 0.9;
+}

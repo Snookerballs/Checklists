@@ -25,8 +25,8 @@ Template.create_account.events({
         alert(error.reason); // Output error if registration fails
       } else {
         console.log(Meteor.userId());
+        //Router.go("main"); // Redirect user if registration succeeds
         alert("Your account has been created. Please check your Inbox for Email Verification!");
-        //Router.go("User Checklists"); // Redirect user if registration succeeds
         $('#register-form').trigger("reset");
       }
     });

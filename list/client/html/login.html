@@ -1,8 +1,12 @@
 <!-- LOGIN -->
 <template name="login">
   <div id="login_bg">
-    <div id="login_box" class="container center-align">
-      <h3 class="header center-align">Login to your acccount</h3>
+
+    <div id="spacing1">
+    </div>
+
+    <div id="login_box" class="container">
+      <h3 class="header center-align">Login to my account</h3>
       <form class="col s12" id="login-form" name="login-form">
         <div class="row">
           <div class="input-field col s12">
@@ -21,19 +25,18 @@
         </div>
 
         <div class="row center-align">
-          <button class="btn waves-effect cyan lighten-4" type="submit" name="login">
+          <button class="btn waves-effect" type="submit" name="login">
             LOGIN
           </button>
         </div>
       </form>
 
       <div class="row center-align">
-        <button class="btn waves-effect cyan lighten-4" name="action">
-          <a href="{{pathFor route = 'forgot_password' }}">Fogot My Password</a>
+        <button class="btn waves-effect" name="action">
+          <a href="{{pathFor route = 'forgot_password' }}" class="white-text">Fogot My Password</a>
         </button>
       </div>
 
     </div>
   </div>
 </template>
-
