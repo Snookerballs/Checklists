@@ -174,7 +174,11 @@ Template.comments.helpers({
     },
         userAvatar(userId){
 
-    	return Meteor.users.findOne({_id: userId}).profile.avatar;
+    	var img = Meteor.users.findOne({_id: userId}).profile.avatar;
+    	if(img == ""){
+    		img = "/images/profile.jpg";
+    	}
+    	return img;
     },
     isPoster(userId){
     	return userId == Meteor.userId();

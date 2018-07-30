@@ -44,3 +44,10 @@ Template.checklists.events({
 			return false;
 		}
 	});
+
+
+Template.checklists.helpers({
+		categoryName(){
+			return Router.current().route.getName();
+		}
+	});

@@ -62,7 +62,7 @@ Meteor.publish("saved-checklists-specific", function(id){
 	},
 	'saved-checklist.incrementTimesCompleted'(id){
 		var timesCompletedVar = SavedChecklistCollection.findOne({_id:id}).timesCompleted +1;
-										SavedChecklistCollection.update({_id: id}, {$set:
+			SavedChecklistCollection.update({_id: id}, {$set:
 			{
 				timesCompleted: timesCompletedVar,
 		}}, { upsert:true});
@@ -74,5 +74,6 @@ Meteor.publish("saved-checklists-specific", function(id){
 				completionStatus: false,
 				completionPercentage: 0.0,
 		}}, { upsert:true});
-	}
+	},
+
 });

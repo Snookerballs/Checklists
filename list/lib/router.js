@@ -67,7 +67,6 @@ Router.route('/contact_us', function () {
 
 
 Router.route('/reset_password', function () {
-
   this.render('reset_password');
 });
 

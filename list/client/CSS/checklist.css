@@ -65,7 +65,8 @@
 	width: 800px;
 	overflow: hidden;
 	margin: 10px auto;
-
+	position: relative;
+	left: 75px;
 }
 
 #edit-button{
@@ -107,10 +108,15 @@
 	background: #d6d2d2;
 }
 
+.savedChecklist{
+	min-height: 650px;
+}
+
 .saved-button-wrapper{
-	width: 100%;
-	margin-left: 53px;
-	margin-top: 20px;
+	width: 800px;
+	margin: 20px auto;
+	position: relative;
+	left: 25px;
 }
 
 .display-checklist-boxes[type="checkbox"] + label:before{

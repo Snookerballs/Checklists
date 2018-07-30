@@ -15,9 +15,6 @@
 .resource-item:hover{
 	color: #7b2733;
 }
-/* .modal { width: 75% !important ; height: 90% !important ; }  */
-/*.modal { width: 75% !important ; max-height: 100% !important ; overflow-y: hidden !important ;}*/
-
 hr{
 margin: auto;
 }
@@ -241,6 +238,7 @@ filter: brightness(75%)
 	width: 80%;
 	color:#ef498a;
 	margin-left: 80px;
+	 word-wrap: break-word;
 }
 
 

@@ -3,7 +3,6 @@ import { Mongo } from 'meteor/mongo';
 import {ChecklistCollection} from '../../lib/checklist-collection.js';
 import {SavedChecklistCollection} from '../../lib/saved-checklist-collection.js';
 
-
 Template.userInformation.helpers({
 	    createdChecklistsCounter(){
     	return Meteor.users.findOne({username: Router.current().params._username}).createdChecklistsCount;
@@ -35,7 +34,6 @@ Template.userInformation.helpers({
 
     	return theAvatar;
     },
-
 })
 
 Template.userInformation.events({
@@ -51,14 +49,26 @@ Template.userInformation.events({
 	},
 	'submit #avatarForm':function(){
 		event.preventDefault();
+        if(event.target.avatarInput.value !== ""){
 		Meteor.call('accounts.updateAvatar', event.target.avatarInput.value);
-	}
+        }
+	},
+    'click #avatar':function() {
+        event.preventDefault();
+        if(Meteor.users.findOne({username: Router.current().params._username})._id == Meteor.userId()){
+            $('#avatar-upload').modal('open');
+        }
+    }
 })
 
 
 Template.userChecklists.helpers({
 	createdChecklist(){
+        if(Meteor.users.findOne({username: Router.current().params._username})._id == Meteor.userId()){
 		return ChecklistCollection.find();
+        } else{
+           return ChecklistCollection.find({publish: true}); 
+        }
 	},
 	savedChecklist(){
 		return SavedChecklistCollection.find({completionStatus: false});

@@ -109,7 +109,7 @@ Template.editExistingChecklist.events({
 		Meteor.call('saved-checklists.update', Router.current().params._id, listName, category);
 
 		Meteor.call('saved-tasks.remove', Router.current().params._id);
-		Meteor.call('saved-checklist.resetChecklist', Router.current().params._id);
+		Meteor.call('saved-checklist.updateCompletionPercentage', Router.current().params._id, 0.0);
 		//Add checklist task to task collections
 		ChecklistToEdit.find({},{sort:{index: 1}}).forEach((task) => Meteor.call('saved-tasks.update', Router.current().params._id, task.taskName, 
 			task.taskDescription, task.taskResources));
