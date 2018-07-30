@@ -20,7 +20,7 @@ Template.checklists.helpers({
 		}else if(Session.get('sort-type') == 1){
 			return ChecklistCollection.find({category:  Router.current().route.getName()}, {sort: {rating: -1}});
 		} else if(Session.get('sort-type') == 3){
-			return ChecklistCollection.find({category:  Router.current().route.getName()}, {sort: {rcreatedAt: 1}});
+			return ChecklistCollection.find({category:  Router.current().route.getName()}, {sort: {createdAt: 1}});
 		}
 	},
 	      formatDate(date){

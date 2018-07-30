@@ -21,6 +21,20 @@ strong {
 	font-weight: bold;
 }
 
+/* .brand-logo{
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+button:hover{
+    filter: brightness(75%);
+}
+
+i: hover{
+     filter: brightness(75%);
+} */
+
 /* Modals */
 .modal { width: 75% !important;
 	max-height: 100% !important;
@@ -37,12 +51,35 @@ footer {
 	background-color: #685369 !important;
 }
 
-button {
+.login_btn {
 	width: 230px !important;
 }
 
 #slider {
 	/* background-color: #f3d9dc; */
+}
+.nav-wrapper{
+       background-color: #685369;
+           height: 100px;
+}
+
+nav{
+    height: 100px;
+}
+
+/* .brand-logo{
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 20px;
+} */
+
+
+button:hover{
+    filter: brightness(75%);
+}
+
+i: hover{
+     filter: brightness(75%);
 }
 
 #tutorial {
@@ -123,12 +160,6 @@ button {
     /* height: 100%; */
 }
 
-#footer
-{
-    width: 100%;
-    bottom:0;
-}
-
-#page-content {
-    height: 100%;
+.page-content{
+    min-height: 800px;
 }

@@ -17,7 +17,6 @@ Meteor.publish("saved-checklists", function(type){
 Meteor.publish("saved-checklists-user", function(){
 		return SavedChecklistCollection.find({userId: this.userId});
 });
-
 Meteor.publish("saved-checklists-specific", function(id){
 	return SavedChecklistCollection.find({_id: id});
 });
@@ -33,6 +32,9 @@ Meteor.publish("saved-checklists-specific", function(id){
 			creatorId: c_id,
 			creatorName: c_name,
 			userId: u_id,
+			completionPercentage: 0.0,
+			completionStatus: false,
+			timesCompleted: 0,
 			createdAt: new Date(),
 		});
 	},

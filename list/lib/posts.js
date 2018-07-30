@@ -23,7 +23,7 @@ Meteor.methods({
 			createdAt: new Date(),
 		});
 	},
-	'posts.remove'(list) {
-		Posts.remove({checklistID: list._id});
+	'posts.remove'(post) {
+		Posts.remove(post);
 	},
 });

@@ -30,8 +30,7 @@ Template.savedChecklist.onRendered(function() {
 
 	$('.collapsible').collapsible();
 
-	$('.checklist-box').each(function() {
-
+	$('.checklist-boxes').each(function() {
 		var checkboxNum = Number(this.id);
 		var checkbox = SavedTasks.find().fetch()[checkboxNum];
 		$(this).prop('checked',checkbox.checkStatus);
@@ -39,7 +38,7 @@ Template.savedChecklist.onRendered(function() {
 
 	});
 
-		$(document).on('click','.checklist-box', function(){
+		$(document).on('click','.checklist-boxes', function(){
 		//Get checkbox number
 		var checkboxNum = Number(this.id);
 		var checkboxToUpdate = SavedTasks.find().fetch()[checkboxNum];
@@ -84,13 +83,13 @@ Template.uncompletedChecklist.onRendered(function() {
 	$(".savedChecklist").ready(function(){
 	$('.collapsible').collapsible();
 	//Check if Checklist has been completed
-		$('.checklist-box').each(function() {
+		$('.checklist-boxes').each(function() {
 		var checkboxNum = Number(this.id);
 		var checkbox = SavedTasks.find().fetch()[checkboxNum];
 		$(this).prop('checked',checkbox.checkStatus);
     //test
 		});
-		$(".savedChecklist").on('click','.checklist-box', function(){
+		$(".savedChecklist").on('click','.checklist-boxes', function(){
 		//Get checkbox number
 		var checkboxNum = Number(this.id);
 		var checkboxToUpdate = SavedTasks.find().fetch()[checkboxNum];
@@ -122,18 +121,18 @@ Template.savedChecklist.events({
 		console.log(SavedTasks.find().fetch());
 		Meteor.call('saved-tasks.remove', currChecklist);
 		Meteor.call('saved-checklists.remove', currChecklist);
-		Router.go("User Checklists");
+		Router.go("User Checklists", {_username: Meteor.user().username});
 
 	},
 	'click #complete-button': function() {
 		Meteor.call('saved-checklist.setCompletionStatus', SavedChecklistCollection.findOne()._id);
 		Meteor.call('saved-checklist.incrementTimesCompleted', SavedChecklistCollection.findOne()._id);
 		Meteor.call('accounts.incrementCompletedCounter');
-		Router.go('User Checklists');
+		Router.go('User Checklists',{_username: Meteor.user().username});
 	},
 	'click #reuse-button':function(){
 		Meteor.call('saved-checklist.resetChecklist', SavedChecklistCollection.findOne()._id);
 		SavedTasks.find().forEach((task) => Meteor.call('saved-tasks.check', task._id, false));
-		Router.go('User Checklists');
+		Router.go('User Checklists',{_username: Meteor.user().username});
 	}
 });

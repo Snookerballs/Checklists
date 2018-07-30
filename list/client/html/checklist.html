@@ -11,14 +11,14 @@
 <template name="checklist">
 	{{#if defined}}
 	<center><h2>{{name}}</h2></center>
-	<center> Created by: {{creator}} </center>
+	<center> Created by: <a href="{{pathFor route = 'User Checklists' _username=creator }}">{{creator}}</a></center>
 		<center> Rating: {{listRating}} ({{raterNumber}} votes) </center>
 	<ul class="collapsible" id="preview-page-collapsible">
 		{{#each task}}
 		<li class = "task{{@index}}">
 			<div class="collapsible-header" id="preview-page-collapsible-header">
 				<div class="checkbox">
-					<input id="checklist-box{{@index}}" class="checklist-box" type="checkbox" disabled = "disabled" checked ="checked">
+					<input id="checklist-box{{@index}}" class="display-checklist-boxes" type="checkbox" disabled = "disabled" checked ="checked">
 					<label for="checklist-box{{@index}}"></label>
 				</div>
 				<div class="name"><strong>{{taskName}}</strong></div>
@@ -37,12 +37,14 @@
 		</li>
 		{{/each}}
 	</ul>
-	<div id="button-wrapper">
+	<div class="rating-and-usage-wrapper">
 		<span> <button class="waves-effect waves-teal btn right" id="use-button" name="action">Use This Checklist!</button></span>
 		{{> rating}}
-		<button class="waves-effect waves-teal btn" id="publish-button" name="action">Publish Checklist</button>
-		<button class="waves-effect waves-teal btn" id="delete-button" name="action">Delete Checklist</button>
-		<a href="{{pathFor route = 'Edit Created Checklist' _id=listId}}" id="edit-button" class="waves-effect waves-light btn" >Edit Checklist</a>
+	</div>
+		<div id="button-wrapper">
+		<button class="button waves-effect waves-teal btn" id="publish-button" name="action" style="background-color: #685369">Publish Checklist</button>
+		<button class="button waves-effect waves-teal btn" id="delete-button" name="action" style="background-color: #685369">Delete Checklist</button>
+		<a href="{{pathFor route = 'Edit Created Checklist' _id=listId}}" id="edit-button" class="button waves-effect waves-light btn" style="background-color: #685369" >Edit Checklist</a>
 	</div>
 
 
@@ -59,7 +61,7 @@
 			<div class="row">
 				<div class="input-field col s10">
 					<i class="material-icons prefix">mode_edit</i>
-					<textarea id="comment" class="materialize-textarea"></textarea>
+					<textarea id="comment" name="comment" class="materialize-textarea"></textarea>
 					<label for="icon_prefix2">Write your comment here!</label>
 				</div>
 			<button class="btn waves-effect waves-light" id="post-button" type="submit" name="action">post</button>
@@ -69,7 +71,7 @@
 
 		<!-- Modal UX3 Structure -->
 	  <div id="modalUX3" class="modal center-align">
-	    <div class="modal-content">
+	    <div class="checklist-modal-content" >
 	      <h4>Thank you for your comments!</h4>
 	      <p>Go on to view other checklists!</p>
 	    </div>
@@ -77,7 +79,7 @@
 				<img src="/images/goodjob.gif">
 			</div>
 	    <div class="modal-footer">
-	      <a href="{{ pathFor route = 'Categories' }}" class="modal-action modal-close waves-effect waves-green btn-flat">Go to Categories</a>
+	    				<a class="button waves-effect waves-light btn modal-close" >OK!</a>
 	    </div>
 	  </div>
 
@@ -91,6 +93,9 @@
 		<ul class="collection" id="comments-list">
 			{{#each post}}
 			<p>
+				{{#if isPoster posterId}}
+			<a href="#" class="delete-comment secondary-content" style="color: #f39d9c"><i class="material-icons">close</i></a>
+			{{/if}}
 			<img class="circle userAvatar" src="{{userAvatar posterId}}">
 			<h5>{{username}} says:</h5>
 			</p>
@@ -128,7 +133,7 @@
 
 		<!-- Modal UX2 Structure -->
 	  <div id="modalUX2" class="modal center-align">
-	    <div class="modal-content">
+	    <div class="checklist-modal-content">
 	      <h4>Thank you for rating!</h4>
 	      <p>Go on to leave a comment too!</p>
 	    </div>
@@ -136,7 +141,7 @@
 				<img src="/images/thankyou.gif">
 			</div>
 	    <div class="modal-footer">
-	      <a href="#comment" class="modal-action modal-close waves-effect waves-green btn-flat">Go to Comment</a>
+	    				<a class="button waves-effect waves-light btn modal-close" >OK!</a>
 	    </div>
 	  </div>
 

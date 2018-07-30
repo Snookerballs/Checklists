@@ -6,29 +6,29 @@ import {SavedChecklistCollection} from '../../lib/saved-checklist-collection.js'
 
 Template.userInformation.helpers({
 	    createdChecklistsCounter(){
-    	return Meteor.user().createdChecklistsCount;
+    	return Meteor.users.findOne({username: Router.current().params._username}).createdChecklistsCount;
     },
     completedChecklistsCounter() {
-    	return Meteor.user().completedChecklistsCount;
+    	return Meteor.users.findOne({username: Router.current().params._username}).completedChecklistsCount;
     },
     joinDate(){
-    	return Meteor.user().createdAt;
+    	return Meteor.users.findOne({username: Router.current().params._username}).createdAt;
     },
     	formatDate(date){
   		return moment(date).format('DD-MM-YYYY');
     },
     username(){
-    	return Meteor.user().username;
+    	return Meteor.users.findOne({username: Router.current().params._username}).username;
     },
     message(){
-    	var theMessage = Meteor.user().profile.message;
+    	var theMessage = Meteor.users.findOne({username: Router.current().params._username}).profile.message;
     	if(theMessage == ""){
     		theMessage = "Write a new message here!"
     	}
     	return theMessage;
     },
     avatar(){
-    	var theAvatar = Meteor.user().profile.avatar;
+    	var theAvatar = Meteor.users.findOne({username: Router.current().params._username}).profile.avatar;
     	if(theAvatar =="") {
     		theAvatar = "/images/profile.jpg";
     	}
@@ -58,7 +58,6 @@ Template.userInformation.events({
 
 Template.userChecklists.helpers({
 	createdChecklist(){
-                console.log("YRES");
 		return ChecklistCollection.find();
 	},
 	savedChecklist(){
@@ -82,4 +81,10 @@ Template.userChecklists.onRendered(function(){
 	    $(document).ready(function(){
     $('.tabs').tabs();
   });
+
+    if(Meteor.users.findOne({username: Router.current().params._username})._id != Meteor.userId()){
+            $('#saved-tab').hide();
+             $('#complete-tab').hide();
+             $('.editMessage').hide();
+    }
 })

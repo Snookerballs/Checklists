@@ -25,8 +25,8 @@ Template.create_account.events({
         alert(error.reason); // Output error if registration fails
       } else {
         console.log(Meteor.userId());
-        //Router.go("main"); // Redirect user if registration succeeds
         alert("Your account has been created. Please check your Inbox for Email Verification!");
+        //Router.go("User Checklists"); // Redirect user if registration succeeds
         $('#register-form').trigger("reset");
       }
     });
@@ -56,9 +56,13 @@ Template.login.events({
     Meteor.loginWithPassword(emailVar, passwordVar, function(err) {
       if (err) {
         alert( err.message);
+      }else{
+          Session.set("Current User", Meteor.user().username);
+
+            Router.go("User Checklists", {_username: Session.get("Current User")});
       }
     });
-    Router.go("User Checklists");
+
   }
 });
 
@@ -66,7 +70,6 @@ Template.dashboard.events({
   'click .logout': function(event){
     event.preventDefault();
     Meteor.logout();
-    console.log("logout alr");
     Router.go("main");
   }
 });

@@ -22,6 +22,9 @@ Meteor.publish("checklists-user", function(){
 Meteor.publish("checklists-specific", function(id){
 	return ChecklistCollection.find({_id: id});
 });
+Meteor.publish("checklists-specificUser", function(name){
+	return ChecklistCollection.find({username: name});
+});
 }
 
 	Meteor.methods({

@@ -1,7 +1,8 @@
 .category-card {
 	height:400px;
 	width: 400px;
-	border: 10px solid #89d2dd;
+	border: 10px solid #ef798a;
+	box-shadow: 10px 5px 20px #bd8e93;
 }
 
 .right-col {
@@ -18,17 +19,38 @@
 	margin: 20px auto;
 	overflow: hidden;
 	width: 700px;
-	border: 5px solid #89d2dd;
+	background-color: #d6d2d2;
+	border: 10px solid #454851;
+	box-shadow: 10px 5px 20px #bd8e93;
 }
 
 #category-checklists:hover{
-		transform: scale(1.1);
-		background-color: #bdeff5
+	transition: transform .3s;
+		transform: scale(1.05);
+		background-color: #685369;
 }
 
+
 .category-card:hover{
-		transform: scale(1.1);
-		background-color: #bdeff5
+	transition: transform .3s;
+		transform: scale(1.05);
+					transform: rotate(5deg) scale(1.1);
+		background-color:  #ef798a;
+
+
+}
+
+.card-content:hover{
+			color: #f3d9dc;
+}
+
+.category-content{
+	width:700px;
+	color: #685369;
+}
+
+.category-content:hover{
+	color: #d6d2d2;
 }
 
 #sort-form{
@@ -55,4 +77,8 @@ position:relative;
 .information {
 	width: 600px;
 	margin: auto;
+}
+
+.category-list-wrapper{
+	min-height: 800px;
 }
